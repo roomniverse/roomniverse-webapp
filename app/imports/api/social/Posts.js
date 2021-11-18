@@ -1,24 +1,18 @@
 import { Mongo } from 'meteor/mongo';
 import SimpleSchema from 'simpl-schema';
 import { Tracker } from 'meteor/tracker';
-import ImageField from '../../ui/components/ImageField';
 
 class PostsCollection {
   constructor() {
     this.name = 'PostsCollection';
     this.collection = new Mongo.Collection(this.name);
     this.schema = new SimpleSchema({
-      image: {
-        type: String,
-        uniforms: { component: ImageField },
-      },
+      image: String,
       user: String,
       date: String,
       summary: String,
       extraText: { type: String, defaultValue: '' },
-      extraImages: {
-        type: String,
-        uniforms: ImageField },
+      extraImages: String,
       meta: String,
     }, { tracker: Tracker });
     this.collection.attachSchema(this.schema);

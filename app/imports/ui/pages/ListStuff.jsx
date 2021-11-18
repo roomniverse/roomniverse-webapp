@@ -1,6 +1,6 @@
 import React from 'react';
 import { Meteor } from 'meteor/meteor';
-import { Container, Table, Header, Loader } from 'semantic-ui-react';
+import { Container, Header, Loader, Table } from 'semantic-ui-react';
 import { withTracker } from 'meteor/react-meteor-data';
 import PropTypes from 'prop-types';
 import { Stuffs } from '../../api/stuff/Stuff';
@@ -29,7 +29,7 @@ class ListStuff extends React.Component {
             </Table.Row>
           </Table.Header>
           <Table.Body>
-            {this.props.stuffs.map((stuff) => <StuffItem key={stuff._id} stuff={stuff} />)}
+            {this.props.stuffs.map((stuff) => <StuffItem key={stuff._id} stuff={stuff}/>)}
           </Table.Body>
         </Table>
       </Container>

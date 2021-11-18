@@ -28,6 +28,7 @@ PostEvent.propTypes = {
     date: PropTypes.string,
     meta: PropTypes.string,
     summary: PropTypes.array,
+    _id: PropTypes.string,
   }).isRequired,
   extra: PropTypes.shape({
     text: PropTypes.string,

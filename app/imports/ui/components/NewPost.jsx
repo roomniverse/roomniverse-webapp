@@ -3,19 +3,18 @@ import swal from 'sweetalert';
 import { Meteor } from 'meteor/meteor';
 import { SimpleSchema } from 'simpl-schema/dist/SimpleSchema';
 import SimpleSchema2Bridge from 'uniforms-bridge-simple-schema-2';
-import { AutoField, AutoForm, ErrorField, SubmitField } from 'uniforms-semantic';
-import { TextArea } from 'semantic-ui-react';
+import { AutoForm, ErrorField, SubmitField } from 'uniforms-semantic';
+import { TextArea, ImageProps } from 'semantic-ui-react';
+import { connectField } from 'uniforms';
 import { Posts } from '../../api/social/Posts';
-import ImageField from './ImageField';
+// import ImageField from './ImageField';
 
 const formSchema = new SimpleSchema({
   extraText: String,
-  extraImages: {
-    type: String,
-    uniforms: { component: ImageField },
-  },
+  extraImages: String,
 });
 
+const ImageField = connectField(Image);
 const bridge = new SimpleSchema2Bridge(formSchema);
 
 /** Create a new Social Post */
@@ -44,7 +43,7 @@ class NewPost extends React.Component {
     return (
       <AutoForm ref={ref => { fRef = ref; }} schema={bridge} onSubmit={data => this.submit(data, fRef)}>
         <TextArea name='extraText' placeholder="What's on your mind?"/>
-        <AutoField name='extraImage'/>
+        <ImageField name='extraImage'/>
         <SubmitField value='Create Post'/>
         <ErrorField errorMessage="Please write or upload something."/>
       </AutoForm>

@@ -1,15 +1,16 @@
+/*
 import React from 'react';
 import { connectField, HTMLFieldProps } from 'uniforms';
 
-export type ImageFieldProps = HTMLFieldProps<string>;
+type ImageProps = HTMLFieldProps<string, HTMLDivElement>;
 
-/** Code retrieved from https://uniforms.tools/docs/tutorials-creating-custom-field/ */
-function Image({ onChange }: ImageFieldProps) {
+/!** Code retrieved from https://uniforms.tools/docs/tutorials-creating-custom-field/ *!/
+function Image({ onChange, value }: ImageProps) {
   return (
     <div className="ImageField">
       <label htmlFor="file-input">Upload an image</label>
       <input
-        accept="image/*"
+        accept="image/!*"
         id="file-input"
         onChange={({ target: { files } }) => {
           if (files && files[0]) {
@@ -21,4 +22,6 @@ function Image({ onChange }: ImageFieldProps) {
   );
 }
 
-export default connectField<ImageFieldProps>(Image);
+const ImageField = connectField(Image);
+export default ImageField;
+*/

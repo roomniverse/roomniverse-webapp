@@ -18,14 +18,16 @@ class Hub extends React.Component {
     return (
       <Container>
         <Button onClick={NewPost} fluid>Create a New Post</Button>
-        <Feed events={PostEvent}/>
+        <Feed>
+          {this.props.posts.map((post) => <PostEvent key={post._id} post={post}/>)}
+        </Feed>
       </Container>
     );
   }
 }
 
 Hub.propTypes = {
-  stuffs: PropTypes.array.isRequired,
+  posts: PropTypes.array.isRequired,
   ready: PropTypes.bool.isRequired,
 };
 

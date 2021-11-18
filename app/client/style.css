@@ -1,0 +1,38 @@
+.page-container {
+  position: relative;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.content-wrap {
+  flex-grow: 1;
+}
+
+.landing {
+  color: white;
+  background-color: #343434;
+  padding: 15px 0;
+}
+
+.nav-style, .footer-container{
+  border: 0 !important;
+  color: white !important;
+  background-color: #024731 !important;
+  width: 100% !important;
+}
+
+.nav-style {
+  height: 55px;
+}
+
+.nav-style .navlogo {
+  height: 35px;
+  width: auto;
+}
+
+.footer-container {
+  height: 110px;
+  align-items: center;
+  justify-content: center;
+}

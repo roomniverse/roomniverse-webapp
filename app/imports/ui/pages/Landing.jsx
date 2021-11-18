@@ -1,16 +1,16 @@
 import React from 'react';
-import { Grid, Icon, Header } from 'semantic-ui-react';
+import { Grid, Icon, Header, Image } from 'semantic-ui-react';
 
+const logo = "images/logo-transparent.jpg";
 /** A simple static component to render some text for the landing page. */
 class Landing extends React.Component {
   render() {
-    const divStyle = { color: 'white', backgroundColor: '#343434' };
     return (
-      <div className='landing' style={divStyle}>
+      <div className='landing'>
         <Grid centered stackable columns={3} container>
 
           <Grid.Column textAlign='center'>
-            <Icon name='building' size='huge'/>
+            <Image src={logo} alt="Roomniverse Logo" size="small" centered/>
             <Header as='h1' inverted>Meet New People</Header>
             <Header as='h3' inverted>A social hub created just for students in the UH Manoa dorms!</Header>
           </Grid.Column>

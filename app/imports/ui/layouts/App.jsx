@@ -21,19 +21,21 @@ class App extends React.Component {
   render() {
     return (
       <Router>
-        <div>
+        <div className="page-container">
           <NavBar/>
-          <Switch>
-            <Route exact path="/" component={Landing}/>
-            <Route path="/signin" component={Signin}/>
-            <Route path="/signup" component={Signup}/>
-            <Route path="/signout" component={Signout}/>
-            <ProtectedRoute path="/profile" component={ListStuff}/>
-            <ProtectedRoute path="/find" component={AddStuff}/>
-            <ProtectedRoute path="/hub" component={EditStuff}/>
-            <AdminProtectedRoute path="/admin" component={ListStuffAdmin}/>
-            <Route component={NotFound}/>
-          </Switch>
+          <div className="content-wrap">
+            <Switch>
+              <Route exact path="/" component={Landing}/>
+              <Route path="/signin" component={Signin}/>
+              <Route path="/signup" component={Signup}/>
+              <Route path="/signout" component={Signout}/>
+              <ProtectedRoute path="/hub" component={EditStuff}/>
+              <ProtectedRoute path="/find" component={AddStuff}/>
+              <ProtectedRoute path="/profile" component={ListStuff}/>
+              <AdminProtectedRoute path="/admin" component={ListStuffAdmin}/>
+              <Route component={NotFound}/>
+            </Switch>
+          </div>
           <Footer/>
         </div>
       </Router>

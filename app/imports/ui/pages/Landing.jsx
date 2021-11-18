@@ -1,7 +1,7 @@
 import React from 'react';
 import { Grid, Icon, Header, Image } from 'semantic-ui-react';
 
-const logo = "images/logo-transparent.jpg";
+const logo = 'logo-transparent.jpg';
 /** A simple static component to render some text for the landing page. */
 class Landing extends React.Component {
   render() {

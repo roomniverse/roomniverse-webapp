@@ -6,7 +6,7 @@ import { withRouter, NavLink } from 'react-router-dom';
 import { Menu, Dropdown, Image } from 'semantic-ui-react';
 import { Roles } from 'meteor/alanning:roles';
 
-const nameLogo = "images/namelogo.png";
+const nameLogo = 'namelogo.png';
 /** The NavBar appears at the top of every page. Rendered by the App Layout component. */
 class NavBar extends React.Component {
   render() {
@@ -26,19 +26,19 @@ class NavBar extends React.Component {
           ) : ''}
           <Menu.Item>
             {this.props.currentUser === '' ? (
-              <Dropdown id="login-dropdown" text="Login" pointing="top right" icon={'user'} style={{color: "white"}}>
+              <Dropdown id="login-dropdown" text="Login" pointing="top right" icon={'user'} style={{ color: 'white' }}>
                 <Dropdown.Menu>
                   <Dropdown.Item id="login-dropdown-sign-in" icon="user" text="Sign In" as={NavLink} exact
-                                 to="/signin"/>
+                    to="/signin"/>
                   <Dropdown.Item id="login-dropdown-sign-up" icon="add user" text="Sign Up" as={NavLink} exact
-                                 to="/signup"/>
+                    to="/signup"/>
                 </Dropdown.Menu>
               </Dropdown>
             ) : (
               <Dropdown id="navbar-current-user" text={this.props.currentUser} pointing="top right" icon={'user'}>
                 <Dropdown.Menu>
                   <Dropdown.Item id="navbar-sign-out" icon="sign out" text="Sign Out" as={NavLink} exact
-                                 to="/signout"/>
+                    to="/signout"/>
                 </Dropdown.Menu>
               </Dropdown>
             )}

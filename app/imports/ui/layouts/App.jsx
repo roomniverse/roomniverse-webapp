@@ -14,6 +14,7 @@ import NotFound from '../pages/NotFound';
 import Signin from '../pages/Signin';
 import Signup from '../pages/Signup';
 import Signout from '../pages/Signout';
+=======
 import ListStuffAdmin from '../pages/ListStuffAdmin';
 
 /** Top-level layout component for this application. Called in imports/startup/client/startup.jsx. */
@@ -23,6 +24,7 @@ class App extends React.Component {
       <Router>
         <div className="page-container">
           <NavBar/>
+
           <div className="content-wrap">
             <Switch>
               <Route exact path="/" component={Landing}/>
@@ -36,6 +38,21 @@ class App extends React.Component {
               <Route component={NotFound}/>
             </Switch>
           </div>
+=======
+          <div className="content-wrap">
+            <Switch>
+              <Route exact path="/" component={Landing}/>
+              <Route path="/signin" component={Signin}/>
+              <Route path="/signup" component={Signup}/>
+              <Route path="/signout" component={Signout}/>
+              {/*              <ProtectedRoute path="/hub" component={Hub}/>
+              <ProtectedRoute path="/find" component={Find}/>
+              <ProtectedRoute path="/profile" component={Profile}/> */}
+              <AdminProtectedRoute path="/admin" component={ListStuffAdmin}/>
+              <Route component={NotFound}/>
+            </Switch>
+          </div>
+
           <Footer/>
         </div>
       </Router>

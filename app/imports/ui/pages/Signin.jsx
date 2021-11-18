@@ -35,15 +35,14 @@ export default class Signin extends React.Component {
 
   // Render the signin form.
   render() {
-    const divStyle = { color: 'white', backgroundColor: '#343434' };
-    const { from } = this.props.location.state || { from: { pathname: '/' } };
+    const { from } = this.props.location.state || { from: { pathname: '/hub' } };
     // if correct authentication, redirect to page instead of login screen
     if (this.state.redirectToReferer) {
       return <Redirect to={from}/>;
     }
     // Otherwise return the Login form.
     return (
-      <div style={divStyle}>
+      <div className="grey-theme">
         <Container id="signin-page">
           <Grid textAlign="center" verticalAlign="middle" centered columns={2}>
             <Grid.Column>

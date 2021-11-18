@@ -9,12 +9,6 @@
   flex-grow: 1;
 }
 
-.landing {
-  color: white;
-  background-color: #343434;
-  padding: 15px 0;
-}
-
 .nav-style, .footer-container{
   border: 0 !important;
   color: white !important;
@@ -35,4 +29,17 @@
   height: 110px;
   align-items: center;
   justify-content: center;
+}
+
+.grey-theme {
+  color: white;
+  background-color: #343434;
+}
+
+.landing {
+  padding: 15px 0;
+}
+
+.signout {
+  padding: 50px 0;
 }

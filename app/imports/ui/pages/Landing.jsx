@@ -6,7 +6,7 @@ const logo = "images/logo-transparent.jpg";
 class Landing extends React.Component {
   render() {
     return (
-      <div className='landing'>
+      <div className='landing grey-theme'>
         <Grid centered stackable columns={3} container>
 
           <Grid.Column textAlign='center'>

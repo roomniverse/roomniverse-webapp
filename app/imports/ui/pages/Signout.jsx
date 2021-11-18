@@ -6,9 +6,8 @@ import { Header } from 'semantic-ui-react';
 export default class Signout extends React.Component {
   render() {
     Meteor.logout();
-    const divStyle = { color: 'white', backgroundColor: '#343434', paddingTop: '50px', paddingBottom: '50px' };
     return (
-      <div style={divStyle}>
+      <div className="grey-theme signout">
         <Header id="signout-page" as="h2" textAlign="center" inverted>
           <p>You are signed out.</p>
         </Header>

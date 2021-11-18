@@ -4,15 +4,15 @@ import { Meteor } from 'meteor/meteor';
 import { SimpleSchema } from 'simpl-schema/dist/SimpleSchema';
 import SimpleSchema2Bridge from 'uniforms-bridge-simple-schema-2';
 import { AutoField, AutoForm, ErrorField, SubmitField } from 'uniforms-semantic';
+import { TextArea } from 'semantic-ui-react';
 import { Posts } from '../../api/social/Posts';
 import ImageField from './ImageField';
-import { TextArea } from 'semantic-ui-react';
 
 const formSchema = new SimpleSchema({
   extraText: String,
   extraImages: {
     type: String,
-    uniforms: { component: ImageField }
+    uniforms: { component: ImageField },
   },
 });
 

@@ -10,7 +10,7 @@ class PostsCollection {
     this.schema = new SimpleSchema({
       image: {
         type: String,
-        uniforms: { component: ImageField }
+        uniforms: { component: ImageField },
       },
       user: String,
       date: String,

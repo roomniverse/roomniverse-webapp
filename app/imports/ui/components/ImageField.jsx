@@ -26,4 +26,4 @@ function Image({ onChange }: ImageFieldProps) {
   );
 }
 
-export default connectField<ImageFieldProps>(Image)
+export default connectField<ImageFieldProps>(Image);

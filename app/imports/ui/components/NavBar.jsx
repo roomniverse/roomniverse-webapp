@@ -6,7 +6,7 @@ import { withRouter, NavLink } from 'react-router-dom';
 import { Menu, Dropdown, Image } from 'semantic-ui-react';
 import { Roles } from 'meteor/alanning:roles';
 
-const nameLogo = 'namelogo.png';
+const nameLogo = 'https://i.ibb.co/H46VxdD/namelogo.png';
 /** The NavBar appears at the top of every page. Rendered by the App Layout component. */
 class NavBar extends React.Component {
   render() {

@@ -13,7 +13,7 @@ class NavBar extends React.Component {
     return (
       <Menu className="nav-style" attached="top" borderless>
         <Menu.Item as={NavLink} activeClassName="" exact to="/hub" key="hub">
-          <Image className="navlogo" src={nameLogo}/>
+          <Image className="navlogo" src={nameLogo} alt="Roomniverse"/>
         </Menu.Item>
         <Menu.Menu position="right">
           {this.props.currentUser ? (

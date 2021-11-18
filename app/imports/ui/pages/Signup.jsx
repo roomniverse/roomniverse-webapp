@@ -39,11 +39,11 @@ class Signup extends React.Component {
       return <Redirect to={from}/>;
     }
     return (
-      <div className="grey-theme">
+      <div className="grey-theme sign">
         <Container id="signup-page">
           <Grid textAlign="center" verticalAlign="middle" centered columns={2}>
             <Grid.Column>
-              <Header as="h2" textAlign="center">
+              <Header as="h2" textAlign="center" style={{color: 'white'}}>
                 Register your account
               </Header>
               <Form onSubmit={this.submit}>

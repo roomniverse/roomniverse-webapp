@@ -4,7 +4,7 @@ import { Grid, Icon, Header } from 'semantic-ui-react';
 /** A simple static component to render some text for the landing page. */
 class Landing extends React.Component {
   render() {
-    const divStyle = { color: 'white' };
+    const divStyle = { color: 'white', backgroundColor: '#343434' };
     return (
       <div className='landing' style={divStyle}>
         <Grid centered stackable columns={3} container>

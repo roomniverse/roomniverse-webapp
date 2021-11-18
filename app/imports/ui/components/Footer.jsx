@@ -5,15 +5,15 @@ class Footer extends React.Component {
   render() {
     const divStyle = { paddingTop: '', color: 'white', backgroundColor: '#024731' };
     return (
-      <footer>
-        <div style={divStyle} className="ui center aligned container">
-          <hr />
-              Department of Information and Computer Sciences <br />
-              University of Hawaii<br />
-              Honolulu, HI 96822 <br />
+      <div style={divStyle}>
+        <div className="ui center aligned container">
+          <hr/>
+          Department of Information and Computer Sciences <br/>
+          University of Hawaii<br/>
+          Honolulu, HI 96822 <br/>
           <a href="http://ics-software-engineering.github.io/meteor-application-template-react">Template Home Page</a>
         </div>
-      </footer>
+      </div>
     );
   }
 }

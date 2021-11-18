@@ -10,14 +10,14 @@ class PostsCollection {
       image: String,
       user: String,
       date: String,
-      meta: String,
       summary: String,
-      extraText: String,
-      extraImages: [String],
+      extraText: { type: String, defaultValue: '' },
+      extraImages: { type: Array, defaultValue: [] },
+      meta: String,
     }, { tracker: Tracker });
     this.collection.attachSchema(this.schema);
     this.userPublicationName = `${this.name}.publication.user`;
-    this.adminPublicationName = `${this.name}.publication.admin`;
+    //this.adminPublicationName = `${this.name}.publication.admin`;
   }
 }
 

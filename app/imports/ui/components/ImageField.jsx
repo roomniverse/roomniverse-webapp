@@ -2,16 +2,13 @@ import React from 'react';
 import { connectField, HTMLFieldProps } from 'uniforms';
 import { Segment } from 'semantic-ui-react';
 
-export type ImageFieldProps = HTMLFieldProps<string, HTMLDivElement>;
+export type ImageFieldProps = HTMLFieldProps<string>;
 
 /** Code retrieved from https://uniforms.tools/docs/tutorials-creating-custom-field/ */
 function Image({ onChange }: ImageFieldProps) {
   return (
     <div className="ImageField">
-      <Segment>
-        <label htmlFor="file-input">
-          <div>Upload an image</div>
-        </label>
+      <label htmlFor="file-input">Upload an image</label>
         <input
           accept="image/*"
           id="file-input"
@@ -21,7 +18,6 @@ function Image({ onChange }: ImageFieldProps) {
             }
           }}
           type="file"/>
-      </Segment>
     </div>
   );
 }

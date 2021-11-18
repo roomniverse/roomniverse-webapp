@@ -7,7 +7,7 @@ import { HashRouter as Router, Route, Switch, Redirect } from 'react-router-dom'
 import NavBar from '../components/NavBar';
 import Footer from '../components/Footer';
 import Landing from '../pages/Landing';
- import Hub from '../pages/Hub';
+import Hub from '../pages/Hub';
 import Find from '../pages/FindRoommate';
 import Profile from '../pages/UserProfile';
 import NotFound from '../pages/NotFound';
@@ -15,7 +15,6 @@ import Signin from '../pages/Signin';
 import Signup from '../pages/Signup';
 import Signout from '../pages/Signout';
 import ListStuffAdmin from '../pages/ListStuffAdmin';
-
 
 /** Top-level layout component for this application. Called in imports/startup/client/startup.jsx. */
 class App extends React.Component {

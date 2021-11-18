@@ -16,6 +16,14 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
+  <component name="HighlightingSettingsPerFile">
+    <setting file="file://$PROJECT_DIR$/app/client/style.css" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/app/imports/ui/components/Footer.jsx" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/app/imports/ui/components/NavBar.jsx" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/app/imports/ui/pages/Landing.jsx" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/app/imports/ui/layouts/App.jsx" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/app/imports/ui/pages/FindRoommate.jsx" root0="FORCE_HIGHLIGHTING" />
+  </component>
   <component name="ProjectId" id="214v5lYjxigf9qWtSyAHINyKMW1" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />

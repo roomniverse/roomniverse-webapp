@@ -7,35 +7,52 @@ import { HashRouter as Router, Route, Switch, Redirect } from 'react-router-dom'
 import NavBar from '../components/NavBar';
 import Footer from '../components/Footer';
 import Landing from '../pages/Landing';
-import ListStuff from '../pages/ListStuff';
-import ListStuffAdmin from '../pages/ListStuffAdmin';
-import AddStuff from '../pages/AddStuff';
-import EditStuff from '../pages/EditStuff';
+/* import Hub from '../pages/Hub';
+import Find from '../pages/FindRoommate';
+import Profile from '../pages/UserProfile'; */
 import NotFound from '../pages/NotFound';
 import Signin from '../pages/Signin';
 import Signup from '../pages/Signup';
 import Signout from '../pages/Signout';
-import UserProfile from '../pages/UserProfile';
+=======
+import ListStuffAdmin from '../pages/ListStuffAdmin';
 
 /** Top-level layout component for this application. Called in imports/startup/client/startup.jsx. */
 class App extends React.Component {
   render() {
     return (
       <Router>
-        <div>
+        <div className="page-container">
           <NavBar/>
-          <Switch>
-            <Route exact path="/" component={Landing}/>
-            <Route path="/signin" component={Signin}/>
-            <Route path="/signup" component={Signup}/>
-            <Route path="/signout" component={Signout}/>
-            <ProtectedRoute path="/list" component={ListStuff}/>
-            <ProtectedRoute path="/add" component={AddStuff}/>
-            <ProtectedRoute path="/profile" component={UserProfile}/>
-            <ProtectedRoute path="/edit/:_id" component={EditStuff}/>
-            <AdminProtectedRoute path="/admin" component={ListStuffAdmin}/>
-            <Route component={NotFound}/>
-          </Switch>
+
+          <div className="content-wrap">
+            <Switch>
+              <Route exact path="/" component={Landing}/>
+              <Route path="/signin" component={Signin}/>
+              <Route path="/signup" component={Signup}/>
+              <Route path="/signout" component={Signout}/>
+              {/*              <ProtectedRoute path="/hub" component={Hub}/>
+              <ProtectedRoute path="/find" component={Find}/>
+              <ProtectedRoute path="/profile" component={Profile}/> */}
+              <AdminProtectedRoute path="/admin" component={ListStuffAdmin}/>
+              <Route component={NotFound}/>
+            </Switch>
+          </div>
+=======
+          <div className="content-wrap">
+            <Switch>
+              <Route exact path="/" component={Landing}/>
+              <Route path="/signin" component={Signin}/>
+              <Route path="/signup" component={Signup}/>
+              <Route path="/signout" component={Signout}/>
+              {/*              <ProtectedRoute path="/hub" component={Hub}/>
+              <ProtectedRoute path="/find" component={Find}/>
+              <ProtectedRoute path="/profile" component={Profile}/> */}
+              <AdminProtectedRoute path="/admin" component={ListStuffAdmin}/>
+              <Route component={NotFound}/>
+            </Switch>
+          </div>
+
           <Footer/>
         </div>
       </Router>

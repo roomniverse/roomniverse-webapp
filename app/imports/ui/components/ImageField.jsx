@@ -1,6 +1,5 @@
 import React from 'react';
 import { connectField, HTMLFieldProps } from 'uniforms';
-import { Segment } from 'semantic-ui-react';
 
 export type ImageFieldProps = HTMLFieldProps<string>;
 
@@ -9,15 +8,15 @@ function Image({ onChange }: ImageFieldProps) {
   return (
     <div className="ImageField">
       <label htmlFor="file-input">Upload an image</label>
-        <input
-          accept="image/*"
-          id="file-input"
-          onChange={({ target: { files } }) => {
-            if (files && files[0]) {
-              onChange(URL.createObjectURL(files[0]));
-            }
-          }}
-          type="file"/>
+      <input
+        accept="image/*"
+        id="file-input"
+        onChange={({ target: { files } }) => {
+          if (files && files[0]) {
+            onChange(URL.createObjectURL(files[0]));
+          }
+        }}
+        type="file"/>
     </div>
   );
 }

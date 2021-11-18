@@ -1,6 +1,6 @@
 import React from 'react';
 import { Meteor } from 'meteor/meteor';
-import { Container, Card, Header, Loader, Image, Input } from 'semantic-ui-react';
+import { Container, Item, Header, Loader, Input } from 'semantic-ui-react';
 import { withTracker } from 'meteor/react-meteor-data';
 import PropTypes from 'prop-types';
 import { Stuffs } from '../../api/stuff/Stuff';
@@ -17,70 +17,63 @@ class FindRoommate extends React.Component {
 
   // Render the page once subscriptions have been received.
   renderPage() {
+    const divStyle = { color: 'white', backgroundColor: '#343434' };
     return (
-      <Container>
-        <Header as="h2" textAlign="center">Find Roommates</Header>
+      <div style={divStyle}>
+        <Container>
+          <Header as="h2" textAlign="center" inverted>Find Roommates</Header>
 
-        <Input fluid icon='search' placeholder='Search...' />
+          <Input fluid icon='search' placeholder='Search...'/>
 
-        <Card.Group>
-          <Card centered>
-            <Image src={'https://prepsec.org/wp-content/uploads/2017/09/unknown-person-icon-Image-from.png'}/>
-            <Card.Content>
-              <Card.Header>First Name Last Name</Card.Header>
-              <Card.Meta>Address or location of the room</Card.Meta>
-              <Card.Description>
-                Description about the room
-              </Card.Description>
-            </Card.Content>
-            <Card.Content extra>
-              Link to the Profile
-            </Card.Content>
-          </Card>
+          <Item.Group>
+            <Item>
+              <Item.Image size='small' src='https://prepsec.org/wp-content/uploads/2017/09/unknown-person-icon-Image-from.png'/>
+              <Item.Content>
+                <Item.Header><p>Name</p></Item.Header>
+                <Item.Description>
+                  <p>Gender: </p>
+                  <p>Location: </p>
+                  <p>description of the room</p>
+                </Item.Description>
+                <Item.Extra>
+                  <p>Link to the profile</p>
+                </Item.Extra>
+              </Item.Content>
+            </Item>
+            <hr />
+            <Item>
+              <Item.Image size='small' src='https://prepsec.org/wp-content/uploads/2017/09/unknown-person-icon-Image-from.png'/>
+              <Item.Content>
+                <Item.Header><p>Name</p></Item.Header>
+                <Item.Description>
+                  <p>Gender: </p>
+                  <p>Location: </p>
+                  <p>description of the room</p>
+                </Item.Description>
+                <Item.Extra>
+                  <p>Link to the profile</p>
+                </Item.Extra>
+              </Item.Content>
+            </Item>
+            <hr />
 
-          <Card centered>
-            <Image src={'https://prepsec.org/wp-content/uploads/2017/09/unknown-person-icon-Image-from.png'}/>
-            <Card.Content>
-              <Card.Header>First Name Last Name</Card.Header>
-              <Card.Meta>Address or location of the room</Card.Meta>
-              <Card.Description>
-                Description about the room
-              </Card.Description>
-            </Card.Content>
-            <Card.Content extra>
-              Link to the Profile
-            </Card.Content>
-          </Card>
-
-          <Card centered>
-            <Image src={'https://prepsec.org/wp-content/uploads/2017/09/unknown-person-icon-Image-from.png'}/>
-            <Card.Content>
-              <Card.Header>First Name Last Name</Card.Header>
-              <Card.Meta>Address or location of the room</Card.Meta>
-              <Card.Description>
-                Description about the room
-              </Card.Description>
-            </Card.Content>
-            <Card.Content extra>
-              Link to the Profile
-            </Card.Content>
-          </Card>
-
-          <Card centered>
-            <Image src={'https://prepsec.org/wp-content/uploads/2017/09/unknown-person-icon-Image-from.png'}/>
-            <Card.Content>
-              <Card.Header>First Name Last Name</Card.Header>
-              <Card.Meta>Address or location of the room</Card.Meta>
-              <Card.Description>
-                Description about the room
-              </Card.Description>
-            </Card.Content>
-            <Card.Content extra>
-              Link to the Profile
-            </Card.Content>
-          </Card>
-        </Card.Group>
-      </Container>
+            <Item>
+              <Item.Image size='small' src='https://prepsec.org/wp-content/uploads/2017/09/unknown-person-icon-Image-from.png'/>
+              <Item.Content>
+                <Item.Header><p>Name</p></Item.Header>
+                <Item.Description>
+                  <p>Gender: </p>
+                  <p>Location: </p>
+                  <p>description of the room</p>
+                </Item.Description>
+                <Item.Extra>
+                  <p>Link to the profile</p>
+                </Item.Extra>
+              </Item.Content>
+            </Item>
+          </Item.Group>
+        </Container>
+      </div>
     );
   }
 }

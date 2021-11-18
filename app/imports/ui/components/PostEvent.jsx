@@ -31,7 +31,7 @@ PostEvent.propTypes = {
   }).isRequired,
   extra: PropTypes.shape({
     text: PropTypes.string,
-    img: PropTypes.array,
+    img: PropTypes.string,
   }),
 };
 

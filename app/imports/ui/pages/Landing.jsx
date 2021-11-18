@@ -1,22 +1,35 @@
 import React from 'react';
-import { Grid, Image } from 'semantic-ui-react';
+import { Grid, Icon, Header } from 'semantic-ui-react';
 
 /** A simple static component to render some text for the landing page. */
 class Landing extends React.Component {
   render() {
+    const divStyle = { color: 'white', backgroundColor: '#343434' };
     return (
-      <Grid id='landing-page' verticalAlign='middle' textAlign='center' container>
+      <div className='landing' style={divStyle}>
+        <Grid centered stackable columns={3} container>
 
-        <Grid.Column width={4}>
-          <Image size='small' circular src="/images/meteor-logo.png"/>
-        </Grid.Column>
+          <Grid.Column textAlign='center'>
+            <Icon name='building' size='huge'/>
+            <Header as='h1' inverted>Meet New People</Header>
+            <Header as='h3' inverted>A social hub created just for students in the UH Manoa dorms!</Header>
+          </Grid.Column>
 
-        <Grid.Column width={8}>
-          <h1>Welcome to this template</h1>
-          <p>Now get to work and modify this app!</p>
-        </Grid.Column>
+          <Grid.Column textAlign='center'>
+            <Icon name='comments' size='huge'/>
+            <Header as='h1' inverted>Status Updates</Header>
+            <Header as='h3' inverted>A collection of status updates from students through the UH Manoa dorms!</Header>
+          </Grid.Column>
 
-      </Grid>
+          <Grid.Column textAlign='center'>
+            <Icon name='user plus' size='huge'/>
+            <Header as='h1' inverted>Find New Roommates</Header>
+            {/* eslint-disable-next-line react/no-unescaped-entities */}
+            <Header as='h3' inverted>Use Roomniverse's Advanced Roommate finder, to find people who will best match with you!</Header>
+          </Grid.Column>
+
+        </Grid>
+      </div>
     );
   }
 }

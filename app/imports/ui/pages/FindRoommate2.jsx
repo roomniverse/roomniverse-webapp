@@ -19,7 +19,7 @@ class FindRoommate2 extends React.Component {
   renderPage() {
     const divStyle = { color: 'white', backgroundColor: '#343434' };
     return (
-      <div className='findroommate' style={divStyle}>
+      <div style={divStyle}>
         <Container>
           <Header as="h2" textAlign="center" inverted>Find Roommates2</Header>
           <Grid columns={3}>

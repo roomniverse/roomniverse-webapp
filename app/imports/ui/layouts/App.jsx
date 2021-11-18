@@ -16,7 +16,7 @@ import Signin from '../pages/Signin';
 import Signup from '../pages/Signup';
 import Signout from '../pages/Signout';
 import FindRoommate from '../pages/FindRoommate';
-import FindRoommate2 from '../pages/FindRoommate2';
+
 
 /** Top-level layout component for this application. Called in imports/startup/client/startup.jsx. */
 class App extends React.Component {
@@ -26,7 +26,7 @@ class App extends React.Component {
         <div>
           <NavBar/>
           <Switch>
-            <Route exact path="/" component={FindRoommate2}/>
+            <Route exact path="/" component={FindRoommate}/>
             <Route path="/signin" component={Signin}/>
             <Route path="/signup" component={Signup}/>
             <Route path="/signout" component={Signout}/>

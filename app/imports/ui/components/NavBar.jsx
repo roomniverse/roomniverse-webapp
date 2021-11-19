@@ -16,7 +16,7 @@ class NavBar extends React.Component {
           <Image className="navlogo" src={nameLogo} alt="Roomniverse"/>
         </Menu.Item>
         {this.props.currentUser ? (
-          <Menu.Item className="navsearch" as={NavLink} activeClassName="active" exact to="/search" key="search">
+          <Menu.Item className="navsearch">
             <Input placeholder="Search Users" id="search" icon="search" iconPosition="left"/>
           </Menu.Item>
         ) : ''}

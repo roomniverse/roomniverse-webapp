@@ -8,6 +8,10 @@ import PostEvent from '../components/PostEvent';
 import NewPost from '../components/NewPost';
 
 class Hub extends React.Component {
+  handleClick = () => {
+    ()
+  }
+
   render() {
     return (
       (this.props.ready) ? this.renderPage() : <Loader active>Getting data</Loader>
@@ -18,7 +22,7 @@ class Hub extends React.Component {
     return (
       <div className="white-theme hub">
         <Container className="post-feed">
-          <Button onClick={NewPost} fluid>Create a New Post</Button>
+          <Button onClick={this.handleClick()} fluid>Create a New Post</Button>
           <Feed>
             {this.props.posts.map((post) => <PostEvent key={post._id} post={post}/>)}
           </Feed>

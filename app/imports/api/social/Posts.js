@@ -1,6 +1,7 @@
 import { Mongo } from 'meteor/mongo';
 import SimpleSchema from 'simpl-schema';
 import { Tracker } from 'meteor/tracker';
+import Num from 'uniforms-semantic/src/NumField';
 
 class PostsCollection {
   constructor() {
@@ -9,7 +10,7 @@ class PostsCollection {
     this.schema = new SimpleSchema({
       image: String,
       user: String,
-      date: String,
+      date: Number,
       summary: String,
       extraText: { type: String, defaultValue: '' },
       extraImages: String,

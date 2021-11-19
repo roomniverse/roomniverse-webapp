@@ -13,7 +13,7 @@ class UserProfile extends React.Component {
 
   renderPage() {
     return (
-      <div>
+      <div className="white-theme profile">
         <Container>
           <Grid columns={3}>
             <Grid.Column width={4}>

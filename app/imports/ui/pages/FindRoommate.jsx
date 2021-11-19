@@ -1,6 +1,6 @@
 import React from 'react';
 import { Meteor } from 'meteor/meteor';
-import { Container, Item, Header, Loader, Input } from 'semantic-ui-react';
+import { Container, Item, Header, Loader, Input, Grid, Dropdown } from 'semantic-ui-react';
 import { withTracker } from 'meteor/react-meteor-data';
 import PropTypes from 'prop-types';
 import { Stuffs } from '../../api/stuff/Stuff';
@@ -20,15 +20,43 @@ class FindRoommate extends React.Component {
     return (
       <div className="white-theme find-roommate">
         <Container>
-          <Header as="h2" textAlign="center">Find Roommates</Header>
-
+          <Header as="h2" textAlign="center">Find Roommate</Header>
+          <Grid columns={3}>
+            <Grid.Column>
+              <Dropdown text='Sort by...(Major)'>
+                <Dropdown.Menu>
+                  <Dropdown.Item text='ICS'/>
+                  <Dropdown.Item text='Non-ICS'/>
+                </Dropdown.Menu>
+              </Dropdown>
+            </Grid.Column>
+            <Grid.Column>
+              <Dropdown text='Sort by...(Gender)'>
+                <Dropdown.Menu>
+                  <Dropdown.Item text='Male'/>
+                  <Dropdown.Item text='Female'/>
+                </Dropdown.Menu>
+              </Dropdown>
+            </Grid.Column>
+            <Grid.Column>
+              <Dropdown text='Sort by...(Class Year)'>
+                <Dropdown.Menu>
+                  <Dropdown.Item text='Class of 2021'/>
+                  <Dropdown.Item text='Class of 2022'/>
+                  <Dropdown.Item text='Class of 2023'/>
+                  <Dropdown.Item text='Class of 2024'/>
+                  <Dropdown.Item text='Class of 2025'/>
+                  <Dropdown.Item text='Class of 2026'/>
+                </Dropdown.Menu>
+              </Dropdown>
+            </Grid.Column>
+          </Grid>
           <Input fluid icon='search' placeholder='Search...'/>
-
-          <Item.Group>
+          <Item.Group divided>
             <Item>
               <Item.Image size='small' src='https://prepsec.org/wp-content/uploads/2017/09/unknown-person-icon-Image-from.png'/>
               <Item.Content>
-                <Item.Header><p>Name</p></Item.Header>
+                <Item.Header as='a' color='white'><p>Name</p></Item.Header>
                 <Item.Description>
                   <p>Gender: </p>
                   <p>Location: </p>
@@ -39,11 +67,11 @@ class FindRoommate extends React.Component {
                 </Item.Extra>
               </Item.Content>
             </Item>
-            <hr />
+
             <Item>
               <Item.Image size='small' src='https://prepsec.org/wp-content/uploads/2017/09/unknown-person-icon-Image-from.png'/>
               <Item.Content>
-                <Item.Header><p>Name</p></Item.Header>
+                <Item.Header as='a'><p>Name</p></Item.Header>
                 <Item.Description>
                   <p>Gender: </p>
                   <p>Location: </p>
@@ -54,12 +82,11 @@ class FindRoommate extends React.Component {
                 </Item.Extra>
               </Item.Content>
             </Item>
-            <hr />
 
             <Item>
               <Item.Image size='small' src='https://prepsec.org/wp-content/uploads/2017/09/unknown-person-icon-Image-from.png'/>
               <Item.Content>
-                <Item.Header><p>Name</p></Item.Header>
+                <Item.Header as='a'><p>Name</p></Item.Header>
                 <Item.Description>
                   <p>Gender: </p>
                   <p>Location: </p>

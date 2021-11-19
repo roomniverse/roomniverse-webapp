@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { Meteor } from 'meteor/meteor';
 import { withTracker } from 'meteor/react-meteor-data';
-import { withRouter, NavLink } from 'react-router-dom';
+import { withRouter, NavLink, Switch, Route } from 'react-router-dom';
 import { Menu, Dropdown, Image, Input } from 'semantic-ui-react';
 import { Roles } from 'meteor/alanning:roles';
 
@@ -15,9 +15,11 @@ class NavBar extends React.Component {
         <Menu.Item className="navlogocontainer" as={NavLink} activeClassName="" exact to="/hub" key="hub">
           <Image className="navlogo" src={nameLogo} alt="Roomniverse"/>
         </Menu.Item>
-        <Menu.Item className="navsearch">
-          <Input placeholder="Search..."/>
-        </Menu.Item>
+        {this.props.currentUser ? (
+          <Menu.Item className="navsearch">
+            <Input placeholder="Search Users" id="search" icon="search" iconPosition="left"/>
+          </Menu.Item>
+        ) : ''}
         <Menu.Menu position="right">
           {this.props.currentUser ? (
             [<Menu.Item as={NavLink} activeClassName="active" exact to="/find" key='find'>Find Roommate</Menu.Item>,

@@ -19,6 +19,7 @@ import AddStuff from '../pages/AddStuff';
 import EditStuff from '../pages/EditStuff';
 import ListStuff from '../pages/ListStuff';
 import AddPost from '../pages/AddPost';
+import SearchResults from '../pages/SearchResults'
 
 /** Top-level layout component for this application. Called in imports/startup/client/startup.jsx. */
 class App extends React.Component {
@@ -33,6 +34,7 @@ class App extends React.Component {
               <Route path="/signin" component={Signin}/>
               <Route path="/signup" component={Signup}/>
               <Route path="/signout" component={Signout}/>
+              <ProtectedRoute path="/search" component={SearchResults} />
               <ProtectedRoute path="/hub" component={Hub}/>
               <ProtectedRoute path="/find" component={Find}/>
               <ProtectedRoute path="/profile" component={Profile}/>

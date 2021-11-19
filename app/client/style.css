@@ -25,9 +25,20 @@
   height: 55px;
 }
 
+.navlogocontainer {
+  margin-left: 30px;
+}
+
 .nav-style .navlogo {
   height: 35px;
   width: auto;
+}
+
+.navsearch {
+  max-width: 500px;
+  min-width: 200px;
+  width: calc(100% - 550px);
+  margin-left: 25px;
 }
 
 .sign {
@@ -44,6 +55,11 @@
 .grey-theme {
   color: white;
   background-color: #343434;
+}
+
+.white-theme {
+  color: black;
+  background-color: white;
 }
 
 .landing {
@@ -75,4 +91,20 @@
   .right {
     order: 2;
   }
+}
+
+.hub {
+  padding: 50px 0;
+  display: flex;
+  flex-basis: inherit;
+  flex-direction: column;
+}
+
+.profile {
+  padding: 20px 0;
+  display: flex;
+}
+
+.find-roommate {
+  padding: 20px 0;
 }

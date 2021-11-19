@@ -16,12 +16,14 @@ class Hub extends React.Component {
 
   renderPage() {
     return (
-      <Container>
-        <Button onClick={NewPost} fluid>Create a New Post</Button>
-        <Feed>
-          {this.props.posts.map((post) => <PostEvent key={post._id} post={post}/>)}
-        </Feed>
-      </Container>
+      <div className="white-theme hub">
+        <Container className="post-feed">
+          <Button onClick={NewPost} fluid>Create a New Post</Button>
+          <Feed>
+            {this.props.posts.map((post) => <PostEvent key={post._id} post={post}/>)}
+          </Feed>
+        </Container>
+      </div>
     );
   }
 }

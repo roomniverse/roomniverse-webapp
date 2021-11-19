@@ -26,7 +26,7 @@ class App extends React.Component {
       <Router>
         <div className="page-container">
           <NavBar/>
-          <div className="content-wrap">
+          <div className="content-wrap white-theme">
             <Switch>
               <Route exact path="/" component={Landing}/>
               <Route path="/signin" component={Signin}/>

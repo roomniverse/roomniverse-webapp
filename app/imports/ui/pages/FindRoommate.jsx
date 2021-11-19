@@ -17,11 +17,10 @@ class FindRoommate extends React.Component {
 
   // Render the page once subscriptions have been received.
   renderPage() {
-    const divStyle = { color: 'white', backgroundColor: '#343434' };
     return (
-      <div style={divStyle}>
+      <div className="white-theme find-roommate">
         <Container>
-          <Header as="h2" textAlign="center" inverted>Find Roommates</Header>
+          <Header as="h2" textAlign="center">Find Roommates</Header>
 
           <Input fluid icon='search' placeholder='Search...'/>
 

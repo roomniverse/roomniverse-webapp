@@ -1,7 +1,7 @@
 import React from 'react';
 import { Grid, Icon, Header, Image } from 'semantic-ui-react';
 
-const logo = 'https://i.ibb.co/ZmGqSPQ/logo-transparent.png';
+const logo = 'https://i.ibb.co/KhJpMvB/logo-transparent.png';
 /** A simple static component to render some text for the landing page. */
 class Landing extends React.Component {
   render() {
@@ -9,19 +9,19 @@ class Landing extends React.Component {
       <div className='landing'>
         <Grid centered stackable columns={3} container>
 
-          <Grid.Column textAlign='center'>
-            <Image src={logo} alt="Roomniverse Logo" size="small" centered/>
-            <Header as='h1' inverted>Meet New People</Header>
-            <Header as='h3' inverted>A social hub created just for students in the UH Manoa dorms!</Header>
-          </Grid.Column>
-
-          <Grid.Column textAlign='center'>
+          <Grid.Column className="left" textAlign='center'>
             <Icon name='comments' size='huge'/>
             <Header as='h1' inverted>Status Updates</Header>
             <Header as='h3' inverted>A collection of status updates from students through the UH Manoa dorms!</Header>
           </Grid.Column>
 
-          <Grid.Column textAlign='center'>
+          <Grid.Column className="middle" textAlign='center'>
+            <Image src={logo} alt="Roomniverse Logo" size="small" centered/>
+            <Header as='h1' inverted>Meet New People</Header>
+            <Header as='h3' inverted>A social hub created just for students in the UH Manoa dorms!</Header>
+          </Grid.Column>
+
+          <Grid.Column className="right" textAlign='center'>
             <Icon name='user plus' size='huge'/>
             <Header as='h1' inverted>Find New Roommates</Header>
             {/* eslint-disable-next-line react/no-unescaped-entities */}

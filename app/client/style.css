@@ -7,6 +7,7 @@
 
 .content-wrap {
   flex-grow: 1;
+  flex-shrink: 0;
 }
 
 .nav-style, .footer-container{
@@ -14,6 +15,10 @@
   color: white !important;
   background-color: #024731 !important;
   width: 100% !important;
+}
+
+.nav-style .right.menu .item {
+  color: white !important;
 }
 
 .nav-style {
@@ -24,6 +29,11 @@
   height: 35px;
   width: auto;
 }
+
+.sign {
+  padding: 50px 0;
+}
+
 
 .footer-container {
   height: 110px;
@@ -38,17 +48,31 @@
 
 .landing {
   color: #343434;
-  background: url("https://i.ibb.co/B3rbjvR/landing-background.jpg") no-repeat center center fixed;
+  background: url("https://i.ibb.co/2Wzhcc9/landing-background.jpg") no-repeat center center fixed;
   background-size: cover;
   height: calc(100vh - 165px);
   padding: 15px 0;
 }
 
-.landing .ui.centered.container.stackable.grid .ui.header {
+.landing .ui.centered.container.stackable.grid, .landing .ui.grid .ui.header {
+  height: inherit;
   align-items: center;
-  color: #343434;
 }
 
-.sign {
-  padding: 50px 0;
+.landing .ui.grid .header {
+  color: #080708;
+}
+
+@media only screen and (max-width: 767px) {
+  .middle {
+    order: 0;
+  }
+
+  .left {
+    order: 1;
+  }
+
+  .right {
+    order: 2;
+  }
 }

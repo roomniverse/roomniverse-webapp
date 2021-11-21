@@ -21,8 +21,8 @@ class Signup extends React.Component {
 
   /* Handle Signup submission. Create user account and a profile entry, then redirect to the home page. */
   submit = () => {
-    const { email, password } = this.state;
-    Accounts.createUser({ email, username: email, password }, (err) => {
+    const { username, email, password } = this.state;
+    Accounts.createUser({ username, email, password }, (err) => {
       if (err) {
         this.setState({ error: err.reason });
       } else {
@@ -48,6 +48,16 @@ class Signup extends React.Component {
               </Header>
               <Form onSubmit={this.submit}>
                 <Segment stacked>
+                  <Form.Input
+                    label="Full Name"
+                    id="signup-form-name"
+                    icon="user"
+                    iconPosition="left"
+                    name="username"
+                    type="username"
+                    placeholder="First Last"
+                    onChange={this.handleChange()}
+                  />
                   <Form.Input
                     label="Email"
                     id="signup-form-email"

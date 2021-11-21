@@ -1,12 +1,9 @@
 import React from 'react';
 import { Meteor } from 'meteor/meteor';
-import { Button, Container, Feed, Header, Loader } from 'semantic-ui-react';
+import { Container, Header, Loader } from 'semantic-ui-react';
 import { withTracker } from 'meteor/react-meteor-data';
 import PropTypes from 'prop-types';
-import { Posts } from '../../api/social/Posts';
-import PostEvent from '../components/PostEvent';
-import NewPost from '../components/NewPost';
-import UserProfile from './UserProfile';
+import { Accounts } from 'meteor/accounts-base';
 
 class SearchResults extends React.Component {
   render() {
@@ -18,23 +15,24 @@ class SearchResults extends React.Component {
   renderPage() {
     return (
       <Container>
-        <Header as="h2" textAlign="center">Search Results for {this.props.children}</Header>
+        <Header as="h2" textAlign="center">Search Results for {this.state}</Header>
         <hr />
         <Header as="h3" textAlign="center">No Results</Header>
       </Container>
-    )
+    );
   }
 }
 
 SearchResults.propTypes = {
   users: PropTypes.array.isRequired,
   ready: PropTypes.bool.isRequired,
-}
+};
 
 export default withTracker(() => {
-  const users = Meteor.users;
+  const subscription = Meteor.subscribe(Accounts.users);
   // Determine if the subscription is ready
   const ready = subscription.ready();
+  const users = Accounts.findUserByUsername({});
   return {
     users,
     ready,

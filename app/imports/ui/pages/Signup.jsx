@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { Link, Redirect } from 'react-router-dom';
-import { Container, Form, Grid, Header, Message, Segment } from 'semantic-ui-react';
+import { Container, Form, Grid, Header, Message, Segment, Radio } from 'semantic-ui-react';
 import { Accounts } from 'meteor/accounts-base';
 
 /**
@@ -11,7 +11,7 @@ class Signup extends React.Component {
   /* Initialize state fields. */
   constructor(props) {
     super(props);
-    this.state = { email: '', password: '', error: '', redirectToReferer: false };
+    this.state = { username: '', gender: '', email: '', password: '', error: '', redirectToReferer: false };
   }
 
   /* Update the form controls each time the user interacts with them. */
@@ -19,10 +19,15 @@ class Signup extends React.Component {
     this.setState({ [name]: value });
   }
 
+  radioHandle = (e, { value }) => {
+    this.handleChange(e, { name: 'gender', value: value });
+  }
+
   /* Handle Signup submission. Create user account and a profile entry, then redirect to the home page. */
   submit = () => {
     const { username, email, password } = this.state;
-    Accounts.createUser({ username, email, password }, (err) => {
+    const avatar = 'images/default-image.jpeg';
+    Accounts.createUser({ username, avatar, email, password }, (err) => {
       if (err) {
         this.setState({ error: err.reason });
       } else {
@@ -56,18 +61,44 @@ class Signup extends React.Component {
                     name="username"
                     type="username"
                     placeholder="First Last"
-                    onChange={this.handleChange()}
+                    onChange={this.handleChange}
+                    required
                   />
                   <Form.Input
                     label="Email"
                     id="signup-form-email"
-                    icon="user"
+                    icon="envelope outline"
                     iconPosition="left"
                     name="email"
                     type="email"
                     placeholder="E-mail address"
                     onChange={this.handleChange}
+                    required
                   />
+                  <Form.Group label="Gender" inline required>
+                    <Form.Field>
+                      <Radio
+                        label="Male"
+                        name="gender"
+                        value="Male"
+                        checked={this.state.value === 'Male'}
+                        onChange={this.radioHandle}
+                      />
+                    </Form.Field>
+                    <Form.Field>
+                      <Radio
+                        label="Female"
+                        name="gender"
+                        value="Female"
+                        checked={this.state.value === 'Female'}
+                        onChange={this.radioHandle}
+                      />
+                    </Form.Field>
+                    <Form.Field control={Radio}>
+                      <label>Other</label>
+                      <input type="text" id="gender" name="gender"/>
+                    </Form.Field>
+                  </Form.Group>
                   <Form.Input
                     label="Password"
                     id="signup-form-password"
@@ -77,6 +108,7 @@ class Signup extends React.Component {
                     placeholder="Password"
                     type="password"
                     onChange={this.handleChange}
+                    required
                   />
                   <Form.Button id="signup-form-submit" content="Submit"/>
                 </Segment>

@@ -8,6 +8,7 @@ import { Posts } from '../../api/social/Posts';
 import PostEvent from '../components/PostEvent';
 // import NewPost from '../components/NewPost';
 
+class Hub extends React.Component {
   render() {
     return (
       (this.props.ready) ? this.renderPage() : <Loader active>Getting data</Loader>
@@ -22,7 +23,7 @@ import PostEvent from '../components/PostEvent';
             Create a New Post
           </Button>
           <Feed>
-            {/*{this.props.posts.map((post) => <PostEvent key={post._id} post={post}/>)}*/}
+            {this.props.posts.map((post) => <PostEvent key={post._id} post={post}/>)}
             <Feed.Event>
               <Feed.Label image='images/default-image.jpeg'/>
               <Feed.Content>
@@ -80,10 +81,10 @@ import PostEvent from '../components/PostEvent';
                 </Feed.Summary>
                 <Feed.Extra images>
                   <a>
-                    <img src='https://react.semantic-ui.com/images/wireframe/image.png'/>
+                    <img src='https://react.semantic-ui.com/images/wireframe/image.png' alt="avatar"/>
                   </a>
                   <a>
-                    <img src='https://react.semantic-ui.com/images/wireframe/image.png'/>
+                    <img src='https://react.semantic-ui.com/images/wireframe/image.png' alt="avatar"/>
                   </a>
                 </Feed.Extra>
                 <Feed.Meta>

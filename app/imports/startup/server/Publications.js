@@ -16,7 +16,7 @@ Meteor.publish(Stuffs.userPublicationName, function () {
 Meteor.publish(Posts.userPublicationName, function () {
   if (this.userId) {
     const username = Meteor.users.findOne(this.userId).username;
-    return Stuffs.collection.find({ owner: username });
+    return Posts.collection.find({ owner: username });
   }
   return this.ready();
 });

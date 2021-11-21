@@ -1,30 +1,43 @@
 import React from 'react';
 import { Meteor } from 'meteor/meteor';
-import { Container, Header, Input, TextArea, Loader, Form, Button } from 'semantic-ui-react';
+import { Container, Header, TextArea, Form, Button } from 'semantic-ui-react';
 import { Link } from 'react-router-dom';
 import { withTracker } from 'meteor/react-meteor-data';
 import PropTypes from 'prop-types';
-import { Stuffs } from '../../api/stuff/Stuff';
-
-// import { Link } from 'react-router-dom';
+import swal from 'sweetalert';
+import { Posts } from '../../api/social/Posts';
 
 /** Renders a table containing all of the Stuff documents. Use <StuffItem> to render each row. */
 class AddPost extends React.Component {
-
-  // If the subscription(s) have been received, render the page, otherwise show a loading icon.
-  render() {
-    return (this.props.ready) ? this.renderPage() : <Loader active>Getting data</Loader>;
+  submit(data, formRef) {
+    const extraText = data;
+    const user = Meteor.user().username;
+    const image = Meteor.user().avatar;
+    const date = Date.now();
+    const summary = `${user} has posted to their page!`;
+    const meta = {
+      lname: 'likes',
+      lnum: 0,
+    };
+    Posts.collection.insert({ image, user, date, summary, extraText, meta },
+      (error) => {
+        if (error) {
+          swal('Error', error.message, 'error');
+        } else {
+          swal('Success', 'Item added successfully', 'success');
+          formRef.reset();
+        }
+      });
   }
 
   // Render the page once subscriptions have been received.
-  renderPage() {
+  render() {
     return (
       <div className="white-theme find-roommate">
         <Container>
           <Header as="h2" textAlign="center">Create New Post</Header>
-          <Input fluid placeholder='Title'/>
           <Form>
-            <TextArea placeholder='Write a new post!' style={{ minHeight: 750 }} />
+            <TextArea placeholder="What's on your mind?" style={{ minHeight: 750 }} />
           </Form>
           <Button as={Link} to='/hub'>
             Submit Post
@@ -44,11 +57,11 @@ AddPost.propTypes = {
 // withTracker connects Meteor data to React components. https://guide.meteor.com/react.html#using-withTracker
 export default withTracker(() => {
   // Get access to Stuff documents.
-  const subscription = Meteor.subscribe(Stuffs.userPublicationName);
+  const subscription = Meteor.subscribe(Posts.userPublicationName);
   // Determine if the subscription is ready
   const ready = subscription.ready();
   // Get the Stuff documents
-  const stuffs = Stuffs.collection.find({}).fetch();
+  const stuffs = Posts.collection.find({}).fetch();
   return {
     stuffs,
     ready,

@@ -20,7 +20,7 @@ if (Stuffs.collection.find().count() === 0) {
 
 // Initialize the database with a default data document.
 function addPosts(data) {
-  console.log(`  Adding: ${data.name} (${data.owner})`);
+  console.log(`  Adding: ${data.name} (${data.username})`);
   Posts.collection.insert(data);
 }
 
@@ -28,6 +28,6 @@ function addPosts(data) {
 if (Posts.collection.find().count() === 0) {
   if (Meteor.settings.defaultData) {
     console.log('Creating default Posts.');
-    Meteor.settings.defaultData.map(data => addData(data));
+    Meteor.settings.defaultData.map(data => addPosts(data));
   }
 }

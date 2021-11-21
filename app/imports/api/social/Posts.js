@@ -1,7 +1,6 @@
 import { Mongo } from 'meteor/mongo';
 import SimpleSchema from 'simpl-schema';
 import { Tracker } from 'meteor/tracker';
-import Num from 'uniforms-semantic/src/NumField';
 
 class PostsCollection {
   constructor() {
@@ -14,10 +13,13 @@ class PostsCollection {
       summary: String,
       extraText: { type: String, defaultValue: '' },
       extraImages: String,
-      meta: String,
+      meta: {
+        lname: String,
+        lnum: Number,
+      },
     }, { tracker: Tracker });
     this.collection.attachSchema(this.schema);
-    this.userPublicationName = `${this.name}.publication.user`;
+    this.userPublicationName = `${this.name}.publication.username`;
     // this.adminPublicationName = `${this.name}.publication.admin`;
   }
 }

@@ -4,13 +4,16 @@ import { Roles } from 'meteor/alanning:roles';
 
 /* eslint-disable no-console */
 
-function createUser(username, email, password, role) {
+function createUser(username, avatar, gender, email, password, role) {
   console.log(`  Creating user ${username}.`);
   const userID = Accounts.createUser({
     username: username,
+    avatar: avatar,
+    gender: gender,
     email: email,
     password: password,
   });
+
   if (role === 'admin') {
     Roles.createRole(role, { unlessExists: true });
     Roles.addUsersToRoles(userID, 'admin');

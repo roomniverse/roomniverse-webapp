@@ -15,7 +15,7 @@ class SearchResults extends React.Component {
   renderPage() {
     return (
       <Container>
-        <Header as="h2" textAlign="center">Search Results for {this.state}</Header>
+        <Header as="h2" textAlign="center">Search Results for {this.props}</Header>
         <hr />
         <Header as="h3" textAlign="center">No Results</Header>
       </Container>
@@ -25,16 +25,11 @@ class SearchResults extends React.Component {
 
 SearchResults.propTypes = {
   users: PropTypes.array.isRequired,
-  ready: PropTypes.bool.isRequired,
 };
 
 export default withTracker(() => {
-  const subscription = Meteor.subscribe(Accounts.users);
-  // Determine if the subscription is ready
-  const ready = subscription.ready();
-  const users = Accounts.findUserByUsername({});
+  const users = Accounts.find({}).fetch();
   return {
     users,
-    ready,
   };
 })(SearchResults);

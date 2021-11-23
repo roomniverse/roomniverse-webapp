@@ -7,6 +7,10 @@ import { Menu, Dropdown, Image, Input } from 'semantic-ui-react';
 import { Roles } from 'meteor/alanning:roles';
 
 const nameLogo = 'https://i.ibb.co/H46VxdD/namelogo.png';
+const source = _.times(5, () => ({
+  image: Meteor.users.avatar,
+  title: Meteor.users.username,
+}))
 /** The NavBar appears at the top of every page. Rendered by the App Layout component. */
 class NavBar extends React.Component {
   render() {

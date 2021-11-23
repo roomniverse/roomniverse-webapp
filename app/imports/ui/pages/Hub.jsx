@@ -1,12 +1,11 @@
 import React from 'react';
 import { Meteor } from 'meteor/meteor';
-import { Button, Container, Feed, Icon, Loader } from 'semantic-ui-react';
+import { Container, Feed, Icon, Loader } from 'semantic-ui-react';
 import { withTracker } from 'meteor/react-meteor-data';
 import PropTypes from 'prop-types';
-import { Link } from 'react-router-dom';
 import { Posts } from '../../api/social/Posts';
-import PostEvent from '../components/PostEvent';
-// import NewPost from '../components/NewPost';
+import AddPost from '../components/AddPost';
+import PostButton from '../components/PostButton';
 
 class Hub extends React.Component {
   render() {
@@ -19,11 +18,13 @@ class Hub extends React.Component {
     return (
       <div className="white-theme hub">
         <Container className="post-feed">
-          <Button fluid as={Link} to='/addpost'>
-            Create a New Post
-          </Button>
+          <div>
+            <PostButton render={btn => (
+              <AddPost button={btn} />
+            )} />
+          </div>
+          <Feed events={this.props.posts} />
           <Feed>
-            {this.props.posts.map((post) => <PostEvent key={post._id} post={post}/>)}
             <Feed.Event>
               <Feed.Label image='images/default-image.jpeg'/>
               <Feed.Content>

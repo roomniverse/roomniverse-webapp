@@ -18,7 +18,7 @@ import ListStuffAdmin from '../pages/ListStuffAdmin';
 import AddStuff from '../pages/AddStuff';
 import EditStuff from '../pages/EditStuff';
 import ListStuff from '../pages/ListStuff';
-import AddPost from '../pages/AddPost';
+import AddPost from '../components/AddPost';
 import SearchResults from '../pages/SearchResults';
 
 /** Top-level layout component for this application. Called in imports/startup/client/startup.jsx. */

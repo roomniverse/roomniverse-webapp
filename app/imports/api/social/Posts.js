@@ -11,12 +11,9 @@ class PostsCollection {
       user: String,
       date: Number,
       summary: String,
-      extraText: { type: String, defaultValue: '' },
+      extraText: String,
       extraImages: String,
-      meta: {
-        lname: String,
-        lnum: Number,
-      },
+      meta: Number,
     }, { tracker: Tracker });
     this.collection.attachSchema(this.schema);
     this.userPublicationName = `${this.name}.publication.username`;

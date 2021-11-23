@@ -20,7 +20,9 @@ class Signup extends React.Component {
   }
 
   radioHandle = (e, { value }) => {
-    this.handleChange(e, { name: 'gender', value: value });
+    const curr = this.state;
+    curr.gender = value;
+    this.handleChange(e, { curr });
   }
 
   /* Handle Signup submission. Create user account and a profile entry, then redirect to the home page. */
@@ -79,7 +81,6 @@ class Signup extends React.Component {
                     <Form.Field>
                       <Radio
                         label="Male"
-                        name="gender"
                         value="Male"
                         checked={this.state.value === 'Male'}
                         onChange={this.radioHandle}
@@ -88,15 +89,18 @@ class Signup extends React.Component {
                     <Form.Field>
                       <Radio
                         label="Female"
-                        name="gender"
                         value="Female"
                         checked={this.state.value === 'Female'}
                         onChange={this.radioHandle}
                       />
                     </Form.Field>
-                    <Form.Field control={Radio}>
-                      <label>Other</label>
-                      <input type="text" id="gender" name="gender"/>
+                    <Form.Field>
+                      <Radio
+                        label="Other"
+                        value="Other"
+                        checked={this.state.value === 'Other'}
+                        onChange={this.radioHandle()}
+                      />
                     </Form.Field>
                   </Form.Group>
                   <Form.Input

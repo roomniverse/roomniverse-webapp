@@ -45,11 +45,17 @@
   padding: 50px 0;
 }
 
+.sign-mod {
+  padding: 40px 25px;
+  border-radius: 0 !important;
+  text-align: center;
+}
 
 .footer-container {
   height: 110px;
   align-items: center;
   justify-content: center;
+  min-width: 360px;
 }
 
 .grey-theme {

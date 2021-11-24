@@ -17,13 +17,13 @@ class SearchResults extends React.Component {
 }
 
 SearchResults.propTypes = {
-  users: PropTypes.array.isRequired,
+  users: PropTypes.array,
   value: PropTypes.object,
   location: PropTypes.object,
 };
 
 export default withTracker(() => {
-  const users = Accounts.find({}).fetch();
+  const users = Accounts.users.find({}).fetch();
   return {
     users,
   };

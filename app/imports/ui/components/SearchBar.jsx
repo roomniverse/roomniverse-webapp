@@ -16,20 +16,20 @@ const source = _.times(4, () => ({
 class SearchBar extends React.Component {
   reducer(state, action) {
     switch (action.type) {
-      case 'CLEAN_QUERY':
-        return initState;
-      case 'START_SEARCH':
-        return { ...state, loading: true, value: action.query };
-      case 'FINISH_SEARCH':
-        return { ...state, loading: false, value: action.results };
-      case 'UPDATE_SELECTION':
-        return { ...state, value: action.selection };
-      default:
-        throw new Error();
+    case 'CLEAN_QUERY':
+      return initState;
+    case 'START_SEARCH':
+      return { ...state, loading: true, value: action.query };
+    case 'FINISH_SEARCH':
+      return { ...state, loading: false, value: action.results };
+    case 'UPDATE_SELECTION':
+      return { ...state, value: action.selection };
+    default:
+      throw new Error();
     }
   }
 
-  render () {
+  render() {
     const [state, dispatch] = React.useReducer(this.reducer, initState);
     const { loading, results, value } = state;
     const timeoutRef = React.useRef();

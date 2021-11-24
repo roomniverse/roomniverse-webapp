@@ -3,8 +3,8 @@ import { Meteor } from 'meteor/meteor';
 import { Container, Header, TextArea, Form } from 'semantic-ui-react';
 import swal from 'sweetalert';
 import PropTypes from 'prop-types';
-import { Posts } from '../../api/social/Posts';
 import { Redirect } from 'react-router-dom';
+import { Posts } from '../../api/social/Posts';
 
 /** Renders a table containing all of the Stuff documents. Use <StuffItem> to render each row. */
 class AddPost extends React.Component {
@@ -69,6 +69,7 @@ class AddPost extends React.Component {
 
 AddPost.propTypes = {
   button: PropTypes.element,
+  location: PropTypes.object,
 };
 
 // withTracker connects Meteor data to React components. https://guide.meteor.com/react.html#using-withTracker

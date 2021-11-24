@@ -1,10 +1,9 @@
 import React from 'react';
-import _ from 'lodash';
 import PropTypes from 'prop-types';
 import { Meteor } from 'meteor/meteor';
 import { withTracker } from 'meteor/react-meteor-data';
 import { NavLink, withRouter } from 'react-router-dom';
-import { Dropdown, Image, Menu, Search } from 'semantic-ui-react';
+import { Dropdown, Image, Menu } from 'semantic-ui-react';
 import { Roles } from 'meteor/alanning:roles';
 import SearchBar from './SearchBar';
 
@@ -36,16 +35,16 @@ class NavBar extends React.Component {
               <Dropdown id="login-dropdown" text="Login" pointing="top right" icon={'user'} style={{ color: 'white' }}>
                 <Dropdown.Menu>
                   <Dropdown.Item id="login-dropdown-sign-in" icon="user" text="Sign In" as={NavLink} exact
-                                 to="/signin"/>
+                    to="/signin"/>
                   <Dropdown.Item id="login-dropdown-sign-up" icon="add user" text="Sign Up" as={NavLink} exact
-                                 to="/signup"/>
+                    to="/signup"/>
                 </Dropdown.Menu>
               </Dropdown>
             ) : (
               <Dropdown id="navbar-current-user" text={this.props.currentUser} pointing="top right" icon={'user'}>
                 <Dropdown.Menu>
                   <Dropdown.Item id="navbar-sign-out" icon="sign out" text="Sign Out" as={NavLink} exact
-                                 to="/signout"/>
+                    to="/signout"/>
                 </Dropdown.Menu>
               </Dropdown>
             )}

@@ -4,6 +4,7 @@ import { Container, Header, TextArea, Form } from 'semantic-ui-react';
 import swal from 'sweetalert';
 import PropTypes from 'prop-types';
 import { Posts } from '../../api/social/Posts';
+import { Redirect } from 'react-router-dom';
 
 /** Renders a table containing all of the Stuff documents. Use <StuffItem> to render each row. */
 class AddPost extends React.Component {
@@ -37,14 +38,20 @@ class AddPost extends React.Component {
         if (error) {
           swal('Error', error.message, 'error');
         } else {
-          swal('Success', 'Item added successfully', 'success');
           formRef.reset();
+          this.setState({ error: '', redirectToReferer: true });
         }
       });
   }
 
   // Render the page once subscriptions have been received.
   render() {
+    const { from } = this.props.location.state || { from: { pathname: '/hub' } };
+    // if correct authentication, redirect to page instead of login screen
+    if (this.state.redirectToReferer) {
+      return <Redirect to={from}/>;
+    }
+
     let fRef = null;
     return (
       <div className="white-theme" style={this.postStyle}>

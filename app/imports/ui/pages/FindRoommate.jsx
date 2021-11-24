@@ -1,9 +1,11 @@
 import React from 'react';
 import { Meteor } from 'meteor/meteor';
-import { Container, Item, Header, Loader, Input, Grid, Dropdown } from 'semantic-ui-react';
+import { Container, Item, Header, Loader, Input, Grid, Dropdown, Button } from 'semantic-ui-react';
 import { withTracker } from 'meteor/react-meteor-data';
 import PropTypes from 'prop-types';
-import { Stuffs } from '../../api/stuff/Stuff';
+import { Link } from 'react-router-dom';
+import { Requests } from '../../api/social/Requests';
+import Request from '../components/Request';
 
 // import { Link } from 'react-router-dom';
 
@@ -18,6 +20,7 @@ class FindRoommate extends React.Component {
   // Render the page once subscriptions have been received.
   renderPage() {
     return (
+
       <div className="white-theme find-roommate">
         <Container>
           <Header as="h2" textAlign="center">Find Roommate</Header>
@@ -52,51 +55,11 @@ class FindRoommate extends React.Component {
             </Grid.Column>
           </Grid>
           <Input fluid icon='search' placeholder='Search...'/>
+          <Container>
+            <Button floated="right" as={Link} to='/addrequest'>Add Request</Button>
+          </Container>
           <Item.Group divided>
-            <Item>
-              <Item.Image size='small' src='https://prepsec.org/wp-content/uploads/2017/09/unknown-person-icon-Image-from.png'/>
-              <Item.Content>
-                <Item.Header as='a' color='white'><p>Name</p></Item.Header>
-                <Item.Description>
-                  <p>Gender: </p>
-                  <p>Location: </p>
-                  <p>description of the room</p>
-                </Item.Description>
-                <Item.Extra>
-                  <p>Link to the profile</p>
-                </Item.Extra>
-              </Item.Content>
-            </Item>
-
-            <Item>
-              <Item.Image size='small' src='https://prepsec.org/wp-content/uploads/2017/09/unknown-person-icon-Image-from.png'/>
-              <Item.Content>
-                <Item.Header as='a'><p>Name</p></Item.Header>
-                <Item.Description>
-                  <p>Gender: </p>
-                  <p>Location: </p>
-                  <p>description of the room</p>
-                </Item.Description>
-                <Item.Extra>
-                  <p>Link to the profile</p>
-                </Item.Extra>
-              </Item.Content>
-            </Item>
-
-            <Item>
-              <Item.Image size='small' src='https://prepsec.org/wp-content/uploads/2017/09/unknown-person-icon-Image-from.png'/>
-              <Item.Content>
-                <Item.Header as='a'><p>Name</p></Item.Header>
-                <Item.Description>
-                  <p>Gender: </p>
-                  <p>Location: </p>
-                  <p>description of the room</p>
-                </Item.Description>
-                <Item.Extra>
-                  <p>Link to the profile</p>
-                </Item.Extra>
-              </Item.Content>
-            </Item>
+            {this.props.requests.map((request, index) => <Request key={index} request={request}/>)}
           </Item.Group>
         </Container>
       </div>
@@ -106,20 +69,20 @@ class FindRoommate extends React.Component {
 
 // Require an array of Stuff documents in the props.
 FindRoommate.propTypes = {
-  stuffs: PropTypes.array.isRequired,
+  requests: PropTypes.array.isRequired,
   ready: PropTypes.bool.isRequired,
 };
 
 // withTracker connects Meteor data to React components. https://guide.meteor.com/react.html#using-withTracker
 export default withTracker(() => {
   // Get access to Stuff documents.
-  const subscription = Meteor.subscribe(Stuffs.userPublicationName);
+  const subscription = Meteor.subscribe(Requests.userPublicationName);
   // Determine if the subscription is ready
   const ready = subscription.ready();
   // Get the Stuff documents
-  const stuffs = Stuffs.collection.find({}).fetch();
+  const requests = Requests.collection.find({}).fetch();
   return {
-    stuffs,
+    requests,
     ready,
   };
 })(FindRoommate);

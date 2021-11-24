@@ -9,5 +9,13 @@
     { "name": "Bicycle", "quantity": 2, "owner": "john@foo.com", "condition": "poor" },
     { "name": "Banana", "quantity": 2, "owner": "admin@foo.com", "condition": "good" },
     { "name": "Boogie Board", "quantity": 2, "owner": "admin@foo.com", "condition": "excellent" }
+  ],
+
+  "defaultRequests": [
+    { "name": "Ju-Bin", "gender": "Male", "location": "Waikiki", "image": "https://jubinc0911.github.io/images/jubinc0911.jpeg", "description": "Description of Ju-Bin",  "owner": "john@foo.com"},
+    { "name": "Eric", "gender": "Male", "location": "Manoa", "image": "https://eric-song1773.github.io/images/hyunjun.jpg", "description": "Description of Eric", "owner": "john@foo.com"},
+    { "name": "Scott", "gender": "Male", "location": "Hawaii Kai", "image": "https://syhv-git.github.io/images/headshot.jpg", "description": "Description of Scott",  "owner": "john@foo.com"},
+    { "name": "Tracy", "gender": "Female", "location": "McCully", "image": "https://tbui00.github.io/images/IMG_2727_Original.JPG", "description": "Description of Tracy",  "owner": "john@foo.com"},
+    { "name": "Jon", "gender": "Male", "location": "Manoa", "image": "https://jon-valencia.github.io/images/me.jpg", "description": "Description of Jon",  "owner": "john@foo.com"}
   ]
 }

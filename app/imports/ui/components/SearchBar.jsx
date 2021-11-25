@@ -50,10 +50,8 @@ function SearchBar() {
     }, 300);
   }, []);
 
-  React.useEffect(() => {
-    return () => {
-      clearTimeout(timeoutRef.current);
-    }
+  React.useEffect(() => () => {
+    clearTimeout(timeoutRef.current);
   });
 
   return (

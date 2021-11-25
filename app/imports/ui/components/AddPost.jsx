@@ -3,7 +3,7 @@ import { Meteor } from 'meteor/meteor';
 import { Container, Header, TextArea, Form } from 'semantic-ui-react';
 import swal from 'sweetalert';
 import PropTypes from 'prop-types';
-import { Redirect } from 'react-router-dom';
+// import { Redirect } from 'react-router-dom';
 import { Posts } from '../../api/social/Posts';
 
 /** Renders a table containing all of the Stuff documents. Use <StuffItem> to render each row. */
@@ -29,7 +29,7 @@ class AddPost extends React.Component {
     const extraText = data;
     const extraImages = '';
     const user = Meteor.user().username;
-    const image = Meteor.user().avatar;
+    const image = Meteor.user().profile.avatar;
     const date = Date.now();
     const summary = `${user} has posted to their page!`;
     const meta = 0;
@@ -46,11 +46,11 @@ class AddPost extends React.Component {
 
   // Render the page once subscriptions have been received.
   render() {
-    const { from } = this.props.location.state || { from: { pathname: '/hub' } };
-    // if correct authentication, redirect to page instead of login screen
-    if (this.state.redirectToReferer) {
-      return <Redirect to={from}/>;
-    }
+    // const { from } = this.props.location.state || { from: { pathname: '/hub' } };
+    // // if correct authentication, redirect to page instead of login screen
+    // if (this.state.redirectToReferer) {
+    //   return <Redirect to={from}/>;
+    // }
 
     let fRef = null;
     return (

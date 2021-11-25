@@ -46,6 +46,8 @@
 }
 
 .sign-mod {
+  background: #343434;
+  width: 393px !important;
   padding: 40px 25px;
   border-radius: 0 !important;
   text-align: center;
@@ -60,7 +62,7 @@
 
 .grey-theme {
   color: white;
-  background-color: #343434;
+  background: #343434 !important;
 }
 
 .white-theme {

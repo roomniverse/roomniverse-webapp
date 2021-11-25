@@ -1,10 +1,10 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { Link, Redirect } from 'react-router-dom';
-import { Container, Form, Grid, Header, Message, Segment } from 'semantic-ui-react';
+import { Container, Form, Grid, Header, Message, Segment, Select } from 'semantic-ui-react';
 import { Accounts } from 'meteor/accounts-base';
 
-/**
+  /**
  * Signup component is similar to signin component, but we create a new user instead.
  */
 class Signup extends React.Component {
@@ -21,9 +21,9 @@ class Signup extends React.Component {
 
   /* Handle Signup submission. Create user account and a profile entry, then redirect to the home page. */
   submit = () => {
-    const { username, email, password } = this.state;
+    const { username, email, gender, password } = this.state;
     const avatar = 'images/default-image.jpeg';
-    Accounts.createUser({ username, avatar, email, password }, (err) => {
+    Accounts.createUser({ username, avatar, email, gender, password }, (err) => {
       if (err) {
         this.setState({ error: err.reason });
       } else {
@@ -34,6 +34,11 @@ class Signup extends React.Component {
 
   /* Display the signup form. Redirect to add page after successful registration and login. */
   render() {
+    const options = [
+      { key: 'm', text: 'Male', value: 'male' },
+      { key: 'f', text: 'Female', value: 'female' },
+      { key: 'o', text: 'Other', value: 'other' },
+    ];
     const { from } = this.props.location.state || { from: { pathname: '/hub' } };
     // if correct authentication, redirect to from: page instead of signup screen
     if (this.state.redirectToReferer) {
@@ -71,10 +76,12 @@ class Signup extends React.Component {
                     onChange={this.handleChange}
                     required
                   />
-                  <Form.Group label="Gender" inline required>
-                    <Form.Field>
-                    </Form.Field>
-                  </Form.Group>
+                  <Form.Field
+                    control={Select}
+                    label="Gender"
+                    options={options}
+                    placeHolder={'Gender'}
+                  />
                   <Form.Input
                     label="Password"
                     id="signup-form-password"

@@ -23,6 +23,7 @@ function reducer(state, action) {
     return { ...state, loading: false, value: action.results };
   case 'UPDATE_SELECTION':
     return { ...state, value: action.selection };
+    //(<Redirect to={{pathname: '/search'}} state={state}  value={action.selection} />)
   default:
     throw new Error();
   }

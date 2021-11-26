@@ -44,6 +44,7 @@ class Signup extends React.Component {
     if (this.state.redirectToReferer) {
       return <Redirect to={from}/>;
     }
+
     return (
       <div className="landing sign-parent">
         <div className="sign-seg">

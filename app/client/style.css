@@ -27,6 +27,7 @@
 
 .navlogocontainer {
   margin-left: 30px;
+  margin-right: 14px;
 }
 
 .nav-style .navlogo {
@@ -35,10 +36,13 @@
 }
 
 .navsearch {
-  max-width: 500px;
+  max-width: 45%;
   min-width: 200px;
   width: calc(100% - 550px);
-  margin-left: 25px;
+}
+
+.search-bar {
+  width: 100% !important;
 }
 
 .sign {
@@ -51,6 +55,18 @@
   padding: 40px 25px;
   border-radius: 0 !important;
   text-align: center;
+}
+
+.sign-parent {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.sign-seg {
+  width: 580px;
+  margin: auto;
+  align-items: center;
 }
 
 .footer-container {
@@ -76,6 +92,7 @@
   background-size: cover;
   height: calc(100vh - 165px);
   padding: 15px 0;
+  position: relative;
 }
 
 .landing .ui.centered.container.stackable.grid, .landing .ui.grid .ui.header {

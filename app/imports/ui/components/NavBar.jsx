@@ -18,7 +18,9 @@ class NavBar extends React.Component {
         </Menu.Item>
         {this.props.currentUser ? (
           <Menu.Item className="navsearch">
-            <SearchBar />
+            <div className="search-bar">
+              <SearchBar/>
+            </div>
           </Menu.Item>
         ) : ''}
         <Menu.Menu position="right">

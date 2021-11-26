@@ -1,11 +1,10 @@
 import React from 'react';
 import { Meteor } from 'meteor/meteor';
-import { Container, Feed, Icon, Loader } from 'semantic-ui-react';
+import { Button, Container, Feed, Icon, Loader } from 'semantic-ui-react';
 import { withTracker } from 'meteor/react-meteor-data';
 import PropTypes from 'prop-types';
+import { Link } from 'react-router-dom';
 import { Posts } from '../../api/social/Posts';
-import AddPost from '../components/AddPost';
-import PostButton from '../components/PostButton';
 
 class Hub extends React.Component {
   render() {
@@ -19,9 +18,9 @@ class Hub extends React.Component {
       <div className="white-theme hub">
         <Container className="post-feed">
           <div>
-            <PostButton render={btn => (
-              <AddPost button={btn} />
-            )} />
+            <Button fluid as={Link} to='/add'>
+              Create a New Post
+            </Button>
           </div>
           <Feed events={this.props.posts} />
           <Feed>

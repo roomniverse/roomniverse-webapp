@@ -15,7 +15,7 @@ import Signin from '../pages/Signin';
 import Signup from '../pages/Signup';
 import Signout from '../pages/Signout';
 import ListStuffAdmin from '../pages/ListStuffAdmin';
-import AddStuff from '../pages/AddStuff';
+import AddPost from '../components/AddPost';
 import EditStuff from '../pages/EditStuff';
 import ListStuff from '../pages/ListStuff';
 import SearchResults from '../pages/SearchResults';
@@ -37,7 +37,7 @@ class App extends React.Component {
               <ProtectedRoute path="/hub" component={Hub}/>
               <ProtectedRoute path="/find" component={Find}/>
               <ProtectedRoute path="/profile" component={Profile}/>
-              <ProtectedRoute path="/add" component={AddStuff}/>
+              <ProtectedRoute path="/add" component={AddPost}/>
               <ProtectedRoute path="/edit" component={EditStuff}/>
               <ProtectedRoute path="/list" component={ListStuff}/>
               <AdminProtectedRoute path="/admin" component={ListStuffAdmin}/>

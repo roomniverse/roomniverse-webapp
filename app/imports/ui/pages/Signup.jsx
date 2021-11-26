@@ -4,7 +4,7 @@ import { Link, Redirect } from 'react-router-dom';
 import { Container, Form, Grid, Header, Message, Segment, Select } from 'semantic-ui-react';
 import { Accounts } from 'meteor/accounts-base';
 
-  /**
+/**
  * Signup component is similar to signin component, but we create a new user instead.
  */
 class Signup extends React.Component {

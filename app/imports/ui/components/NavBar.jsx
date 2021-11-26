@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { Meteor } from 'meteor/meteor';
 import { withTracker } from 'meteor/react-meteor-data';
-import { withRouter, NavLink, Switch, Route } from 'react-router-dom';
+import { withRouter, NavLink } from 'react-router-dom';
 import { Menu, Dropdown, Image, Input } from 'semantic-ui-react';
 import { Roles } from 'meteor/alanning:roles';
 

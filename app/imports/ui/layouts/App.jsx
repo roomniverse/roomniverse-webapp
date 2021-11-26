@@ -16,10 +16,11 @@ import Signup from '../pages/Signup';
 import Signout from '../pages/Signout';
 import ListStuffAdmin from '../pages/ListStuffAdmin';
 import AddStuff from '../pages/AddStuff';
-import EditStuff from '../pages/EditStuff';
+import EditProfile from '../pages/EditProfile';
 import ListStuff from '../pages/ListStuff';
 import AddPost from '../pages/AddPost';
-import SearchResults from '../pages/SearchResults'
+import SearchResults from '../pages/SearchResults';
+import CreateProfile from '../pages/CreateProfile';
 
 /** Top-level layout component for this application. Called in imports/startup/client/startup.jsx. */
 class App extends React.Component {
@@ -39,9 +40,10 @@ class App extends React.Component {
               <ProtectedRoute path="/find" component={Find}/>
               <ProtectedRoute path="/profile" component={Profile}/>
               <ProtectedRoute path="/add" component={AddStuff}/>
-              <ProtectedRoute path="/edit" component={EditStuff}/>
+              <ProtectedRoute path="/edit/:_id" component={EditProfile}/>
               <ProtectedRoute path="/list" component={ListStuff}/>
               <ProtectedRoute path="/addpost" component={AddPost}/>
+              <ProtectedRoute path="/create" component={CreateProfile}/>
               <AdminProtectedRoute path="/admin" component={ListStuffAdmin}/>
               <Route component={NotFound}/>
             </Switch>

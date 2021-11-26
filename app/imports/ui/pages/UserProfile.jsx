@@ -1,9 +1,11 @@
 import React from 'react';
 import { Meteor } from 'meteor/meteor';
-import { Container, Grid, Image, Menu, Loader, Input, Header, Feed, Icon } from 'semantic-ui-react';
+import { Container, Grid, Menu, Loader, Input, Feed, Icon } from 'semantic-ui-react';
 import { withTracker } from 'meteor/react-meteor-data';
 import PropTypes from 'prop-types';
 import { Stuffs } from '../../api/stuff/Stuff';
+import User from '../components/User';
+import { Users } from '../../api/user/User';
 
 class UserProfile extends React.Component {
 
@@ -17,10 +19,7 @@ class UserProfile extends React.Component {
         <Container>
           <Grid columns={3}>
             <Grid.Column width={4}>
-              <Image src="images/default-image.jpeg" size='medium' rounded bordered/>
-              <br/>
-              <Header as="h3">First Name Last Name</Header>
-              <Header as="h4">Address or location of room</Header>
+              {this.props.users.map((user) => <User key={user._id} user={user}/>)}
             </Grid.Column>
             <Grid.Column width={12}>
               <Menu pointing secondary borderless>
@@ -131,14 +130,17 @@ class UserProfile extends React.Component {
 UserProfile.propTypes = {
   stuffs: PropTypes.array.isRequired,
   ready: PropTypes.bool.isRequired,
+  users: PropTypes.array.isRequired,
 };
 
 export default withTracker(() => {
-  const subscription = Meteor.subscribe(Stuffs.userPublicationName);
+  const subscription = Meteor.subscribe(Stuffs.userPublicationName) && Meteor.subscribe(Users.userPublicationName);
   const ready = subscription.ready();
   const stuffs = Stuffs.collection.find({}).fetch();
+  const users = Users.collection.find({}).fetch();
   return {
     stuffs,
+    users,
     ready,
   };
 })(UserProfile);

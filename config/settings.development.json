@@ -1,7 +1,18 @@
 {
   "defaultAccounts": [
-    { "email": "admin@foo.com", "password": "changeme", "role": "admin" },
-    { "email": "john@foo.com", "password": "changeme" }
+    {
+      "username": "John Admin",
+      "email": "admin@foo.com",
+      "gender": "Male",
+      "password": "changeme",
+      "role": "admin"
+    },
+    {
+      "username": "John Smith",
+      "email": "admin@foo.com",
+      "gender": "Male",
+      "password": "changeme"
+    }
   ],
   "defaultProfileData": [
     {
@@ -27,46 +38,39 @@
     {
       "image": "images/default-image.jpeg",
       "user": "User Two",
-      "date": "Today",
+      "date": 1,
       "summary": "User Two posted to their page",
       "extraText": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. In et mi magna. Fusce ornare venenatis arcu, vitae blandit elit eleifend et. Vivamus suscipit rhoncus nibh sit amet auctor. Proin tempor feugiat ante, a viverra ex vestibulum at. Donec et arcu massa. Ut in felis ut dolor imperdiet tempus sed id nisi. Phasellus maximus sapien non enim rhoncus ultricies.",
-      "extraImages": "",
       "meta": "1"
     },
     {
       "image": "images/default-image.jpeg",
       "user": "User One",
-      "date": "Today",
+      "date": 1,
       "summary": "User One added you as a friend",
-      "extraText": "",
-      "extraImages": "",
-      "meta": ""
+      "meta": "1"
     },
     {
       "image": "images/default-image.jpeg",
       "user": "User Three",
-      "date": "Today",
+      "date": 1,
       "summary": "User Three added you as a friend",
-      "extraText": "",
-      "extraImages": "",
-      "meta": ""
+      "meta": "1"
     },
     {
       "image": "images/default-image.jpeg",
       "user": "User Two",
-      "date": "Today",
+      "date": 1,
       "summary": "User Two added 2 new photos",
-      "extraText": "",
       "extraImages": ["https://react.semantic-ui.com/images/wireframe/image.png", "https://react.semantic-ui.com/images/wireframe/image.png"],
       "meta": "1"
     },
     {
       "image": "images/default-image.jpeg",
       "user": "User Three",
-      "date": "Today",
+      "date": 1,
       "summary": "User Three posted to their page",
       "extraText": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. In et mi magna. Fusce ornare venenatis arcu, vitae blandit elit eleifend et. Vivamus suscipit rhoncus nibh sit amet auctor. Proin tempor feugiat ante, a viverra ex vestibulum at. Donec et arcu massa. Ut in felis ut dolor imperdiet tempus sed id nisi. Phasellus maximus sapien non enim rhoncus ultricies.",
-      "extraImages": "",
       "meta": "1"
     }
   ]

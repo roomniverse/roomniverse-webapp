@@ -10,12 +10,12 @@ class AddPost extends React.Component {
   // Render the page once subscriptions have been received.
   submit(data, formRef) {
     const { extraText, extraImages } = data;
-    const username = `${Users.collection.firstName} ${Users.collection.lastName}`;
+    const user = Users.collection.owner;
     const image = Users.collection.avatar;
-    const date = Date.now();
-    const summary = `${username} posted to their page`;
+    const date = 1;
+    const summary = `${user} posted to their page`;
     const meta = 0;
-    Posts.collection.insert({ username, image, date, summary, extraText, extraImages, meta },
+    Posts.collection.insert({ user, image, date, summary, extraText, extraImages, meta },
       (error) => {
         if (error) {
           swal('Error', error.message, 'error');
@@ -35,6 +35,8 @@ class AddPost extends React.Component {
           <Header as="h2" textAlign="center">Create New Post</Header>
           <Form ref={ ref => { fRef = ref; } } onSubmit={ data => this.submit(data, fRef) } >
             <TextArea placeholder="What's on your mind?" style={{ minHeight: 750 }}/>
+            Post Images:
+            <Button value="">Browse</Button>
             <Button type='submit' as={Link} to='/hub'>
               Post
             </Button>

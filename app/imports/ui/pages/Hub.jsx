@@ -122,7 +122,7 @@ class Hub extends React.Component {
 }
 
 Hub.propTypes = {
-  posts: PropTypes.array.isRequired,
+  posts: PropTypes.array,
   ready: PropTypes.bool.isRequired,
 };
 

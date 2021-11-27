@@ -10,8 +10,8 @@ export default class Signout extends React.Component {
     return (
       <div className="landing">
         <Modal className="grey-theme sign-mod" open={true} >
-          <div style={{ textAlign: 'center' }}>
-            <Modal.Header id="signout-page" as="h2" textAlign="center" inverted>
+          <div className="sign-parent">
+            <Modal.Header id="signout-page" as="h2">
               <p>You are signed out.</p>
             </Modal.Header>
             <Modal.Actions>

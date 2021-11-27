@@ -20,6 +20,7 @@ SearchResults.propTypes = {
   users: PropTypes.array,
   value: PropTypes.object,
   location: PropTypes.object,
+  ready: PropTypes.bool.isRequired,
 };
 
 export default withTracker(() => {

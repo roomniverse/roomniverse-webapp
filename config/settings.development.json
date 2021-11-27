@@ -3,7 +3,26 @@
     { "email": "admin@foo.com", "password": "changeme", "role": "admin" },
     { "email": "john@foo.com", "password": "changeme" }
   ],
-
+  "defaultProfileData": [
+    {
+      "firstName": "John",
+      "lastName": "Phillips",
+      "gender": "Male",
+      "major": "ICS/CENG",
+      "gradYear": "2022",
+      "avatar": "https://static7.depositphotos.com/1155356/677/i/600/depositphotos_6778932-stock-photo-regular-guy-concerned.jpg",
+      "owner": "john@foo.com"
+    },
+    {
+      "firstName": "Adam",
+      "lastName": "Min",
+      "gender": "Male",
+      "major": "Other",
+      "gradYear": "2024",
+      "avatar": "https://d2gg9evh47fn9z.cloudfront.net/800px_COLOURBOX4257428.jpg",
+      "owner": "admin@foo.com"
+    }
+  ],
   "defaultData": [
     { "name": "Basket", "quantity": 3, "owner": "john@foo.com", "condition": "excellent" },
     { "name": "Bicycle", "quantity": 2, "owner": "john@foo.com", "condition": "poor" },

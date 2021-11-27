@@ -39,7 +39,7 @@ class Signup extends React.Component {
       { key: 'f', text: 'Female', value: 'female' },
       { key: 'o', text: 'Other', value: 'other' },
     ];
-    const { from } = this.props.location.state || { from: { pathname: '/hub' } };
+    const { from } = this.props.location.state || { from: { pathname: '/create' } };
     // if correct authentication, redirect to from: page instead of signup screen
     if (this.state.redirectToReferer) {
       return <Redirect to={from}/>;

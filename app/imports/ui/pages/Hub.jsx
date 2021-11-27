@@ -24,6 +24,7 @@ class Hub extends React.Component {
           </div>
           <Feed events={this.props.posts} />
           <Feed>
+            {this.props.posts.map((post) => <PostEvent key={post._id} post={post}/>)}
             <Feed.Event>
               <Feed.Label image='images/default-image.jpeg'/>
               <Feed.Content>

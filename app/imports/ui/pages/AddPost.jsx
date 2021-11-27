@@ -1,17 +1,17 @@
 import React from 'react';
-import { Meteor } from 'meteor/meteor';
 import { Container, Header, TextArea, Form, Button } from 'semantic-ui-react';
 import { Link } from 'react-router-dom';
 import swal from 'sweetalert';
 import { Posts } from '../../api/social/Posts';
+import { Users } from '../../api/user/User';
 
 /** Renders a table containing all of the Stuff documents. Use <StuffItem> to render each row. */
 class AddPost extends React.Component {
   // Render the page once subscriptions have been received.
   submit(data, formRef) {
     const { extraText, extraImages } = data;
-    const username = Meteor.user().username;
-    const image = Meteor.user().avatar;
+    const username = `${Users.collection.firstName} ${Users.collection.lastName}`;
+    const image = Users.collection.avatar;
     const date = Date.now();
     const summary = `${username} posted to their page`;
     const meta = 0;

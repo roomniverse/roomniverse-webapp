@@ -14,10 +14,7 @@ import NotFound from '../pages/NotFound';
 import Signin from '../pages/Signin';
 import Signup from '../pages/Signup';
 import Signout from '../pages/Signout';
-import ListStuffAdmin from '../pages/ListStuffAdmin';
-import AddPost from '../components/AddPost';
-import EditStuff from '../pages/EditStuff';
-import ListStuff from '../pages/ListStuff';
+import AddPost from '../pages/AddPost';
 import SearchResults from '../pages/SearchResults';
 import EditProfile from '../pages/EditProfile';
 import CreateProfile from '../pages/CreateProfile';
@@ -35,13 +32,13 @@ class App extends React.Component {
               <Route path="/signin" component={Signin}/>
               <Route path="/signup" component={Signup}/>
               <Route path="/signout" component={Signout}/>
-              <ProtectedRoute path="/search" component={SearchResults}/>
+              <ProtectedRoute path="/create" component={CreateProfile}/>
               <ProtectedRoute path="/hub" component={Hub}/>
+              <ProtectedRoute path="/add" component={AddPost}/>
+              <ProtectedRoute path="/search" component={SearchResults}/>
               <ProtectedRoute path="/find" component={Find}/>
               <ProtectedRoute path="/profile" component={Profile}/>
               <ProtectedRoute path="/edit/:_id" component={EditProfile}/>
-              <ProtectedRoute path="/addpost" component={AddPost}/>
-              <ProtectedRoute path="/create" component={CreateProfile}/>
               <Route component={NotFound}/>
             </Switch>
           </div>

@@ -24,9 +24,50 @@
     }
   ],
   "defaultData": [
-    { "name": "Basket", "quantity": 3, "owner": "john@foo.com", "condition": "excellent" },
-    { "name": "Bicycle", "quantity": 2, "owner": "john@foo.com", "condition": "poor" },
-    { "name": "Banana", "quantity": 2, "owner": "admin@foo.com", "condition": "good" },
-    { "name": "Boogie Board", "quantity": 2, "owner": "admin@foo.com", "condition": "excellent" }
+    {
+      "image": "images/default-image.jpeg",
+      "user": "User Two",
+      "date": "Today",
+      "summary": "User Two posted to their page",
+      "extraText": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. In et mi magna. Fusce ornare venenatis arcu, vitae blandit elit eleifend et. Vivamus suscipit rhoncus nibh sit amet auctor. Proin tempor feugiat ante, a viverra ex vestibulum at. Donec et arcu massa. Ut in felis ut dolor imperdiet tempus sed id nisi. Phasellus maximus sapien non enim rhoncus ultricies.",
+      "extraImages": "",
+      "meta": "1"
+    },
+    {
+      "image": "images/default-image.jpeg",
+      "user": "User One",
+      "date": "Today",
+      "summary": "User One added you as a friend",
+      "extraText": "",
+      "extraImages": "",
+      "meta": ""
+    },
+    {
+      "image": "images/default-image.jpeg",
+      "user": "User Three",
+      "date": "Today",
+      "summary": "User Three added you as a friend",
+      "extraText": "",
+      "extraImages": "",
+      "meta": ""
+    },
+    {
+      "image": "images/default-image.jpeg",
+      "user": "User Two",
+      "date": "Today",
+      "summary": "User Two added 2 new photos",
+      "extraText": "",
+      "extraImages": ["https://react.semantic-ui.com/images/wireframe/image.png", "https://react.semantic-ui.com/images/wireframe/image.png"],
+      "meta": "1"
+    },
+    {
+      "image": "images/default-image.jpeg",
+      "user": "User Three",
+      "date": "Today",
+      "summary": "User Three posted to their page",
+      "extraText": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. In et mi magna. Fusce ornare venenatis arcu, vitae blandit elit eleifend et. Vivamus suscipit rhoncus nibh sit amet auctor. Proin tempor feugiat ante, a viverra ex vestibulum at. Donec et arcu massa. Ut in felis ut dolor imperdiet tempus sed id nisi. Phasellus maximus sapien non enim rhoncus ultricies.",
+      "extraImages": "",
+      "meta": "1"
+    }
   ]
 }

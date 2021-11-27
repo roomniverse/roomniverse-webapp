@@ -1,12 +1,12 @@
 import React from 'react';
 import { escapeRegExp, filter, times } from 'lodash';
-import { Meteor } from 'meteor/meteor';
 import { Search } from 'semantic-ui-react';
 import { Link } from 'react-router-dom';
+import { Users } from '../../api/user/User';
 
 const source = times(5, () => ({
-  image: Meteor.users.avatar,
-  title: Meteor.users.username,
+  image: Users.collection.avatar,
+  title: `${Users.collection.firstName} ${Users.collection.lastName}`,
 }));
 const initState = {
   loading: false,
@@ -15,7 +15,7 @@ const initState = {
 };
 
 function handleSubmit(state, action) {
-  return action.type === 'CLICK_SELECTION' ? (
+  return (action.type === 'CLICK_SELECTION') ? (
     <Link to="/profile"/>
   ) : (
     <Link to="/search" filter={action.value} />

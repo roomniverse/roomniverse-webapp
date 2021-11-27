@@ -1,7 +1,8 @@
 import React from 'react';
-import { filter, times, escapeRegExp } from 'lodash';
+import { escapeRegExp, filter, times } from 'lodash';
 import { Meteor } from 'meteor/meteor';
 import { Search } from 'semantic-ui-react';
+import { Link } from 'react-router-dom';
 
 const source = times(5, () => ({
   image: Meteor.users.avatar,
@@ -13,6 +14,14 @@ const initState = {
   value: '',
 };
 
+function handleSubmit(state, action) {
+  return action.type === 'CLICK_SELECTION' ? (
+    <Link to="/profile"/>
+  ) : (
+    <Link to="/search" filter={action.value} />
+  );
+}
+
 function reducer(state, action) {
   switch (action.type) {
   case 'CLEAN_QUERY':
@@ -21,9 +30,11 @@ function reducer(state, action) {
     return { ...state, loading: true, value: action.query };
   case 'FINISH_SEARCH':
     return { ...state, loading: false, value: action.results };
+  case 'CLICK_SELECTION':
+    return handleSubmit(state, action);
   case 'UPDATE_SELECTION':
-    return { ...state, value: action.selection };
-    //(<Redirect to={{pathname: '/search'}} state={state}  value={action.selection} />)
+    return { ...state, loading: false, value: action.selection };
+    // return handleSubmit(state, action);
   default:
     throw new Error();
   }
@@ -59,6 +70,7 @@ function SearchBar() {
     <div>
       <Search
         loading={loading}
+        onMouseDown={(e, data) => dispatch({ type: 'CLICK_SELECTION', selection: data.result.title })}
         onResultSelect={(e, data) => dispatch({ type: 'UPDATE_SELECTION', selection: data.result.title })}
         onSearchChange={handleSearchChange}
         results={results}

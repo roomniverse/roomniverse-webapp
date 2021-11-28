@@ -24,6 +24,7 @@ class Hub extends React.Component {
           </div>
           <Feed>
             {this.props.posts.map((data) => <Feed.Event
+              key={data.owner}
               date={data.date}
               image={data.avatar}
               summary={data.summary}

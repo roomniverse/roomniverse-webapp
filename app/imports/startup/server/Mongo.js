@@ -6,7 +6,7 @@ import { Users } from '../../api/user/User';
 
 // Initialize the database with a default data document.
 function addData(data) {
-  console.log(`  Adding: Data for (${data.user})`);
+  console.log(`  Adding: Data for (${data.owner})`);
   Posts.collection.insert(data);
 }
 

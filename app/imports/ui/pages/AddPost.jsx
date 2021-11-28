@@ -48,4 +48,20 @@ class AddPost extends React.Component {
 }
 
 // withTracker connects Meteor data to React components. https://guide.meteor.com/react.html#using-withTracker
+<<<<<<< Updated upstream
 export default AddPost;
+=======
+export default withTracker(({ match }) => {
+  // Get access to Stuff documents.
+  const documentId = match.params._id;
+  const subscription = Meteor.subscribe(Users.userPublicationName);
+  // Determine if the subscription is ready
+  const ready = subscription.ready();
+  // Get the Stuff documents
+  const user = Users.collection.find(documentId);
+  return {
+    user,
+    ready,
+  };
+})(AddPost);
+>>>>>>> Stashed changes

@@ -6,6 +6,7 @@ import { Meteor } from 'meteor/meteor';
 import { withTracker } from 'meteor/react-meteor-data';
 import PropTypes from 'prop-types';
 import SimpleSchema2Bridge from 'uniforms-bridge-simple-schema-2';
+// import { Link } from 'react-router-dom';
 import { Requests } from '../../api/social/Requests';
 
 const bridge = new SimpleSchema2Bridge(Requests.schema);
@@ -19,7 +20,7 @@ class EditRequest extends React.Component {
     if (Meteor.user().username === owner) {
       Requests.collection.update(_id, { $set: { name, gender, location, image, description } }, (error) => (error ?
         swal('Error', error.message, 'error') :
-        swal('Success', 'Item updated successfully', 'success')));
+        swal('Success', 'Item updated successfully', 'success').then(function () { })));
     } else {
       swal('Error', 'Only owner can edit it', 'error');
     }

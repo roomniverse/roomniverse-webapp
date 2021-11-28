@@ -22,14 +22,14 @@ class SearchResults extends React.Component {
         <hr />
         <Header as="h3" textAlign="center">No Results</Header>
       </Container>
-    )
+    );
   }
 }
 
 SearchResults.propTypes = {
   users: PropTypes.array.isRequired,
   ready: PropTypes.bool.isRequired,
-}
+};
 
 export default withTracker(() => {
   const users = Meteor.users;

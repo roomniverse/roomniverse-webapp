@@ -23,7 +23,7 @@ class Hub extends React.Component {
             Create a New Post
           </Button>
           <Feed>
-            {/*{this.props.posts.map((post) => <PostEvent key={post._id} post={post}/>)}*/}
+            {/* {this.props.posts.map((post) => <PostEvent key={post._id} post={post}/>)} */}
             <Feed.Event>
               <Feed.Label image='images/default-image.jpeg'/>
               <Feed.Content>

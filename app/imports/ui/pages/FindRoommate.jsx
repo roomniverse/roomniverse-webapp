@@ -20,7 +20,7 @@ const majorOptions = [
     text: 'Sort by Non-ICS Major',
     value: 'Non-ICS',
   },
-]
+];
 
 const genderOptions = [
   {
@@ -38,7 +38,7 @@ const genderOptions = [
     text: 'Sort by Other',
     value: 'Other',
   },
-]
+];
 
 const yearOptions = [
   {
@@ -61,7 +61,7 @@ const yearOptions = [
     text: 'Sort by Class of 2024',
     value: '2024',
   },
-]
+];
 
 /** Renders a table containing all of the Stuff documents. Use <StuffItem> to render each row. */
 class FindRoommate extends React.Component {

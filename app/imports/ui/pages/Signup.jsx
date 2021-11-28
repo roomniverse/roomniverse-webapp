@@ -1,9 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { Link, Redirect } from 'react-router-dom';
-import { Container, Form, Grid, Header, Message, Segment, Select } from 'semantic-ui-react';
+import { Container, Form, Grid, Header, Message, Segment } from 'semantic-ui-react';
 import { Accounts } from 'meteor/accounts-base';
-// import { Users } from '../../api/user/User';
 
 /**
  * Signup component is similar to signin component, but we create a new user instead.
@@ -12,7 +11,7 @@ class Signup extends React.Component {
   /* Initialize state fields. */
   constructor(props) {
     super(props);
-    this.state = { username: '', gender: '', email: '', password: '', error: '', redirectToReferer: false };
+    this.state = { username: '', email: '', password: '', error: '', redirectToReferer: false };
   }
 
   /* Update the form controls each time the user interacts with them. */
@@ -22,8 +21,9 @@ class Signup extends React.Component {
 
   /* Handle Signup submission. Create user account and a profile entry, then redirect to the home page. */
   submit = () => {
-    const { username, email, gender, password } = this.state;
-    Accounts.createUser({ username, email, gender, password }, (err) => {
+    const { email, password } = this.state;
+    const username = email;
+    Accounts.createUser({ username, email, password }, (err) => {
       if (err) {
         this.setState({ error: err.reason });
       } else {
@@ -34,11 +34,6 @@ class Signup extends React.Component {
 
   /* Display the signup form. Redirect to add page after successful registration and login. */
   render() {
-    const options = [
-      { key: 'm', text: 'Male', value: 'male' },
-      { key: 'f', text: 'Female', value: 'female' },
-      { key: 'o', text: 'Other', value: 'other' },
-    ];
     const { from } = this.props.location.state || { from: { pathname: '/create' } };
     // if correct authentication, redirect to from: page instead of signup screen
     if (this.state.redirectToReferer) {
@@ -58,17 +53,6 @@ class Signup extends React.Component {
                   <Form onSubmit={this.submit}>
                     <Segment stacked>
                       <Form.Input
-                        label="Full Name"
-                        id="signup-form-name"
-                        icon="user"
-                        iconPosition="left"
-                        name="username"
-                        type="username"
-                        placeholder="First Last"
-                        onChange={this.handleChange}
-                        required
-                      />
-                      <Form.Input
                         label="Email"
                         id="signup-form-email"
                         icon="envelope outline"
@@ -78,12 +62,6 @@ class Signup extends React.Component {
                         placeholder="E-mail address"
                         onChange={this.handleChange}
                         required
-                      />
-                      <Form.Field
-                        control={Select}
-                        label="Gender"
-                        options={options}
-                        placeHolder={'Gender'}
                       />
                       <Form.Input
                         label="Password"

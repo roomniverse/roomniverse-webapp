@@ -12,10 +12,10 @@ class AddPost extends React.Component {
     const { extraText, extraImages } = data;
     const user = Users.collection.owner;
     const image = Users.collection.avatar;
-    const date = 1;
+    const date = 'Just Now';
     const summary = `${user} posted to their page`;
     const meta = 0;
-    Posts.collection.insert({ user, image, date, summary, extraText, extraImages, meta },
+    Posts.collection.insert({ image, date, summary, extraText, extraImages, meta },
       (error) => {
         if (error) {
           swal('Error', error.message, 'error');

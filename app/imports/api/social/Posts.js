@@ -7,14 +7,14 @@ class PostsCollection {
     this.name = 'PostsCollection';
     this.collection = new Mongo.Collection(this.name);
     this.schema = new SimpleSchema({
+      date: String,
       image: String,
-      user: String,
-      date: Number,
-      summary: String,
       meta: Number,
+      summary: String,
+      owner: String,
     }, {
-      extraText: { type: String, optional: true },
-      extraImages: { type: Array, optional: true },
+      extraText: String,
+      extraImages: Array,
       optional: true,
     }, { tracker: Tracker });
     this.collection.attachSchema(this.schema);

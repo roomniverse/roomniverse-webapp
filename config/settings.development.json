@@ -36,42 +36,45 @@
   ],
   "defaultData": [
     {
+      "date": "Just Now",
       "image": "images/default-image.jpeg",
-      "user": "User Two",
-      "date": 1,
+      "meta": 1,
       "summary": "User Two posted to their page",
-      "extraText": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. In et mi magna. Fusce ornare venenatis arcu, vitae blandit elit eleifend et. Vivamus suscipit rhoncus nibh sit amet auctor. Proin tempor feugiat ante, a viverra ex vestibulum at. Donec et arcu massa. Ut in felis ut dolor imperdiet tempus sed id nisi. Phasellus maximus sapien non enim rhoncus ultricies.",
-      "meta": "1"
+      "owner": "User Two",
+      "extraText": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. In et mi magna. Fusce ornare venenatis arcu, vitae blandit elit eleifend et. Vivamus suscipit rhoncus nibh sit amet auctor. Proin tempor feugiat ante, a viverra ex vestibulum at. Donec et arcu massa. Ut in felis ut dolor imperdiet tempus sed id nisi. Phasellus maximus sapien non enim rhoncus ultricies."
     },
     {
+      "date": "Just Now",
       "image": "images/default-image.jpeg",
-      "user": "User One",
-      "date": 1,
+      "meta": 1,
       "summary": "User One added you as a friend",
-      "meta": "1"
+      "owner": "User One"
     },
     {
+      "date": "Just Now",
       "image": "images/default-image.jpeg",
-      "user": "User Three",
-      "date": 1,
+      "meta": 1,
       "summary": "User Three added you as a friend",
-      "meta": "1"
+      "owner": "User Three"
     },
     {
+      "date": "Just Now",
       "image": "images/default-image.jpeg",
-      "user": "User Two",
-      "date": 1,
+      "meta": 1,
       "summary": "User Two added 2 new photos",
-      "extraImages": ["https://react.semantic-ui.com/images/wireframe/image.png", "https://react.semantic-ui.com/images/wireframe/image.png"],
-      "meta": "1"
+      "owner": "User Two",
+      "extraImages": [
+        "https://react.semantic-ui.com/images/wireframe/image.png",
+        "https://react.semantic-ui.com/images/wireframe/image.png"
+      ]
     },
     {
+      "date": "Just Now",
       "image": "images/default-image.jpeg",
-      "user": "User Three",
-      "date": 1,
+      "meta": 1,
       "summary": "User Three posted to their page",
-      "extraText": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. In et mi magna. Fusce ornare venenatis arcu, vitae blandit elit eleifend et. Vivamus suscipit rhoncus nibh sit amet auctor. Proin tempor feugiat ante, a viverra ex vestibulum at. Donec et arcu massa. Ut in felis ut dolor imperdiet tempus sed id nisi. Phasellus maximus sapien non enim rhoncus ultricies.",
-      "meta": "1"
+      "owner": "User Three",
+      "extraText": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. In et mi magna. Fusce ornare venenatis arcu, vitae blandit elit eleifend et. Vivamus suscipit rhoncus nibh sit amet auctor. Proin tempor feugiat ante, a viverra ex vestibulum at. Donec et arcu massa. Ut in felis ut dolor imperdiet tempus sed id nisi. Phasellus maximus sapien non enim rhoncus ultricies."
     }
   ]
 }

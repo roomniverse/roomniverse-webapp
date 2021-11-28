@@ -6,6 +6,7 @@ import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import { Posts } from '../../api/social/Posts';
 import PostEvent from '../components/PostEvent';
+
 // import NewPost from '../components/NewPost';
 
 class Hub extends React.Component {

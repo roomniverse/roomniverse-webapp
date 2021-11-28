@@ -21,6 +21,8 @@ import ListStuff from '../pages/ListStuff';
 import AddPost from '../pages/AddPost';
 import SearchResults from '../pages/SearchResults';
 import CreateProfile from '../pages/CreateProfile';
+import AddRequest from '../pages/AddRequest';
+import EditRequest from '../pages/EditRequest';
 
 /** Top-level layout component for this application. Called in imports/startup/client/startup.jsx. */
 class App extends React.Component {
@@ -38,6 +40,8 @@ class App extends React.Component {
               <ProtectedRoute path="/search" component={SearchResults} />
               <ProtectedRoute path="/hub" component={Hub}/>
               <ProtectedRoute path="/find" component={Find}/>
+              <ProtectedRoute path="/addrequest" component={AddRequest}/>
+              <ProtectedRoute path="/edit/:_id" component={EditRequest}/>
               <ProtectedRoute path="/profile" component={Profile}/>
               <ProtectedRoute path="/add" component={AddStuff}/>
               <ProtectedRoute path="/edit/:_id" component={EditProfile}/>

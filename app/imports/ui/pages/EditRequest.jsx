@@ -1,5 +1,5 @@
 import React from 'react';
-import { Grid, Loader, Header, Segment } from 'semantic-ui-react';
+import { Grid, Loader, Header, Segment, Button } from 'semantic-ui-react';
 import swal from 'sweetalert';
 import { AutoForm, ErrorsField, HiddenField, LongTextField, SelectField, SubmitField, TextField } from 'uniforms-semantic';
 import { Meteor } from 'meteor/meteor';
@@ -15,10 +15,25 @@ class EditRequest extends React.Component {
 
   // On successful submit, insert the data.
   submit(data) {
-    const { name, gender, location, image, description, _id } = data;
-    Requests.collection.update(_id, { $set: { name, gender, location, image, description } }, (error) => (error ?
-      swal('Error', error.message, 'error') :
-      swal('Success', 'Item updated successfully', 'success')));
+    const { name, gender, location, image, description, _id, owner } = data;
+    if (Meteor.user().username === owner) {
+      Requests.collection.update(_id, { $set: { name, gender, location, image, description } }, (error) => (error ?
+        swal('Error', error.message, 'error') :
+        swal('Success', 'Item updated successfully', 'success')));
+    } else {
+      swal('Error', 'Only owner can edit it', 'error');
+    }
+  }
+
+  remove(data) {
+    const { _id, owner } = data;
+    if (Meteor.user().username === owner) {
+      Requests.collection.remove(_id, (error) => (error ?
+        swal('Error', error.message, 'error') :
+        swal('Success', 'Item removed successfully', 'success')));
+    } else {
+      swal('Error', `Only ${owner} can remove`, 'error');
+    }
   }
 
   // If the subscription(s) have been received, render the page, otherwise show a loading icon.
@@ -31,9 +46,9 @@ class EditRequest extends React.Component {
     return (
       <Grid container centered>
         <Grid.Column>
-          <Header as="h2" textAlign="center" inverted>Edit Contact</Header>
-          <AutoForm schema={bridge} onSubmit={data => this.submit(data)} model={this.props.doc}>
-            <Segment>
+          <Header as="h2" textAlign="center">Edit Request</Header>
+          <Segment>
+            <AutoForm schema={bridge} onSubmit={data => this.submit(data)} model={this.props.doc}>
               <TextField name='name'/>
               <SelectField name='gender'/>
               <TextField name='location'/>
@@ -41,9 +56,10 @@ class EditRequest extends React.Component {
               <LongTextField name='description'/>
               <SubmitField value='Submit'/>
               <ErrorsField/>
-              <HiddenField name='owner' />
-            </Segment>
-          </AutoForm>
+              <HiddenField name='owner'/>
+            </AutoForm>
+          </Segment>
+          <Button onClick={() => this.remove(this.props.doc)} floated='right'>Close Request</Button>
         </Grid.Column>
       </Grid>
     );

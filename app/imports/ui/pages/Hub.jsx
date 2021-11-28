@@ -24,13 +24,13 @@ class Hub extends React.Component {
           </div>
           <Feed>
             {this.props.posts.map((data) => <Feed.Event
-              date={data.date}
-              image={data.avatar}
-              summary={data.summary}
-              meta={data.meta}
-              extraText={data.extraText}
-              extraImages={data.extraImages}
-            />
+                date={data.date}
+                image={data.avatar}
+                summary={data.summary}
+                meta={data.meta}
+                extraText={data.extraText}
+                extraImages={data.extraImages}
+              />
             )}
           </Feed>
         </Container>

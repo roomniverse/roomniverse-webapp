@@ -20,7 +20,7 @@ class EditRequest extends React.Component {
     if (Meteor.user().username === owner) {
       Requests.collection.update(_id, { $set: { name, gender, location, image, description } }, (error) => (error ?
         swal('Error', error.message, 'error') :
-        swal('Success', 'Item updated successfully', 'success').then(function () { })));
+        swal('Success', 'Item updated successfully', 'success')));
     } else {
       swal('Error', 'Only owner can edit it', 'error');
     }
@@ -31,7 +31,8 @@ class EditRequest extends React.Component {
     if (Meteor.user().username === owner) {
       Requests.collection.remove(_id, (error) => (error ?
         swal('Error', error.message, 'error') :
-        swal('Success', 'Item removed successfully', 'success')));
+        // eslint-disable-next-line no-undef
+        swal('Success', 'Item removed successfully', 'success').then(function () { window.location = '/#/find'; })));
     } else {
       swal('Error', `Only ${owner} can remove`, 'error');
     }

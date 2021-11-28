@@ -1,7 +1,7 @@
 import React from 'react';
 import { Grid, Loader, Header, Segment, Button } from 'semantic-ui-react';
 import swal from 'sweetalert';
-import { AutoForm, ErrorsField, HiddenField, LongTextField, SelectField, SubmitField, TextField } from 'uniforms-semantic';
+import { AutoForm, ErrorsField, HiddenField, LongTextField, SubmitField, TextField } from 'uniforms-semantic';
 import { Meteor } from 'meteor/meteor';
 import { withTracker } from 'meteor/react-meteor-data';
 import PropTypes from 'prop-types';
@@ -20,7 +20,7 @@ class EditRequest extends React.Component {
     if (Meteor.user().username === owner) {
       Requests.collection.update(_id, { $set: { name, gender, location, image, description } }, (error) => (error ?
         swal('Error', error.message, 'error') :
-        swal('Success', 'Item updated successfully', 'success')));
+        swal('Success', 'Item updated successfully', 'success').then(function () { window.location = '/#/find'; })));
     } else {
       swal('Error', 'Only owner can edit it', 'error');
     }
@@ -51,10 +51,7 @@ class EditRequest extends React.Component {
           <Header as="h2" textAlign="center">Edit Request</Header>
           <Segment>
             <AutoForm schema={bridge} onSubmit={data => this.submit(data)} model={this.props.doc}>
-              <TextField name='name'/>
-              <SelectField name='gender'/>
               <TextField name='location'/>
-              <TextField name='image'/>
               <LongTextField name='description'/>
               <SubmitField value='Submit'/>
               <ErrorsField/>

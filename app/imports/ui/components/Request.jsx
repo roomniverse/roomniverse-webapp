@@ -10,14 +10,14 @@ class Request extends React.Component {
       <Item>
         <Item.Image size='small' src={this.props.request.image}/>
         <Item.Content>
-          <Item.Header as='a' color='white'>{this.props.request.name}</Item.Header>
+          <Item.Header as='a' color='white'>{this.props.request.firstName} {this.props.request.lastName}</Item.Header>
           <Item.Description>
             <p>Gender: {this.props.request.gender}</p>
             <p>Location: {this.props.request.location}</p>
             <p>{this.props.request.description}</p>
           </Item.Description>
           <Item.Extra>
-            <p>Link to the profile</p>
+            <Link to={`/profile/${this.props.request._id}`}>Link to the profile</Link>
             <Link to={`/edit/${this.props.request._id}`}>Edit</Link>
           </Item.Extra>
         </Item.Content>
@@ -29,7 +29,8 @@ class Request extends React.Component {
 // Require a document to be passed to this component.
 Request.propTypes = {
   request: PropTypes.shape({
-    name: PropTypes.string,
+    firstName: PropTypes.string,
+    lastName: PropTypes.string,
     gender: PropTypes.string,
     location: PropTypes.string,
     image: PropTypes.string,

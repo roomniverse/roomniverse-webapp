@@ -7,7 +7,8 @@ class RequestsCollection {
     this.name = 'RequestsCollection';
     this.collection = new Mongo.Collection(this.name);
     this.schema = new SimpleSchema({
-      name: String,
+      firstName: String,
+      lastName: String,
       gender: {
         type: String,
         allowedValues: ['Male', 'Female', 'Other'],

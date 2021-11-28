@@ -42,9 +42,9 @@ class App extends React.Component {
               <ProtectedRoute path="/find" component={Find}/>
               <ProtectedRoute path="/addrequest" component={AddRequest}/>
               <ProtectedRoute path="/edit/:_id" component={EditRequest}/>
-              <ProtectedRoute path="/profile" component={Profile}/>
+              <ProtectedRoute path="/profile/:_id" component={Profile}/>
               <ProtectedRoute path="/add" component={AddStuff}/>
-              <ProtectedRoute path="/edit/:_id" component={EditProfile}/>
+              <ProtectedRoute path="/editprofile/:_id" component={EditProfile}/>
               <ProtectedRoute path="/list" component={ListStuff}/>
               <ProtectedRoute path="/addpost" component={AddPost}/>
               <ProtectedRoute path="/create" component={CreateProfile}/>

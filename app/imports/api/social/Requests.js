@@ -14,7 +14,7 @@ class RequestsCollection {
         allowedValues: ['Male', 'Female', 'Other'],
       },
       location: String,
-      image: String,
+      avatar: String,
       description: String,
       owner: String,
     }, { tracker: Tracker });

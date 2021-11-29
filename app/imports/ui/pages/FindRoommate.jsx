@@ -1,6 +1,6 @@
 import React from 'react';
 import { Meteor } from 'meteor/meteor';
-import { Container, Item, Header, Loader, Input, Grid, Dropdown, Button } from 'semantic-ui-react';
+import { Container, Item, Header, Loader, Input, Grid, Dropdown } from 'semantic-ui-react';
 import { withTracker } from 'meteor/react-meteor-data';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
@@ -103,7 +103,7 @@ class FindRoommate extends React.Component {
           </Grid>
           <Input fluid icon='search' placeholder='Search...'/>
           <Container>
-            <Button floated="right" as={Link} to='/addrequest'>Add Request</Button>
+            <Link to={`/addrequest/${Meteor.userId()}`}>Add Request</Link>
           </Container>
           <Item.Group divided>
             {this.props.requests.map((request, index) => <Request key={index} request={request}/>)}

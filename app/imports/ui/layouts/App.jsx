@@ -14,10 +14,12 @@ import NotFound from '../pages/NotFound';
 import Signin from '../pages/Signin';
 import Signup from '../pages/Signup';
 import Signout from '../pages/Signout';
+import EditProfile from '../pages/EditProfile';
 import AddPost from '../pages/AddPost';
 import SearchResults from '../pages/SearchResults';
-import EditProfile from '../pages/EditProfile';
 import CreateProfile from '../pages/CreateProfile';
+import AddRequest from '../pages/AddRequest';
+import EditRequest from '../pages/EditRequest';
 
 /** Top-level layout component for this application. Called in imports/startup/client/startup.jsx. */
 class App extends React.Component {
@@ -37,8 +39,12 @@ class App extends React.Component {
               <ProtectedRoute path="/add" component={AddPost}/>
               <ProtectedRoute path="/search" component={SearchResults}/>
               <ProtectedRoute path="/find" component={Find}/>
-              <ProtectedRoute path="/profile" component={Profile}/>
-              <ProtectedRoute path="/edit/:_id" component={EditProfile}/>
+              <ProtectedRoute path="/addrequest/:_id" component={AddRequest}/>
+              <ProtectedRoute path="/edit/:_id" component={EditRequest}/>
+              <ProtectedRoute path="/profile/:_id" component={Profile}/>
+              <ProtectedRoute path="/editprofile/:_id" component={EditProfile}/>
+              <ProtectedRoute path="/addpost" component={AddPost}/>
+              <ProtectedRoute path="/create" component={CreateProfile}/>
               <Route component={NotFound}/>
             </Switch>
           </div>

@@ -19,7 +19,7 @@ class UserProfile extends React.Component {
         <Container>
           <Grid columns={3}>
             <Grid.Column width={4}>
-              {this.props.users.map((user) => <User key={user._id} user={user}/>)}
+              <User user={this.props.users.find((user) => user.owner === Meteor.user().username)}/>
             </Grid.Column>
             <Grid.Column width={12}>
               <Menu pointing secondary borderless>
@@ -37,9 +37,9 @@ class UserProfile extends React.Component {
                       <Feed.Date>20 minutes ago</Feed.Date>
                     </Feed.Summary>
                     <Feed.Extra text>
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. In et mi magna. Fusce
-                        ornare venenatis arcu, vitae blandit elit eleifend et. Vivamus suscipit rhoncus
-                        nibh sit amet auctor. Proin tempor feugiat ante, a viverra ex vestibulum at. Donec et arcu massa. Ut in felis ut dolor imperdiet tempus sed id nisi. Phasellus maximus sapien non enim rhoncus ultricies.
+                      Lorem ipsum dolor sit amet, consectetur adipiscing elit. In et mi magna. Fusce
+                      ornare venenatis arcu, vitae blandit elit eleifend et. Vivamus suscipit rhoncus
+                      nibh sit amet auctor. Proin tempor feugiat ante, a viverra ex vestibulum at. Donec et arcu massa. Ut in felis ut dolor imperdiet tempus sed id nisi. Phasellus maximus sapien non enim rhoncus ultricies.
                     </Feed.Extra>
                     <Feed.Meta>
                       <Feed.Like>
@@ -94,7 +94,7 @@ class UserProfile extends React.Component {
                     <Feed.Meta>
                       <Feed.Like>
                         <Icon name='like'/>
-                          41 Likes
+                        41 Likes
                       </Feed.Like>
                     </Feed.Meta>
                   </Feed.Content>
@@ -107,9 +107,9 @@ class UserProfile extends React.Component {
                       <Feed.Date>5 days ago</Feed.Date>
                     </Feed.Summary>
                     <Feed.Extra text>
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. In et mi magna. Fusce
-                        ornare venenatis arcu, vitae blandit elit eleifend et. Vivamus suscipit rhoncus
-                        nibh sit amet auctor.
+                      Lorem ipsum dolor sit amet, consectetur adipiscing elit. In et mi magna. Fusce
+                      ornare venenatis arcu, vitae blandit elit eleifend et. Vivamus suscipit rhoncus
+                      nibh sit amet auctor.
                     </Feed.Extra>
                     <Feed.Meta>
                       <Feed.Like>

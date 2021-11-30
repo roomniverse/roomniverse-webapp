@@ -30,6 +30,14 @@
       "owner": "admin@foo.com"
     }
   ],
+  "defaultRequests": [
+    { "firstName": "Ju-Bin", "lastName": "Choi", "gender": "Male", "location": "Waikiki", "avatar": "https://jubinc0911.github.io/images/jubinc0911.jpeg", "description": "Description of Ju-Bin",  "owner": "john@foo.com"},
+    { "firstName": "Eric", "lastName": "Song", "gender": "Male", "location": "Manoa", "avatar": "https://eric-song1773.github.io/images/hyunjun.jpg", "description": "Description of Eric", "owner": "john@foo.com"},
+    { "firstName": "Scott", "lastName": "Vore", "gender": "Male", "location": "Hawaii Kai", "avatar": "https://syhv-git.github.io/images/headshot.jpg", "description": "Description of Scott",  "owner": "john@foo.com"},
+    { "firstName": "Tracy", "lastName": "Bui", "gender": "Female", "location": "McCully", "avatar": "https://tbui00.github.io/images/IMG_2727_Original.JPG", "description": "Description of Tracy",  "owner": "john@foo.com"},
+    { "firstName": "Jon", "lastName": "Ma", "gender": "Male", "location": "Manoa", "avatar": "https://jon-valencia.github.io/images/me.jpg", "description": "Description of Jon",  "owner": "john@foo.com"}
+    ],
+
   "defaultData": [
     {
       "date": "Just Now",

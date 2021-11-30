@@ -2,9 +2,10 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { Meteor } from 'meteor/meteor';
 import { withTracker } from 'meteor/react-meteor-data';
-import { withRouter, NavLink } from 'react-router-dom';
-import { Menu, Dropdown, Image, Input } from 'semantic-ui-react';
+import { NavLink, withRouter } from 'react-router-dom';
+import { Dropdown, Image, Menu } from 'semantic-ui-react';
 import { Roles } from 'meteor/alanning:roles';
+import SearchBar from './SearchBar';
 
 const nameLogo = 'https://i.ibb.co/H46VxdD/namelogo.png';
 /** The NavBar appears at the top of every page. Rendered by the App Layout component. */
@@ -17,7 +18,9 @@ class NavBar extends React.Component {
         </Menu.Item>
         {this.props.currentUser ? (
           <Menu.Item className="navsearch">
-            <Input placeholder="Search Users" id="search" icon="search" iconPosition="left"/>
+            <div className="search-bar">
+              <SearchBar/>
+            </div>
           </Menu.Item>
         ) : ''}
         <Menu.Menu position="right">

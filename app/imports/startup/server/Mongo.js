@@ -18,7 +18,7 @@ function addProfile(data) {
 
 // Initialize the database with a default requests document.
 function addRequests(data) {
-  console.log(`  Adding: ${data.name} (${data.owner})`);
+  console.log(`  Adding: ${data.firstName} (${data.owner})`);
   Requests.collection.insert(data);
 }
 

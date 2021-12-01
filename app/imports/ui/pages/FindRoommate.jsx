@@ -1,6 +1,6 @@
 import React from 'react';
 import { Meteor } from 'meteor/meteor';
-import { Container, Item, Header, Loader, Input, Grid, Dropdown } from 'semantic-ui-react';
+import { Container, Item, Header, Loader, Input, Grid, Dropdown, Button } from 'semantic-ui-react';
 import { withTracker } from 'meteor/react-meteor-data';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
@@ -63,6 +63,14 @@ const yearOptions = [
   },
 ];
 
+const linkStyle = {
+  color: 'white',
+};
+
+const marginTop = {
+  marginTop: '1rem',
+};
+
 /** Renders a table containing all of the Stuff documents. Use <StuffItem> to render each row. */
 class FindRoommate extends React.Component {
 
@@ -74,41 +82,42 @@ class FindRoommate extends React.Component {
   // Render the page once subscriptions have been received.
   renderPage() {
     return (
-
-      <div className="white-theme find-roommate">
-        <Container>
-          <Header as="h2" textAlign="center">Find Roommate</Header>
-          <Grid columns={3}>
-            <Grid.Column>
-              <Dropdown
-                placeholder='Sort by Major'
-                selection
-                options={majorOptions}
-              />
-            </Grid.Column>
-            <Grid.Column>
-              <Dropdown
-                placeholder='Sort by Gender'
-                selection
-                options={genderOptions}
-              />
-            </Grid.Column>
-            <Grid.Column>
-              <Dropdown
-                placeholder='Sort by Class Year'
-                selection
-                options={yearOptions}
-              />
-            </Grid.Column>
-          </Grid>
-          <Input fluid icon='search' placeholder='Search...'/>
+      <div id="find-roommate-page">
+        <div className="white-theme find-roommate">
           <Container>
-            <Link to={`/addrequest/${Meteor.userId()}`}>Add Request</Link>
+            <Header as="h2" textAlign="center">Find Roommate</Header>
+            <Grid columns={3}>
+              <Grid.Column>
+                <Dropdown
+                  placeholder='Sort by Major'
+                  selection
+                  options={majorOptions}
+                />
+              </Grid.Column>
+              <Grid.Column>
+                <Dropdown
+                  placeholder='Sort by Gender'
+                  selection
+                  options={genderOptions}
+                />
+              </Grid.Column>
+              <Grid.Column>
+                <Dropdown
+                  placeholder='Sort by Class Year'
+                  selection
+                  options={yearOptions}
+                />
+              </Grid.Column>
+            </Grid>
+            <Input fluid icon='search' placeholder='Search...' style={marginTop} />
+            <Button primary floated='right' style={marginTop}>
+              <Link id="findroommate-addrequest" style={linkStyle} to={`/addrequest/${Meteor.userId()}`}>Add Request</Link>
+            </Button>
+            <Item.Group divided>
+              {this.props.requests.map((request, index) => <Request key={index} request={request}/>)}
+            </Item.Group>
           </Container>
-          <Item.Group divided>
-            {this.props.requests.map((request, index) => <Request key={index} request={request}/>)}
-          </Item.Group>
-        </Container>
+        </div>
       </div>
     );
   }

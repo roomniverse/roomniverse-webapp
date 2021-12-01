@@ -51,7 +51,7 @@ class CreateProfile extends React.Component {
   render() {
     let fRef = null;
     return (
-      <Grid container centered>
+      <Grid id="createprofile-page" container centered>
         <Grid.Column>
           <Header as="h2" textAlign="center">Create Profile</Header>
           <AutoForm ref={ref => { fRef = ref; }} schema={bridge} onSubmit={data => this.submit(data, fRef)} >

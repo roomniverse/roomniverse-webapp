@@ -37,8 +37,8 @@ class AddRequest extends React.Component {
         if (error) {
           swal('Error', error.message, 'error');
         } else {
-          // eslint-disable-next-line no-undef
-          swal('Success', 'Item added successfully', 'success').then(function () { window.location = '/#/find'; });
+          swal('Success', 'Item added successfully', 'success');
+          this.setState({ location: '/#/find' });
         }
       });
   }

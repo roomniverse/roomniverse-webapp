@@ -11,7 +11,7 @@ class Signup extends React.Component {
   /* Initialize state fields. */
   constructor(props) {
     super(props);
-    this.state = { email: '', password: '', error: '', redirectToReferer: false };
+    this.state = { username: '', email: '', password: '', error: '', redirectToReferer: false };
   }
 
   /* Update the form controls each time the user interacts with them. */
@@ -22,7 +22,8 @@ class Signup extends React.Component {
   /* Handle Signup submission. Create user account and a profile entry, then redirect to the home page. */
   submit = () => {
     const { email, password } = this.state;
-    Accounts.createUser({ email, username: email, password }, (err) => {
+    const username = email;
+    Accounts.createUser({ username, email, password }, (err) => {
       if (err) {
         this.setState({ error: err.reason });
       } else {
@@ -38,54 +39,61 @@ class Signup extends React.Component {
     if (this.state.redirectToReferer) {
       return <Redirect to={from}/>;
     }
+
     return (
-      <div className="grey-theme sign">
-        <Container id="signup-page">
-          <Grid textAlign="center" verticalAlign="middle" centered columns={2}>
-            <Grid.Column>
-              <Header as="h2" textAlign="center" style={{ color: 'white' }}>
-                Register your account
-              </Header>
-              <Form onSubmit={this.submit}>
-                <Segment stacked>
-                  <Form.Input
-                    label="Email"
-                    id="signup-form-email"
-                    icon="user"
-                    iconPosition="left"
-                    name="email"
-                    type="email"
-                    placeholder="E-mail address"
-                    onChange={this.handleChange}
-                  />
-                  <Form.Input
-                    label="Password"
-                    id="signup-form-password"
-                    icon="lock"
-                    iconPosition="left"
-                    name="password"
-                    placeholder="Password"
-                    type="password"
-                    onChange={this.handleChange}
-                  />
-                  <Form.Button id="signup-form-submit" content="Submit"/>
-                </Segment>
-              </Form>
-              <Message>
-                Already have an account? Login <Link to="/signin">here</Link>
-              </Message>
-              {this.state.error === '' ? (
-                ''
-              ) : (
-                <Message
-                  error
-                  header="Registration was not successful"
-                  content={this.state.error}
-                />
-              )}
-            </Grid.Column>
-          </Grid>
-        </Container>
+      <div className="landing sign-parent">
+        <div className="sign-seg">
+          <Segment className="grey-theme" textAlign="center">
+            <Container id="signup-page">
+              <Grid textAlign="center" verticalAlign="middle" centered columns={1}>
+                <Grid.Column>
+                  <Header as="h2" textAlign="center" style={{ color: 'white' }}>
+                    Register your account
+                  </Header>
+                  <Form onSubmit={this.submit}>
+                    <Segment stacked>
+                      <Form.Input
+                        label="Email"
+                        id="signup-form-email"
+                        icon="envelope outline"
+                        iconPosition="left"
+                        name="email"
+                        type="email"
+                        placeholder="E-mail address"
+                        onChange={this.handleChange}
+                        required
+                      />
+                      <Form.Input
+                        label="Password"
+                        id="signup-form-password"
+                        icon="lock"
+                        iconPosition="left"
+                        name="password"
+                        placeholder="Password"
+                        type="password"
+                        onChange={this.handleChange}
+                        required
+                      />
+                      <Form.Button id="signup-form-submit" content="Submit"/>
+                    </Segment>
+                  </Form>
+                  <Message>
+                    Already have an account? Login <Link to="/signin">here</Link>
+                  </Message>
+                  {this.state.error === '' ? (
+                    ''
+                  ) : (
+                    <Message
+                      error
+                      header="Registration was not successful"
+                      content={this.state.error}
+                    />
+                  )}
+                </Grid.Column>
+              </Grid>
+            </Container>
+          </Segment>
+        </div>
       </div>
     );
   }

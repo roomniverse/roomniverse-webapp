@@ -1,7 +1,14 @@
 {
   "defaultAccounts": [
-    { "email": "admin@foo.com", "password": "changeme", "role": "admin" },
-    { "email": "john@foo.com", "password": "changeme" }
+    {
+      "email": "admin@foo.com",
+      "password": "changeme",
+      "role": "admin"
+    },
+    {
+      "email": "john@foo.com",
+      "password": "changeme"
+    }
   ],
   "defaultProfileData": [
     {
@@ -23,12 +30,55 @@
       "owner": "admin@foo.com"
     }
   ],
-
   "defaultRequests": [
-    { "firstName": "Ju-Bin", "lastName": "Choi", "gender": "Male", "location": "Waikiki", "image": "https://jubinc0911.github.io/images/jubinc0911.jpeg", "description": "Description of Ju-Bin",  "owner": "john@foo.com"},
-    { "firstName": "Eric", "lastName": "Song", "gender": "Male", "location": "Manoa", "image": "https://eric-song1773.github.io/images/hyunjun.jpg", "description": "Description of Eric", "owner": "john@foo.com"},
-    { "firstName": "Scott", "lastName": "Vore", "gender": "Male", "location": "Hawaii Kai", "image": "https://syhv-git.github.io/images/headshot.jpg", "description": "Description of Scott",  "owner": "john@foo.com"},
-    { "firstName": "Tracy", "lastName": "Bui", "gender": "Female", "location": "McCully", "image": "https://tbui00.github.io/images/IMG_2727_Original.JPG", "description": "Description of Tracy",  "owner": "john@foo.com"},
-    { "firstName": "Jon", "lastName": "Ma", "gender": "Male", "location": "Manoa", "image": "https://jon-valencia.github.io/images/me.jpg", "description": "Description of Jon",  "owner": "john@foo.com"}
+    { "firstName": "Ju-Bin", "lastName": "Choi", "gender": "Male", "location": "Waikiki", "avatar": "https://jubinc0911.github.io/images/jubinc0911.jpeg", "description": "Description of Ju-Bin",  "owner": "john@foo.com"},
+    { "firstName": "Eric", "lastName": "Song", "gender": "Male", "location": "Manoa", "avatar": "https://eric-song1773.github.io/images/hyunjun.jpg", "description": "Description of Eric", "owner": "john@foo.com"},
+    { "firstName": "Scott", "lastName": "Vore", "gender": "Male", "location": "Hawaii Kai", "avatar": "https://syhv-git.github.io/images/headshot.jpg", "description": "Description of Scott",  "owner": "john@foo.com"},
+    { "firstName": "Tracy", "lastName": "Bui", "gender": "Female", "location": "McCully", "avatar": "https://tbui00.github.io/images/IMG_2727_Original.JPG", "description": "Description of Tracy",  "owner": "john@foo.com"},
+    { "firstName": "Jon", "lastName": "Ma", "gender": "Male", "location": "Manoa", "avatar": "https://jon-valencia.github.io/images/me.jpg", "description": "Description of Jon",  "owner": "john@foo.com"}
+    ],
+
+  "defaultData": [
+    {
+      "date": "Just Now",
+      "image": "images/default-image.jpeg",
+      "meta": 1,
+      "summary": "User Two posted to their page",
+      "owner": "User Two",
+      "extraText": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. In et mi magna. Fusce ornare venenatis arcu, vitae blandit elit eleifend et. Vivamus suscipit rhoncus nibh sit amet auctor. Proin tempor feugiat ante, a viverra ex vestibulum at. Donec et arcu massa. Ut in felis ut dolor imperdiet tempus sed id nisi. Phasellus maximus sapien non enim rhoncus ultricies."
+    },
+    {
+      "date": "Just Now",
+      "image": "images/default-image.jpeg",
+      "meta": 1,
+      "summary": "User One added you as a friend",
+      "owner": "User One"
+    },
+    {
+      "date": "Just Now",
+      "image": "images/default-image.jpeg",
+      "meta": 1,
+      "summary": "User Three added you as a friend",
+      "owner": "User Three"
+    },
+    {
+      "date": "Just Now",
+      "image": "images/default-image.jpeg",
+      "meta": 1,
+      "summary": "User Two added 2 new photos",
+      "owner": "User Two",
+      "extraImages": [
+        "https://react.semantic-ui.com/images/wireframe/image.png",
+        "https://react.semantic-ui.com/images/wireframe/image.png"
+      ]
+    },
+    {
+      "date": "Just Now",
+      "image": "images/default-image.jpeg",
+      "meta": 1,
+      "summary": "User Three posted to their page",
+      "owner": "User Three",
+      "extraText": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. In et mi magna. Fusce ornare venenatis arcu, vitae blandit elit eleifend et. Vivamus suscipit rhoncus nibh sit amet auctor. Proin tempor feugiat ante, a viverra ex vestibulum at. Donec et arcu massa. Ut in felis ut dolor imperdiet tempus sed id nisi. Phasellus maximus sapien non enim rhoncus ultricies."
+    }
   ]
 }

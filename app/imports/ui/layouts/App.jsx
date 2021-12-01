@@ -14,10 +14,7 @@ import NotFound from '../pages/NotFound';
 import Signin from '../pages/Signin';
 import Signup from '../pages/Signup';
 import Signout from '../pages/Signout';
-import ListStuffAdmin from '../pages/ListStuffAdmin';
-import AddStuff from '../pages/AddStuff';
 import EditProfile from '../pages/EditProfile';
-import ListStuff from '../pages/ListStuff';
 import AddPost from '../pages/AddPost';
 import SearchResults from '../pages/SearchResults';
 import CreateProfile from '../pages/CreateProfile';
@@ -37,18 +34,17 @@ class App extends React.Component {
               <Route path="/signin" component={Signin}/>
               <Route path="/signup" component={Signup}/>
               <Route path="/signout" component={Signout}/>
-              <ProtectedRoute path="/search" component={SearchResults} />
+              <ProtectedRoute path="/create" component={CreateProfile}/>
               <ProtectedRoute path="/hub" component={Hub}/>
+              <ProtectedRoute path="/add" component={AddPost}/>
+              <ProtectedRoute path="/search" component={SearchResults}/>
               <ProtectedRoute path="/find" component={Find}/>
-              <ProtectedRoute path="/addrequest" component={AddRequest}/>
+              <ProtectedRoute path="/addrequest/:_id" component={AddRequest}/>
               <ProtectedRoute path="/edit/:_id" component={EditRequest}/>
               <ProtectedRoute path="/profile/:_id" component={Profile}/>
-              <ProtectedRoute path="/add" component={AddStuff}/>
               <ProtectedRoute path="/editprofile/:_id" component={EditProfile}/>
-              <ProtectedRoute path="/list" component={ListStuff}/>
               <ProtectedRoute path="/addpost" component={AddPost}/>
               <ProtectedRoute path="/create" component={CreateProfile}/>
-              <AdminProtectedRoute path="/admin" component={ListStuffAdmin}/>
               <Route component={NotFound}/>
             </Switch>
           </div>

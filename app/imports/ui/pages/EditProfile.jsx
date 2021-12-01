@@ -1,5 +1,5 @@
 import React from 'react';
-import { Grid, Loader, Header, Segment } from 'semantic-ui-react';
+import { Grid, Header, Loader, Segment } from 'semantic-ui-react';
 import swal from 'sweetalert';
 import { AutoForm, ErrorsField, HiddenField, SelectField, SubmitField, TextField } from 'uniforms-semantic';
 import { Meteor } from 'meteor/meteor';
@@ -16,9 +16,15 @@ class EditProfile extends React.Component {
   // On successful submit, insert the data.
   submit(data) {
     const { firstName, lastName, gender, major, gradYear, avatar, _id } = data;
-    Users.collection.update(_id, { $set: { firstName, lastName, gender, major, gradYear, avatar } }, (error) => (error ?
-      swal('Error', error.message, 'error') :
-      swal('Success', 'Item updated successfully', 'success').then(function () { window.location = `/#/profile/${_id}`; })));
+    Users.collection.update(_id, { $set: { firstName, lastName, gender, major, gradYear, avatar } },
+      (error) => {
+        if (error) {
+          swal('Error', error.message, 'error');
+        } else {
+          swal('Success', 'Item updated successfully', 'success');
+          this.setState({ location: '/#/profile' });
+        }
+      });
   }
 
   // If the subscription(s) have been received, render the page, otherwise show a loading icon.
@@ -42,7 +48,7 @@ class EditProfile extends React.Component {
               <TextField name='avatar'/>
               <SubmitField value='Submit'/>
               <ErrorsField/>
-              <HiddenField name='owner' />
+              <HiddenField name='owner'/>
             </Segment>
           </AutoForm>
         </Grid.Column>

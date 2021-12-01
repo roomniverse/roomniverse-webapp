@@ -1,14 +1,14 @@
 import React from 'react';
 import { escapeRegExp, filter, times } from 'lodash';
 import { Search } from 'semantic-ui-react';
-import { Link } from 'react-router-dom';
+import { withRouter } from 'react-router-dom';
 import { Users } from '../../api/user/User';
-import { Route } from 'react-router';
 
 const source = times(5, () => ({
-  image: Users.collection.find().avatar,
-  title: `${Users.collection.find().firstName} ${Users.collection.find().lastName}`,
+  image: Users.collection.find().fetch().avatar,
+  title: `${Users.collection.find().fetch().firstName} ${Users.collection.find().fetch().lastName}`,
 }));
+
 const initState = {
   loading: false,
   results: [],
@@ -17,10 +17,10 @@ const initState = {
 
 function handleSubmit(state, action) {
   if (action.type === 'CLICK_SELECTION') {
-    return (() => { window.location = '/#/profile' });
-  }
-  if (action.type === 'SEARCH') {
-    return (<Route to='/search' value={action.value}/>);
+    this.location = '/#/profile';
+  } else if (action.type === 'SEARCH') {
+    this.loading = true;
+    this.location = '/#/search';
   }
 }
 
@@ -43,7 +43,7 @@ function reducer(state, action) {
 
 function SearchBar() {
   const [state, dispatch] = React.useReducer(reducer, initState);
-  const { loading, results, value } = state;
+  const { loading, results, value } = state || initState;
   const timeoutRef = React.useRef();
   const listenEnter = (e) => {
     if (e.keyCode === 13) {
@@ -79,11 +79,11 @@ function SearchBar() {
         loading={loading}
         onResultSelect={(e, data) => dispatch({ type: 'CLICK_SELECTION', selection: data.result.title })}
         onSearchChange={handleSearchChange}
-        onKeyDown={(e, data) => listenEnter(e)}
+        onKeyDown={(e) => listenEnter(e)}
         results={results}
         value={value}
       />
     </div>);
 }
 
-export default SearchBar;
+export default withRouter(SearchBar);

@@ -18,9 +18,15 @@ class EditRequest extends React.Component {
   submit(data) {
     const { name, gender, location, image, description, _id, owner } = data;
     if (Meteor.user().username === owner) {
-      Requests.collection.update(_id, { $set: { name, gender, location, image, description } }, (error) => (error ?
-        swal('Error', error.message, 'error') :
-        swal('Success', 'Item updated successfully', 'success').then(function () { window.location = '/#/find'; })));
+      Requests.collection.update(_id, { $set: { name, gender, location, image, description } },
+        (error) => {
+          if (error) {
+            swal('Error', error.message, 'error');
+          } else {
+            swal('Success', 'Item updated successfully', 'success');
+            this.setState({ location: '/#/find' });
+          }
+        });
     } else {
       swal('Error', 'Only owner can edit it', 'error');
     }
@@ -29,10 +35,16 @@ class EditRequest extends React.Component {
   remove(data) {
     const { _id, owner } = data;
     if (Meteor.user().username === owner) {
-      Requests.collection.remove(_id, (error) => (error ?
-        swal('Error', error.message, 'error') :
-        // eslint-disable-next-line no-undef
-        swal('Success', 'Item removed successfully', 'success').then(function () { window.location = '/#/find'; })));
+      Requests.collection.remove(_id,
+        (error) => {
+          if (error) {
+            swal('Error', error.message, 'error');
+          } else {
+            console.log('success');
+            swal('Success', 'Item removed successfully', 'success');
+            this.setState({ location: '/#/find' });
+          }
+        });
     } else {
       swal('Error', `Only ${owner} can remove`, 'error');
     }

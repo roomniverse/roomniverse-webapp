@@ -7,15 +7,27 @@ class PostsCollection {
     this.name = 'PostsCollection';
     this.collection = new Mongo.Collection(this.name);
     this.schema = new SimpleSchema({
-      date: String,
+      date: SimpleSchema.oneOf({
+        type: String,
+      }, {
+        type: SimpleSchema.Integer,
+      }),
       image: String,
-      meta: Number,
+      meta: SimpleSchema.Integer,
       summary: String,
       owner: String,
-    }, {
-      extraText: String,
-      extraImages: Array,
-      optional: true,
+      extraText: {
+        type: String,
+        optional: true,
+      },
+      extraImages: {
+        type: Array,
+        optional: true,
+      },
+      "extraImages.$": {
+        type: String,
+        optional: true,
+      }
     }, { tracker: Tracker });
     this.collection.attachSchema(this.schema);
     this.userPublicationName = `${this.name}.publication.username`;

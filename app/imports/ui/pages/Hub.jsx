@@ -16,6 +16,7 @@ class Hub extends React.Component {
 
   renderPage() {
     const rend = this.props.posts;
+    console.log(rend);
     return (
       <div className="white-theme hub">
         <Container id="hub-page" className="post-feed">
@@ -24,7 +25,7 @@ class Hub extends React.Component {
               Create a New Post
             </Button>
           </div>
-          <div>
+          <div style={{marginTop: '20px'}}>
             {rend.map((post) => <PostEvent key={post._id} />)}
           </div>
         </Container>
@@ -34,7 +35,7 @@ class Hub extends React.Component {
 }
 
 Hub.propTypes = {
-  posts: PropTypes.array,
+  posts: PropTypes.array.isRequired,
   ready: PropTypes.bool.isRequired,
 };
 

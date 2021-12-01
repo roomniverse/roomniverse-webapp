@@ -2,8 +2,8 @@ import React from 'react';
 import { Loader, Segment } from 'semantic-ui-react';
 import { withTracker } from 'meteor/react-meteor-data';
 import { Meteor } from 'meteor/meteor';
-import { Posts } from '../../api/social/Posts';
 import PropTypes from 'prop-types';
+import { Posts } from '../../api/social/Posts';
 
 class PostEvent extends React.Component {
   render() {
@@ -13,16 +13,18 @@ class PostEvent extends React.Component {
   }
 
   renderComponent() {
-    const username = Accounts.user().username;
+    // const username = Accounts.user().username;
+    const summary = this.props.posts.summary;
     return (
       <Segment.Group>
+        <Segment content={summary} />
       </Segment.Group>
     );
   }
 }
 
 PostEvent.propTypes = {
-  posts: PropTypes.object,
+  posts: PropTypes.array,
   ready: PropTypes.bool,
 };
 

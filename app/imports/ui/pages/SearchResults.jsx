@@ -1,14 +1,16 @@
 import React from 'react';
+import { Meteor } from 'meteor/meteor';
 import { Container, Header, Loader } from 'semantic-ui-react';
 import { escapeRegExp, filter } from 'lodash';
 import { withTracker } from 'meteor/react-meteor-data';
 import PropTypes from 'prop-types';
+import { Link } from 'react-router-dom';
 import { Users } from '../../api/user/User';
 import User from '../components/User';
-import { Link } from 'react-router-dom';
 
 class SearchResults extends React.Component {
-  filter(value) {
+  constructor(value) {
+    super();
     this.value = value;
   }
 
@@ -21,14 +23,15 @@ class SearchResults extends React.Component {
   renderPage() {
     const re = new RegExp(escapeRegExp(this.value), 'i');
     const isMatch = (result) => re.test(`${result.firstName} ${result.lastName}`);
-    const results = filter(this.props.users, isMatch)
+    const results = filter(this.props.users, isMatch);
+    const prof = (user) => `/profile/${user._id}`;
     return (
       <Container>
-        <Header as="h2" textAlign="center">Search Results for {this.props.value}</Header>
+        <Header as="h2" textAlign="center">Search Results for {this.value}</Header>
         <hr />
         {results.map((user) => (
-          <Link to='/profile'>
-            <User user={user}/>
+          <Link to={prof(user)} key={user._id}>
+            <User user={user} />
           </Link>
         ))}
       </Container>
@@ -37,7 +40,6 @@ class SearchResults extends React.Component {
 }
 
 SearchResults.propTypes = {
-  value: PropTypes.string,
   users: PropTypes.array,
   ready: PropTypes.bool.isRequired,
 };

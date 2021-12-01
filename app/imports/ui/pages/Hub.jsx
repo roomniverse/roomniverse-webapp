@@ -1,6 +1,6 @@
 import React from 'react';
 import { Meteor } from 'meteor/meteor';
-import { Button, Container, Feed, Loader } from 'semantic-ui-react';
+import { Button, Container, Loader } from 'semantic-ui-react';
 import { withTracker } from 'meteor/react-meteor-data';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
@@ -15,6 +15,7 @@ class Hub extends React.Component {
   }
 
   renderPage() {
+    const rend = this.props.posts;
     return (
       <div className="white-theme hub">
         <Container className="post-feed">
@@ -23,7 +24,9 @@ class Hub extends React.Component {
               Create a New Post
             </Button>
           </div>
-          <PostEvent />
+          <div>
+            {rend.map((rend) => <PostEvent key={rend._id} />)}
+          </div>
         </Container>
       </div>
     );

@@ -3,10 +3,11 @@ import { escapeRegExp, filter, times } from 'lodash';
 import { Search } from 'semantic-ui-react';
 import { Link } from 'react-router-dom';
 import { Users } from '../../api/user/User';
+import { Route } from 'react-router';
 
 const source = times(5, () => ({
-  image: Users.collection.avatar,
-  title: `${Users.collection.firstName} ${Users.collection.lastName}`,
+  image: Users.collection.find().avatar,
+  title: `${Users.collection.find().firstName} ${Users.collection.find().lastName}`,
 }));
 const initState = {
   loading: false,
@@ -15,11 +16,12 @@ const initState = {
 };
 
 function handleSubmit(state, action) {
-  return (action.type === 'CLICK_SELECTION') ? (
-    <Link to="/profile"/>
-  ) : (
-    <Link to="/search" filter={action.value} />
-  );
+  if (action.type === 'CLICK_SELECTION') {
+    return (() => { window.location = '/#/profile' });
+  }
+  if (action.type === 'SEARCH') {
+    return (<Route to='/search' value={action.value}/>);
+  }
 }
 
 function reducer(state, action) {
@@ -32,9 +34,8 @@ function reducer(state, action) {
     return { ...state, loading: false, value: action.results };
   case 'CLICK_SELECTION':
     return handleSubmit(state, action);
-  case 'UPDATE_SELECTION':
-    return { ...state, loading: false, value: action.selection };
-    // return handleSubmit(state, action);
+  case 'SEARCH':
+    return handleSubmit(state, action);
   default:
     throw new Error();
   }
@@ -44,6 +45,12 @@ function SearchBar() {
   const [state, dispatch] = React.useReducer(reducer, initState);
   const { loading, results, value } = state;
   const timeoutRef = React.useRef();
+  const listenEnter = (e) => {
+    if (e.keyCode === 13) {
+      dispatch({ type: 'SEARCH', selection: state.value });
+    }
+  };
+
   const handleSearchChange = React.useCallback((e, data) => {
     clearTimeout(timeoutRef.current);
     dispatch({ type: 'START_SEARCH', query: data.value });
@@ -70,9 +77,9 @@ function SearchBar() {
     <div>
       <Search
         loading={loading}
-        onMouseDown={(e, data) => dispatch({ type: 'CLICK_SELECTION', selection: data.result.title })}
-        onResultSelect={(e, data) => dispatch({ type: 'UPDATE_SELECTION', selection: data.result.title })}
+        onResultSelect={(e, data) => dispatch({ type: 'CLICK_SELECTION', selection: data.result.title })}
         onSearchChange={handleSearchChange}
+        onKeyDown={(e, data) => listenEnter(e)}
         results={results}
         value={value}
       />

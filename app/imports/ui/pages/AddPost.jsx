@@ -12,26 +12,21 @@ import { Posts } from '../../api/social/Posts';
 class AddPost extends React.Component {
   // Render the page once subscriptions have been received.
   submit(data, formRef) {
+    const account = Users.collection.find();
     const { extraText, extraImages } = data;
-    const user = `${this.props.user.firstName} ${this.props.user.lastName}`;
-    const image = this.props.user.avatar;
+    const user = `${account.firstName} ${account.lastName}`;
+    const image = account.avatar;
     const date = 'Just Now';
     const summary = `${user} posted to their page`;
     const meta = 0;
-    let owner;
-    if (Meteor.user().username === this.props.user.owner) {
-      owner = this.props.user.owner;
-    } else {
-      owner = 'Unresolved';
-    }
+    const owner = account.owner;
     Posts.collection.insert({ date, image, summary, meta, owner, extraText, extraImages },
       (error) => {
         if (error) {
           swal('Error', error.message, 'error');
         } else {
-          swal('Success', 'Item added successfully', 'success');
           formRef.reset();
-          this.setState({ error: '', redirectToReferer: true });
+          swal('Success', 'Item added successfully', 'success').then(function () { window.location = '/#/hub'; });
         }
       });
   }
@@ -46,6 +41,7 @@ class AddPost extends React.Component {
             <TextArea placeholder="What's on your mind?" style={{ minHeight: 750 }}/>
             Post Images:
             <Button value="">Browse</Button>
+            <br/>
             <Button type='submit' as={Link} to='/hub'>
               Post
             </Button>
@@ -56,23 +52,5 @@ class AddPost extends React.Component {
   }
 }
 
-// Require an array of Stuff documents in the props.
-AddPost.propTypes = {
-  user: PropTypes.array.isRequired,
-  ready: PropTypes.bool.isRequired,
-};
-
 // withTracker connects Meteor data to React components. https://guide.meteor.com/react.html#using-withTracker
-export default withTracker(({ match }) => {
-  // Get access to Stuff documents.
-  const documentId = match.params._id;
-  const subscription = Meteor.subscribe(Users.userPublicationName);
-  // Determine if the subscription is ready
-  const ready = subscription.ready();
-  // Get the Stuff documents
-  const user = Users.collection.find(documentId);
-  return {
-    user,
-    ready,
-  };
-})(AddPost);
+export default AddPost;

@@ -1,6 +1,6 @@
 import React from 'react';
-import { Grid, Segment, Header } from 'semantic-ui-react';
-import { AutoForm, ErrorsField, SubmitField, TextField, SelectField } from 'uniforms-semantic';
+import { Grid, Header, Segment } from 'semantic-ui-react';
+import { AutoForm, ErrorsField, SelectField, SubmitField, TextField } from 'uniforms-semantic';
 import swal from 'sweetalert';
 import { Meteor } from 'meteor/meteor';
 import SimpleSchema2Bridge from 'uniforms-bridge-simple-schema-2';
@@ -51,23 +51,25 @@ class CreateProfile extends React.Component {
   render() {
     let fRef = null;
     return (
+      <div className="page-padding">
       <Grid id="createprofile-page" container centered>
-        <Grid.Column>
-          <Header as="h2" textAlign="center">Create Profile</Header>
-          <AutoForm ref={ref => { fRef = ref; }} schema={bridge} onSubmit={data => this.submit(data, fRef)} >
-            <Segment>
-              <TextField name='firstName'/>
-              <TextField name='lastName'/>
-              <SelectField name='gender'/>
-              <SelectField name='major'/>
-              <TextField name='gradYear'/>
-              <TextField name='avatar'/>
-              <SubmitField value='Submit'/>
-              <ErrorsField/>
-            </Segment>
-          </AutoForm>
-        </Grid.Column>
-      </Grid>
+          <Grid.Column>
+            <Header as="h2" textAlign="center">Create Profile</Header>
+            <AutoForm ref={ref => { fRef = ref; }} schema={bridge} onSubmit={data => this.submit(data, fRef)}>
+              <Segment>
+                <TextField name='firstName'/>
+                <TextField name='lastName'/>
+                <SelectField name='gender'/>
+                <SelectField name='major'/>
+                <TextField name='gradYear'/>
+                <TextField name='avatar'/>
+                <SubmitField value='Submit'/>
+                <ErrorsField/>
+              </Segment>
+            </AutoForm>
+          </Grid.Column>
+        </Grid>
+      </div>
     );
   }
 }

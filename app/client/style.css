@@ -41,10 +41,6 @@
   width: calc(100% - 550px);
 }
 
-.search-bar {
-  width: 100% !important;
-}
-
 .sign {
   padding: 50px 0;
 }
@@ -131,10 +127,6 @@
   display: flex;
 }
 
-.find-roommate {
+.page-padding {
   padding: 20px 0;
-}
-
-.profile-change {
-  padding: 20px;
 }

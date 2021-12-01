@@ -52,7 +52,7 @@ class AddRequest extends React.Component {
     const find = this.props.users.find((user) => user.owner === Meteor.user().username);
     // let fRef = null;
     return (
-      <div id="addrequest-page" className="white-theme find-roommate">
+      <div id="addrequest-page" className="white-theme page-padding">
         <Grid container centered>
           <Grid.Column>
             <Header as="h2" textAlign="center">Add Request</Header>

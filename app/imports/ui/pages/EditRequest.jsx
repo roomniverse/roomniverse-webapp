@@ -1,5 +1,5 @@
 import React from 'react';
-import { Grid, Loader, Header, Segment, Button } from 'semantic-ui-react';
+import { Button, Grid, Header, Loader, Segment } from 'semantic-ui-react';
 import swal from 'sweetalert';
 import { AutoForm, ErrorsField, HiddenField, LongTextField, SubmitField, TextField } from 'uniforms-semantic';
 import { Meteor } from 'meteor/meteor';
@@ -58,7 +58,7 @@ class EditRequest extends React.Component {
   // Render the form. Use Uniforms: https://github.com/vazco/uniforms
   renderPage() {
     return (
-      <div id="editrequest-page">
+      <div id="editrequest-page" className="page-padding">
         <Grid container centered>
           <Grid.Column>
             <Header as="h2" textAlign="center">Edit Request</Header>

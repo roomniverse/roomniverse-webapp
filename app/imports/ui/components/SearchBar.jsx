@@ -73,16 +73,16 @@ function SearchBar() {
   });
 
   return (
-    <div>
-      <Search
-        loading={loading}
-        onResultSelect={(e, data) => dispatch({ type: 'CLICK_SELECTION', selection: data.result.title })}
-        onSearchChange={handleSearchChange}
-        onKeyDown={(e) => listenEnter(e)}
-        results={results}
-        value={value}
-      />
-    </div>);
+    <Search
+      loading={loading}
+      onResultSelect={(e, data) => dispatch({ type: 'CLICK_SELECTION', selection: data.result.title })}
+      onSearchChange={handleSearchChange}
+      onKeyDown={(e) => listenEnter(e)}
+      results={results}
+      value={value}
+      fluid
+    />
+  );
 }
 
 export default withRouter(SearchBar);

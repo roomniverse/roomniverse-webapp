@@ -2,21 +2,19 @@ import React from 'react';
 import { Container, Header, TextArea, Form, Button } from 'semantic-ui-react';
 import { Link } from 'react-router-dom';
 import swal from 'sweetalert';
-import PropTypes from 'prop-types';
-import { withTracker } from 'meteor/react-meteor-data';
 import { Meteor } from 'meteor/meteor';
-import { Users } from '../../api/user/User';
 import { Posts } from '../../api/social/Posts';
+import { Users } from '../../api/user/User';
 
 /** Renders a table containing all of the Stuff documents. Use <StuffItem> to render each row. */
 class AddPost extends React.Component {
   // Render the page once subscriptions have been received.
   submit(data, formRef) {
-    const account = Users.collection.find();
+    const account = Users.collection.find((user) => user.owner === Meteor.user().username);
     const { extraText, extraImages } = data;
     const user = `${account.firstName} ${account.lastName}`;
     const image = account.avatar;
-    const date = 'Just Now';
+    const date = 'Just Now'; // new Date().getTime();
     const summary = `${user} posted to their page`;
     const meta = 0;
     const owner = account.owner;
@@ -26,7 +24,8 @@ class AddPost extends React.Component {
           swal('Error', error.message, 'error');
         } else {
           formRef.reset();
-          swal('Success', 'Item added successfully', 'success').then(function () { window.location = '/#/hub'; });
+          swal('Success', 'Item added successfully', 'success');
+          this.setState({ location: '/#/hub' });
         }
       });
   }
@@ -42,8 +41,11 @@ class AddPost extends React.Component {
             Post Images:
             <Button value="">Browse</Button>
             <br/>
-            <Button type='submit' as={Link} to='/hub'>
+            <Button className="post" type='submit' as={Link} to='/hub'>
               Post
+            </Button>
+            <Button className="cancel" as={Link} to='/hub'>
+              Cancel
             </Button>
           </Form>
         </Container>

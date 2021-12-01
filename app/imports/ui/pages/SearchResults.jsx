@@ -1,10 +1,9 @@
 import React from 'react';
 import { Meteor } from 'meteor/meteor';
-import { Container, Header, Loader } from 'semantic-ui-react';
-import { escapeRegExp, filter } from 'lodash';
+import { Container, Grid, Header, Loader } from 'semantic-ui-react';
+// import { escapeRegExp, filter } from 'lodash';
 import { withTracker } from 'meteor/react-meteor-data';
 import PropTypes from 'prop-types';
-import { Link } from 'react-router-dom';
 import { Users } from '../../api/user/User';
 import User from '../components/User';
 
@@ -21,19 +20,20 @@ class SearchResults extends React.Component {
   }
 
   renderPage() {
-    const re = new RegExp(escapeRegExp(this.value), 'i');
-    const isMatch = (result) => re.test(`${result.firstName} ${result.lastName}`);
-    const results = filter(this.props.users, isMatch);
-    const prof = (user) => `/profile/${user._id}`;
+    // const re = new RegExp(escapeRegExp(this.value), 'i');
+    // const isMatch = (result) => re.test(`${result.firstName} ${result.lastName}`);
+    // const results = filter(this.props.users, isMatch);
     return (
       <Container>
-        <Header as="h2" textAlign="center">Search Results for {this.value}</Header>
+        <Header as="h2" textAlign="center">Search Results for </Header>
         <hr />
-        {results.map((user) => (
-          <Link to={prof(user)} key={user._id}>
-            <User user={user} />
-          </Link>
-        ))}
+        <Grid padded relaxed stackable stretched columns={3}>
+          {this.props.users.map((user) => (
+            <Grid.Column key={user._id}>
+              <User user={user} key={user._id}/>
+            </Grid.Column>
+          ))}
+        </Grid>
       </Container>
     );
   }
@@ -41,13 +41,14 @@ class SearchResults extends React.Component {
 
 SearchResults.propTypes = {
   users: PropTypes.array,
-  ready: PropTypes.bool.isRequired,
+  value: PropTypes.string,
+  ready: PropTypes.bool,
 };
 
 export default withTracker(() => {
   const subscription = Meteor.subscribe(Users.userPublicationName);
   const ready = subscription.ready();
-  const users = Users.collection.find({}).fetch();
+  const users = Users.collection.find().fetch();
   return {
     users,
     ready,

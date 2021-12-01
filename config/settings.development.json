@@ -44,7 +44,7 @@
       "image": "images/default-image.jpeg",
       "meta": 1,
       "summary": "User Two posted to their page",
-      "owner": "User Two",
+      "owner": "john@foo.com",
       "extraText": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. In et mi magna. Fusce ornare venenatis arcu, vitae blandit elit eleifend et. Vivamus suscipit rhoncus nibh sit amet auctor. Proin tempor feugiat ante, a viverra ex vestibulum at. Donec et arcu massa. Ut in felis ut dolor imperdiet tempus sed id nisi. Phasellus maximus sapien non enim rhoncus ultricies."
     },
     {
@@ -52,21 +52,21 @@
       "image": "images/default-image.jpeg",
       "meta": 1,
       "summary": "User One added you as a friend",
-      "owner": "User One"
+      "owner": "john@foo.com"
     },
     {
       "date": "Just Now",
       "image": "images/default-image.jpeg",
       "meta": 1,
       "summary": "User Three added you as a friend",
-      "owner": "User Three"
+      "owner": "john@foo.com"
     },
     {
       "date": "Just Now",
       "image": "images/default-image.jpeg",
       "meta": 1,
       "summary": "User Two added 2 new photos",
-      "owner": "User Two",
+      "owner": "john@foo.com",
       "extraImages": [
         "https://react.semantic-ui.com/images/wireframe/image.png",
         "https://react.semantic-ui.com/images/wireframe/image.png"
@@ -77,7 +77,7 @@
       "image": "images/default-image.jpeg",
       "meta": 1,
       "summary": "User Three posted to their page",
-      "owner": "User Three",
+      "owner": "john@foo.com",
       "extraText": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. In et mi magna. Fusce ornare venenatis arcu, vitae blandit elit eleifend et. Vivamus suscipit rhoncus nibh sit amet auctor. Proin tempor feugiat ante, a viverra ex vestibulum at. Donec et arcu massa. Ut in felis ut dolor imperdiet tempus sed id nisi. Phasellus maximus sapien non enim rhoncus ultricies."
     }
   ]

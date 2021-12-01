@@ -50,7 +50,7 @@ test('Test that editprofilepage and userprofilepage work', async (testController
   await editprofilePage.isDisplayed(testController);
 });
 
-test.only('Test that hubpage, searchresultpage and addpostpage work', async (testController) => {
+test('Test that hubpage, searchresultpage and addpostpage work', async (testController) => {
   await navBar.gotoSigninPage(testController);
   await signinPage.signin(testController, credentials.username, credentials.password);
   await navBar.isLoggedIn(testController, credentials.username);

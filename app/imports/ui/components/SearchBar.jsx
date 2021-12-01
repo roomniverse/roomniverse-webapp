@@ -18,26 +18,27 @@ const initState = {
 function handleSubmit(state, action) {
   if (action.type === 'CLICK_SELECTION') {
     this.location = '/#/profile';
-  } else if (action.type === 'SEARCH') {
-    this.loading = true;
-    this.location = '/#/search';
-  }
+  } else
+    if (action.type === 'SEARCH') {
+      this.loading = true;
+      this.location = '/#/search';
+    }
 }
 
 function reducer(state, action) {
   switch (action.type) {
-  case 'CLEAN_QUERY':
-    return initState;
-  case 'START_SEARCH':
-    return { ...state, loading: true, value: action.query };
-  case 'FINISH_SEARCH':
-    return { ...state, loading: false, value: action.results };
-  case 'CLICK_SELECTION':
-    return handleSubmit(state, action);
-  case 'SEARCH':
-    return handleSubmit(state, action);
-  default:
-    throw new Error();
+    case 'CLEAN_QUERY':
+      return initState;
+    case 'START_SEARCH':
+      return { ...state, loading: true, value: action.query };
+    case 'FINISH_SEARCH':
+      return { ...state, loading: false, value: action.results };
+    case 'CLICK_SELECTION':
+      return handleSubmit(state, action);
+    case 'SEARCH':
+      return handleSubmit(state, action);
+    default:
+      throw new Error();
   }
 }
 
@@ -74,16 +75,14 @@ function SearchBar() {
   });
 
   return (
-    <div className="page-padding">
-      <Search
-        loading={loading}
-        onResultSelect={(e, data) => dispatch({ type: 'CLICK_SELECTION', selection: data.result.title })}
-        onSearchChange={handleSearchChange}
-        onKeyDown={(e) => listenEnter(e)}
-        results={results}
-        value={value}
-      />
-    </div>);
+    <Search
+      loading={loading}
+      onResultSelect={(e, data) => dispatch({ type: 'CLICK_SELECTION', selection: data.result.title })}
+      onSearchChange={handleSearchChange}
+      onKeyDown={(e) => listenEnter(e)}
+      results={results}
+      value={value}
+    />);
 }
 
 export default withRouter(SearchBar);

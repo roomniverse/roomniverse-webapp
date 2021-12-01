@@ -1,5 +1,5 @@
 import React from 'react';
-import { Grid, Loader, Header, Segment, Button } from 'semantic-ui-react';
+import { Button, Grid, Header, Loader, Segment } from 'semantic-ui-react';
 import swal from 'sweetalert';
 import { AutoForm, ErrorsField, HiddenField, LongTextField, SubmitField, TextField } from 'uniforms-semantic';
 import { Meteor } from 'meteor/meteor';
@@ -58,21 +58,23 @@ class EditRequest extends React.Component {
   // Render the form. Use Uniforms: https://github.com/vazco/uniforms
   renderPage() {
     return (
-      <Grid container centered>
-        <Grid.Column>
-          <Header as="h2" textAlign="center">Edit Request</Header>
-          <Segment>
-            <AutoForm schema={bridge} onSubmit={data => this.submit(data)} model={this.props.doc}>
-              <TextField name='location'/>
-              <LongTextField name='description'/>
-              <SubmitField value='Submit'/>
-              <ErrorsField/>
-              <HiddenField name='owner'/>
-            </AutoForm>
-          </Segment>
-          <Button onClick={() => this.remove(this.props.doc)} floated='right'>Close Request</Button>
-        </Grid.Column>
-      </Grid>
+      <div className="page-padding">
+        <Grid container centered>
+          <Grid.Column>
+            <Header as="h2" textAlign="center">Edit Request</Header>
+            <Segment>
+              <AutoForm schema={bridge} onSubmit={data => this.submit(data)} model={this.props.doc}>
+                <TextField name='location'/>
+                <LongTextField name='description'/>
+                <SubmitField value='Submit'/>
+                <ErrorsField/>
+                <HiddenField name='owner'/>
+              </AutoForm>
+            </Segment>
+            <Button onClick={() => this.remove(this.props.doc)} floated='right'>Close Request</Button>
+          </Grid.Column>
+        </Grid>
+      </div>
     );
   }
 }

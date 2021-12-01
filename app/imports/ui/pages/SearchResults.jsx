@@ -24,17 +24,19 @@ class SearchResults extends React.Component {
     // const isMatch = (result) => re.test(`${result.firstName} ${result.lastName}`);
     // const results = filter(this.props.users, isMatch);
     return (
-      <Container>
-        <Header as="h2" textAlign="center">Search Results for </Header>
-        <hr />
-        <Grid padded relaxed stackable stretched columns={3}>
-          {this.props.users.map((user) => (
-            <Grid.Column key={user._id}>
-              <User user={user} key={user._id}/>
-            </Grid.Column>
-          ))}
-        </Grid>
-      </Container>
+      <div className="page-padding">
+        <Container>
+          <Header as="h2" textAlign="center">Search Results for </Header>
+          <hr/>
+          <Grid padded relaxed stackable stretched columns={3}>
+            {this.props.users.map((user) => (
+              <Grid.Column key={user._id}>
+                <User user={user} key={user._id}/>
+              </Grid.Column>
+            ))}
+          </Grid>
+        </Container>
+      </div>
     );
   }
 }

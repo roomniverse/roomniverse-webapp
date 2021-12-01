@@ -44,6 +44,10 @@ class NavBar {
   async gotoFindRoommatePage(testController) {
     await testController.click('#navber-find-roommate-page');
   }
+
+  async gotoHubPage(testController) {
+    await testController.click('#navbar-hub');
+  }
 }
 
 export const navBar = new NavBar();

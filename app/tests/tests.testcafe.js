@@ -11,12 +11,13 @@ import { addRequestPage } from './addrequest.page';
 import { editRequestPage } from './editrequest.page';
 import { hubPage } from './hub.page';
 import { addpostPage } from './addpost.page';
-
+import { searchresultPage } from './searchresult.page';
 /* global fixture:false, test:false */
 
 /** Credentials for one of the sample users defined in settings.development.json. */
 const credentials = { username: 'john@foo.com', password: 'changeme' };
 const firstTime = { username: 'jane@foo.com', password: 'changeme', firstname: 'John', lastname: 'Foo', gradyear: '2024', avatar: 'https://mediamass.net/jdd/public/documents/celebrities/7874.jpg' };
+const searchword = 'JohnCena';
 
 fixture('meteor-application-template-react localhost test with default db')
   .page('http://localhost:3000');
@@ -49,11 +50,14 @@ test('Test that editprofilepage and userprofilepage work', async (testController
   await editprofilePage.isDisplayed(testController);
 });
 
-test('Test that hubpage and addpostpage work', async (testController) => {
+test('Test that hubpage, searchresultpage and addpostpage work', async (testController) => {
   await navBar.gotoSigninPage(testController);
   await signinPage.signin(testController, credentials.username, credentials.password);
   await navBar.isLoggedIn(testController, credentials.username);
   await hubPage.isDisplayed(testController);
+  await searchresultPage.typeSearchword(testController, searchword);
+  await searchresultPage.isDisplayed(testController);
+  await navBar.gotoHubPage(testController);
   await addpostPage.isDisplayed(testController);
 });
 

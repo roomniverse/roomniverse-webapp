@@ -24,7 +24,7 @@ class SearchResults extends React.Component {
     // const isMatch = (result) => re.test(`${result.firstName} ${result.lastName}`);
     // const results = filter(this.props.users, isMatch);
     return (
-      <Container>
+      <Container id="searchresult-page">
         <Header as="h2" textAlign="center">Search Results for </Header>
         <hr />
         <Grid padded relaxed stackable stretched columns={3}>

@@ -74,8 +74,7 @@ class FindRoommate extends React.Component {
   // Render the page once subscriptions have been received.
   renderPage() {
     return (
-
-      <div className="white-theme find-roommate">
+      <div className="white-theme page-padding">
         <Container>
           <Header as="h2" textAlign="center">Find Roommate</Header>
           <Grid columns={3}>

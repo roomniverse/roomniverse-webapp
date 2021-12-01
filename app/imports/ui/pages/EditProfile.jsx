@@ -35,24 +35,26 @@ class EditProfile extends React.Component {
   // Render the form. Use Uniforms: https://github.com/vazco/uniforms
   renderPage() {
     return (
-      <Grid container centered>
-        <Grid.Column>
-          <Header as="h2" textAlign="center">Edit Profile</Header>
-          <AutoForm schema={bridge} onSubmit={data => this.submit(data)} model={this.props.doc}>
-            <Segment>
-              <TextField name='firstName'/>
-              <TextField name='lastName'/>
-              <SelectField name='gender'/>
-              <SelectField name='major'/>
-              <TextField name='gradYear'/>
-              <TextField name='avatar'/>
-              <SubmitField value='Submit'/>
-              <ErrorsField/>
-              <HiddenField name='owner'/>
-            </Segment>
-          </AutoForm>
-        </Grid.Column>
-      </Grid>
+      <div className="page-padding">
+        <Grid container centered>
+          <Grid.Column>
+            <Header as="h2" textAlign="center">Edit Profile</Header>
+            <AutoForm schema={bridge} onSubmit={data => this.submit(data)} model={this.props.doc}>
+              <Segment>
+                <TextField name='firstName'/>
+                <TextField name='lastName'/>
+                <SelectField name='gender'/>
+                <SelectField name='major'/>
+                <TextField name='gradYear'/>
+                <TextField name='avatar'/>
+                <SubmitField value='Submit'/>
+                <ErrorsField/>
+                <HiddenField name='owner'/>
+              </Segment>
+            </AutoForm>
+          </Grid.Column>
+        </Grid>
+      </div>
     );
   }
 }

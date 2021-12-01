@@ -33,7 +33,7 @@ class AddPost extends React.Component {
   render() {
     let fRef = null;
     return (
-      <div className="white-theme find-roommate">
+      <div className="white-theme page-padding">
         <Container>
           <Header as="h2" textAlign="center">Create New Post</Header>
           <Form ref={ref => { fRef = ref; }} onSubmit={ data => this.submit(data, fRef) } >

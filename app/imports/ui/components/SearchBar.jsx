@@ -74,7 +74,7 @@ function SearchBar() {
   });
 
   return (
-    <div>
+    <div className="page-padding">
       <Search
         loading={loading}
         onResultSelect={(e, data) => dispatch({ type: 'CLICK_SELECTION', selection: data.result.title })}

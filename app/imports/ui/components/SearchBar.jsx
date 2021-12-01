@@ -19,26 +19,26 @@ function handleSubmit(state, action) {
   if (action.type === 'CLICK_SELECTION') {
     this.location = '/#/profile';
   } else
-    if (action.type === 'SEARCH') {
-      this.loading = true;
-      this.location = '/#/search';
-    }
+  if (action.type === 'SEARCH') {
+    this.loading = true;
+    this.location = '/#/search';
+  }
 }
 
 function reducer(state, action) {
   switch (action.type) {
-    case 'CLEAN_QUERY':
-      return initState;
-    case 'START_SEARCH':
-      return { ...state, loading: true, value: action.query };
-    case 'FINISH_SEARCH':
-      return { ...state, loading: false, value: action.results };
-    case 'CLICK_SELECTION':
-      return handleSubmit(state, action);
-    case 'SEARCH':
-      return handleSubmit(state, action);
-    default:
-      throw new Error();
+  case 'CLEAN_QUERY':
+    return initState;
+  case 'START_SEARCH':
+    return { ...state, loading: true, value: action.query };
+  case 'FINISH_SEARCH':
+    return { ...state, loading: false, value: action.results };
+  case 'CLICK_SELECTION':
+    return handleSubmit(state, action);
+  case 'SEARCH':
+    return handleSubmit(state, action);
+  default:
+    throw new Error();
   }
 }
 
@@ -82,7 +82,9 @@ function SearchBar() {
       onKeyDown={(e) => listenEnter(e)}
       results={results}
       value={value}
-    />);
+      fluid
+    />
+  );
 }
 
 export default withRouter(SearchBar);

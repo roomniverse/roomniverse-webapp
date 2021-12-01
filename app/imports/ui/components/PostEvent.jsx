@@ -15,8 +15,8 @@ class PostEvent extends React.Component {
   renderComponent() {
     const username = Accounts.user().username;
     return (
-      <Segment>
-      </Segment>
+      <Segment.Group>
+      </Segment.Group>
     );
   }
 }

@@ -19,7 +19,6 @@ function handleSubmit(state, action) {
   if (action.type === 'CLICK_SELECTION') {
     this.location = '/#/profile';
   } else if (action.type === 'SEARCH') {
-    this.loading = true;
     this.location = '/#/search';
   }
 }
@@ -47,7 +46,7 @@ function SearchBar() {
   const timeoutRef = React.useRef();
   const listenEnter = (e) => {
     if (e.keyCode === 13) {
-      dispatch({ type: 'SEARCH', selection: state.value });
+      dispatch({ type: 'SEARCH', selection: value });
     }
   };
 

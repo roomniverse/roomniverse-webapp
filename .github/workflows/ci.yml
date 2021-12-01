@@ -3,7 +3,7 @@ name: ci-roomniverse-webapp
 on:
   push:
     branches:
-      - master
+      - main
 
 defaults:
   run:

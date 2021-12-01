@@ -13,11 +13,11 @@ class NavBar extends React.Component {
   render() {
     return (
       <Menu className="nav-style" attached="top" borderless>
-        <Menu.Item className="navlogocontainer" as={NavLink} activeClassName="" exact to="/hub" key="hub">
+        <Menu.Item id="navbar-hub" className="navlogocontainer" as={NavLink} activeClassName="" exact to="/hub" key="hub">
           <Image className="navlogo" src={nameLogo} alt="Roomniverse"/>
         </Menu.Item>
         {this.props.currentUser ? (
-          <Menu.Item className="navsearch">
+          <Menu.Item id="nav-search" className="navsearch">
             <div className="search-bar">
               <SearchBar />
             </div>

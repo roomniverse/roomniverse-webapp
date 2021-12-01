@@ -40,7 +40,7 @@ class AddPost extends React.Component {
     let fRef = null;
     return (
       <div className="white-theme find-roommate">
-        <Container>
+        <Container id="addpost-page">
           <Header as="h2" textAlign="center">Create New Post</Header>
           <Form ref={ref => { fRef = ref; }} onSubmit={ data => this.submit(data, fRef) } >
             <TextArea placeholder="What's on your mind?" style={{ minHeight: 750 }}/>

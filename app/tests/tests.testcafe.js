@@ -9,6 +9,8 @@ import { editprofilePage } from './editprofile.page';
 import { findRoommatePage } from './findroommate.page';
 import { addRequestPage } from './addrequest.page';
 import { editRequestPage } from './editrequest.page';
+import { hubPage } from './hub.page';
+import { addpostPage } from './addpost.page';
 
 /* global fixture:false, test:false */
 
@@ -31,7 +33,7 @@ test('Test that signin and signout work', async (testController) => {
   await signoutPage.isDisplayed(testController);
 });
 
-test('Test that createprofilepage work', async (testController) => {
+test('Test that signup and createprofilepage work', async (testController) => {
   await navBar.gotoSignupPage(testController);
   await signupPage.signupUser(testController, firstTime.username, firstTime.password);
   await createprofilePage.isDisplayed(testController);
@@ -45,7 +47,14 @@ test('Test that editprofilepage and userprofilepage work', async (testController
   await navBar.gotoUserprofilePage(testController);
   await userprofilePage.isDisplayed(testController);
   await editprofilePage.isDisplayed(testController);
-  // await createprofilePage.createprofile(testController, firstTime.username, firstTime.password, firstTime.firstname, firstTime.lastname, firstTime.gradyear, firstTime.avatar);
+});
+
+test('Test that hubpage and addpostpage work', async (testController) => {
+  await navBar.gotoSigninPage(testController);
+  await signinPage.signin(testController, credentials.username, credentials.password);
+  await navBar.isLoggedIn(testController, credentials.username);
+  await hubPage.isDisplayed(testController);
+  await addpostPage.isDisplayed(testController);
 });
 
 test.only('Test that signin, findroommate, addrequest, and editrequest showing up correctly', async (testController) => {

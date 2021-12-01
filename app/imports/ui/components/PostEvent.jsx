@@ -1,16 +1,21 @@
 import React from 'react';
-import { Segment } from 'semantic-ui-react';
+import { Loader, Segment } from 'semantic-ui-react';
 import { withTracker } from 'meteor/react-meteor-data';
 import { Meteor } from 'meteor/meteor';
 import { Posts } from '../../api/social/Posts';
 import PropTypes from 'prop-types';
 
 class PostEvent extends React.Component {
-  username = this.props.key;
   render() {
     return (
-      <Segment>
+      (this.props.ready) ? this.renderComponent() : <Loader active>Getting data</Loader>
+    );
+  }
 
+  renderComponent() {
+    const username = Accounts.user().username;
+    return (
+      <Segment>
       </Segment>
     );
   }

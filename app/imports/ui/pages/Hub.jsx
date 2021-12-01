@@ -23,7 +23,7 @@ class Hub extends React.Component {
               Create a New Post
             </Button>
           </div>
-          <PostEvent key={Meteor.user().username}/>
+          <PostEvent />
         </Container>
       </div>
     );

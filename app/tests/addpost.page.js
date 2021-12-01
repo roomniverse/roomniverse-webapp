@@ -9,7 +9,7 @@ class AddPostPage {
   /** Checks that this page is currently displayed. */
   async isDisplayed(testController) {
     await testController.click('#addpost-button');
-    await testController.expect(this.pageSelector.exists).ok();
+    await testController.wait(10000).expect(this.pageSelector.exists).ok();
   }
 }
 

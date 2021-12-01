@@ -33,14 +33,14 @@ class CreateProfile extends React.Component {
   // On submit, insert the data.
   submit(data, formRef) {
     const { firstName, lastName, gender, major, gradYear, avatar } = data;
-    const _id = Meteor.userId();
     const owner = Meteor.user().username;
+    const _id = Meteor.userId();
     Users.collection.insert({ firstName, lastName, gender, major, gradYear, avatar, owner },
       (error) => {
         if (error) {
           swal('Error', error.message, 'error');
         } else {
-          swal('Success', 'Item added successfully', 'success').then(function () { window.location = `/#/profile/${_id}`; });
+          swal('Success', 'Item added successfully', 'success').then(function () { window.location = `/#/profile/${_id}`;});
           formRef.reset();
         }
       });

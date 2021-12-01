@@ -1,5 +1,5 @@
 import { Meteor } from 'meteor/meteor';
-// import { Roles } from 'meteor/alanning:roles';
+import { Roles } from 'meteor/alanning:roles';
 import { Posts } from '../../api/social/Posts';
 import { Users } from '../../api/user/User';
 import { Requests } from '../../api/social/Requests';
@@ -27,6 +27,13 @@ Meteor.publish(Requests.userPublicationName, () => Requests.collection.find());
 
 // Admin-level publication.
 // If logged in and with admin role, then publish all documents from all users. Otherwise publish nothing.
+
+Meteor.publish(Users.adminPublicationName, function () {
+  if (this.userId && Roles.userIsInRole(this.userId, 'admin')) {
+    return Users.collection.find();
+  }
+  return this.ready();
+});
 
 /* Meteor.publish(Posts.adminPublicationName, function () {
   if (this.userId && Roles.userIsInRole(this.userId, 'admin')) {

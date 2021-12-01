@@ -7,7 +7,7 @@ class Landing extends React.Component {
   render() {
     return (
       <div className='landing'>
-        <Grid centered stackable columns={3} container>
+        <Grid id="landing-page" centered stackable columns={3} container>
 
           <Grid.Column className="left" textAlign='center'>
             <Icon name='comments' size='huge'/>

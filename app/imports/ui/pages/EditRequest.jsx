@@ -46,21 +46,23 @@ class EditRequest extends React.Component {
   // Render the form. Use Uniforms: https://github.com/vazco/uniforms
   renderPage() {
     return (
-      <Grid container centered>
-        <Grid.Column>
-          <Header as="h2" textAlign="center">Edit Request</Header>
-          <Segment>
-            <AutoForm schema={bridge} onSubmit={data => this.submit(data)} model={this.props.doc}>
-              <TextField name='location'/>
-              <LongTextField name='description'/>
-              <SubmitField value='Submit'/>
-              <ErrorsField/>
-              <HiddenField name='owner'/>
-            </AutoForm>
-          </Segment>
-          <Button onClick={() => this.remove(this.props.doc)} floated='right'>Close Request</Button>
-        </Grid.Column>
-      </Grid>
+      <div id="editrequest-page">
+        <Grid container centered>
+          <Grid.Column>
+            <Header as="h2" textAlign="center">Edit Request</Header>
+            <Segment>
+              <AutoForm schema={bridge} onSubmit={data => this.submit(data)} model={this.props.doc}>
+                <TextField name='location'/>
+                <LongTextField name='description'/>
+                <SubmitField value='Submit'/>
+                <ErrorsField/>
+                <HiddenField name='owner'/>
+              </AutoForm>
+            </Segment>
+            <Button onClick={() => this.remove(this.props.doc)} floated='right'>Close Request</Button>
+          </Grid.Column>
+        </Grid>
+      </div>
     );
   }
 }

@@ -18,9 +18,9 @@ class Hub extends React.Component {
     const rend = this.props.posts;
     return (
       <div className="white-theme hub">
-        <Container className="post-feed">
+        <Container id="hub-page" className="post-feed">
           <div>
-            <Button fluid as={Link} to='/add'>
+            <Button id="addpost-button" fluid as={Link} to='/add'>
               Create a New Post
             </Button>
           </div>

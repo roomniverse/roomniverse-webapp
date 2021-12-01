@@ -18,7 +18,7 @@ class UserProfile extends React.Component {
     const rend = this.props.posts;
     return (
       <div className="white-theme profile">
-        <Container>
+        <Container id="userprofile-page">
           <Grid columns={3}>
             <Grid.Column width={4}>
               <User user={this.props.users.find((user) => user.owner === Meteor.user().username)}/>

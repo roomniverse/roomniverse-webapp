@@ -23,7 +23,7 @@ class User extends React.Component {
           </Card.Meta>
         </Card.Content>
         <Card.Content extra>
-          <Link to={`/editprofile/${this.props.user._id}`}>Edit</Link>
+          <Link id="editprofile-link" to={`/editprofile/${this.props.user._id}`}>Edit</Link>
         </Card.Content>
       </Card>
     );

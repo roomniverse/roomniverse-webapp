@@ -1,6 +1,6 @@
 import React from 'react';
 import { Meteor } from 'meteor/meteor';
-import { Container, Item, Header, Loader, Input, Grid, Dropdown } from 'semantic-ui-react';
+import { Container, Item, Header, Loader, Input, Grid, Dropdown, Button } from 'semantic-ui-react';
 import { withTracker } from 'meteor/react-meteor-data';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
@@ -63,6 +63,14 @@ const yearOptions = [
   },
 ];
 
+const linkStyle = {
+  color: 'white',
+};
+
+const marginTop = {
+  marginTop: '1rem',
+};
+
 /** Renders a table containing all of the Stuff documents. Use <StuffItem> to render each row. */
 class FindRoommate extends React.Component {
 
@@ -101,10 +109,10 @@ class FindRoommate extends React.Component {
                 />
               </Grid.Column>
             </Grid>
-            <Input fluid icon='search' placeholder='Search...'/>
-            <Container>
-              <Link id="findroommate-addrequest" to={`/addrequest/${Meteor.userId()}`}>Add Request</Link>
-            </Container>
+            <Input fluid icon='search' placeholder='Search...' style={marginTop} />
+            <Button primary floated='right' style={marginTop}>
+              <Link id="findroommate-addrequest" style={linkStyle} to={`/addrequest/${Meteor.userId()}`}>Add Request</Link>
+            </Button>
             <Item.Group divided>
               {this.props.requests.map((request, index) => <Request key={index} request={request}/>)}
             </Item.Group>

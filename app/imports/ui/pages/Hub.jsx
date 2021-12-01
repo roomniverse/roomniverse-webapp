@@ -25,7 +25,7 @@ class Hub extends React.Component {
             </Button>
           </div>
           <div>
-            {rend.map((rend) => <PostEvent key={rend._id} />)}
+            {rend.map((post) => <PostEvent key={post._id} />)}
           </div>
         </Container>
       </div>

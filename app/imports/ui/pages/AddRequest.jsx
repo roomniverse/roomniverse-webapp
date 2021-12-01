@@ -64,7 +64,7 @@ class AddRequest extends React.Component {
                 <ErrorsField/>
                 <HiddenField name='firstName' value={find.firstName}/>
                 <HiddenField name='lastName' value={find.lastName}/>
-                <HiddenField name='gender' value={find.gender}/>
+                <HiddenField name='gender' value={find.gender} />
                 <HiddenField name='avatar' value={find.avatar}/>
                 <HiddenField name='owner' value={find.owner}/>
               </AutoForm>

@@ -24,9 +24,9 @@ function addRequests(data) {
 
 // Initialize the StuffsCollection if empty.
 if (Posts.collection.find().count() === 0) {
-  if (Meteor.settings.defaultData) {
+  if (Meteor.settings.defaultPosts) {
     console.log('Creating default data.');
-    Meteor.settings.defaultData.map(data => addData(data));
+    Meteor.settings.defaultPosts.map(data => addData(data));
   }
 }
 

@@ -38,7 +38,7 @@
     { "firstName": "Jon", "lastName": "Ma", "gender": "Male", "location": "Manoa", "avatar": "https://jon-valencia.github.io/images/me.jpg", "description": "Description of Jon",  "owner": "john@foo.com"}
     ],
 
-  "defaultData": [
+  "defaultPosts": [
     {
       "date": "Just Now",
       "image": "images/default-image.jpeg",

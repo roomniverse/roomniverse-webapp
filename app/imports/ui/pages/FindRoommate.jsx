@@ -83,40 +83,40 @@ class FindRoommate extends React.Component {
   renderPage() {
     return (
       <div id="find-roommate-page" className="white-theme page-padding">
-          <Container>
-            <Header as="h2" textAlign="center">Find Roommate</Header>
-            <Grid columns={3}>
-              <Grid.Column>
-                <Dropdown
-                  placeholder='Sort by Major'
-                  selection
-                  options={majorOptions}
-                />
-              </Grid.Column>
-              <Grid.Column>
-                <Dropdown
-                  placeholder='Sort by Gender'
-                  selection
-                  options={genderOptions}
-                />
-              </Grid.Column>
-              <Grid.Column>
-                <Dropdown
-                  placeholder='Sort by Class Year'
-                  selection
-                  options={yearOptions}
-                />
-              </Grid.Column>
-            </Grid>
-            <Input fluid icon='search' placeholder='Search...' style={marginTop} />
-            <Button primary floated='right' style={marginTop}>
-              <Link id="findroommate-addrequest" style={linkStyle} to={`/addrequest/${Meteor.userId()}`}>Add Request</Link>
-            </Button>
-            <Item.Group divided>
-              {this.props.requests.map((request, index) => <Request key={index} request={request}/>)}
-            </Item.Group>
-          </Container>
-        </div>
+        <Container>
+          <Header as="h2" textAlign="center">Find Roommate</Header>
+          <Grid columns={3}>
+            <Grid.Column>
+              <Dropdown
+                placeholder='Sort by Major'
+                selection
+                options={majorOptions}
+              />
+            </Grid.Column>
+            <Grid.Column>
+              <Dropdown
+                placeholder='Sort by Gender'
+                selection
+                options={genderOptions}
+              />
+            </Grid.Column>
+            <Grid.Column>
+              <Dropdown
+                placeholder='Sort by Class Year'
+                selection
+                options={yearOptions}
+              />
+            </Grid.Column>
+          </Grid>
+          <Input fluid icon='search' placeholder='Search...' style={marginTop} />
+          <Button primary floated='right' style={marginTop}>
+            <Link id="findroommate-addrequest" style={linkStyle} to={`/addrequest/${Meteor.userId()}`}>Add Request</Link>
+          </Button>
+          <Item.Group divided>
+            {this.props.requests.map((request, index) => <Request key={index} request={request}/>)}
+          </Item.Group>
+        </Container>
+      </div>
     );
   }
 }

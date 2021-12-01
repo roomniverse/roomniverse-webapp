@@ -12,13 +12,13 @@ function addData(data) {
 }
 
 function addProfile(data) {
-  console.log(`  Adding: ${data.lastName} (${data.owner})`);
+  console.log(`  Adding Profile: ${data.lastName} (${data.owner})`);
   Users.collection.insert(data);
 }
 
 // Initialize the database with a default requests document.
 function addRequests(data) {
-  console.log(`  Adding: ${data.firstName} (${data.owner})`);
+  console.log(`  Adding Request: ${data.firstName} (${data.owner})`);
   Requests.collection.insert(data);
 }
 

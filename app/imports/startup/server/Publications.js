@@ -7,13 +7,7 @@ import { Requests } from '../../api/social/Requests';
 // User-level publication.
 // If logged in, then publish documents owned by this user. Otherwise publish nothing.
 
-Meteor.publish(Posts.userPublicationName, function () {
-  if (this.userId) {
-    const username = Meteor.users.findOne(this.userId).username;
-    return Posts.collection.find({ owner: username });
-  }
-  return this.ready();
-});
+Meteor.publish(Posts.userPublicationName, () => Posts.collection.find());
 
 Meteor.publish(Requests.userPublicationName, () => Requests.collection.find());
 

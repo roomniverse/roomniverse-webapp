@@ -74,41 +74,42 @@ class FindRoommate extends React.Component {
   // Render the page once subscriptions have been received.
   renderPage() {
     return (
-
-      <div className="white-theme find-roommate">
-        <Container>
-          <Header as="h2" textAlign="center">Find Roommate</Header>
-          <Grid columns={3}>
-            <Grid.Column>
-              <Dropdown
-                placeholder='Sort by Major'
-                selection
-                options={majorOptions}
-              />
-            </Grid.Column>
-            <Grid.Column>
-              <Dropdown
-                placeholder='Sort by Gender'
-                selection
-                options={genderOptions}
-              />
-            </Grid.Column>
-            <Grid.Column>
-              <Dropdown
-                placeholder='Sort by Class Year'
-                selection
-                options={yearOptions}
-              />
-            </Grid.Column>
-          </Grid>
-          <Input fluid icon='search' placeholder='Search...'/>
+      <div id="find-roommate-page">
+        <div className="white-theme find-roommate">
           <Container>
-            <Link to={`/addrequest/${Meteor.userId()}`}>Add Request</Link>
+            <Header as="h2" textAlign="center">Find Roommate</Header>
+            <Grid columns={3}>
+              <Grid.Column>
+                <Dropdown
+                  placeholder='Sort by Major'
+                  selection
+                  options={majorOptions}
+                />
+              </Grid.Column>
+              <Grid.Column>
+                <Dropdown
+                  placeholder='Sort by Gender'
+                  selection
+                  options={genderOptions}
+                />
+              </Grid.Column>
+              <Grid.Column>
+                <Dropdown
+                  placeholder='Sort by Class Year'
+                  selection
+                  options={yearOptions}
+                />
+              </Grid.Column>
+            </Grid>
+            <Input fluid icon='search' placeholder='Search...'/>
+            <Container>
+              <Link id="findroommate-addrequest" to={`/addrequest/${Meteor.userId()}`}>Add Request</Link>
+            </Container>
+            <Item.Group divided>
+              {this.props.requests.map((request, index) => <Request key={index} request={request}/>)}
+            </Item.Group>
           </Container>
-          <Item.Group divided>
-            {this.props.requests.map((request, index) => <Request key={index} request={request}/>)}
-          </Item.Group>
-        </Container>
+        </div>
       </div>
     );
   }

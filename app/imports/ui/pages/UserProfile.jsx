@@ -3,11 +3,11 @@ import { Meteor } from 'meteor/meteor';
 import { Container, Grid, Menu, Loader, Feed, Icon, Button } from 'semantic-ui-react';
 import { withTracker } from 'meteor/react-meteor-data';
 import PropTypes from 'prop-types';
+import { Link } from 'react-router-dom';
 import User from '../components/User';
 import { Users } from '../../api/user/User';
 import PostEvent from '../components/PostEvent';
 import { Posts } from '../../api/social/Posts';
-import { Link } from 'react-router-dom';
 
 class UserProfile extends React.Component {
 

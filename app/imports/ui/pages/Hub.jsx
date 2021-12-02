@@ -25,8 +25,8 @@ class Hub extends React.Component {
               Create a New Post
             </Button>
           </div>
-          <div style={{marginTop: '20px'}}>
-            {rend.map((post) => <PostEvent key={post._id} />)}
+          <div style={{ marginTop: '20px' }}>
+            {rend.forEach((post) => <PostEvent key={post._id} />)}
           </div>
         </Container>
       </div>

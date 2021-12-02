@@ -35,13 +35,13 @@ class CreateProfile extends React.Component {
     const { firstName, lastName, gender, major, gradYear, avatar } = data;
     const _id = Meteor.userId();
     const owner = Meteor.user().username;
-    Users.collection.insert({ firstName, lastName, gender, major, gradYear, avatar, owner },
+    Users.collection.insert({ firstName, lastName, gender, major, gradYear, avatar, owner, _id },
       (error) => {
         if (error) {
           swal('Error', error.message, 'error');
         } else {
           // eslint-disable-next-line no-undef
-          swal('Success', 'Item added successfully', 'success').then(function () { window.location = `/#/profile/${_id}`; });
+          swal('Success', 'Item added successfully', 'success').then(function () { window.location = `/#/profile/${owner}`; });
           formRef.reset();
         }
       });

@@ -21,7 +21,7 @@ class UserProfile extends React.Component {
         <Container id="userprofile-page">
           <Grid columns={3}>
             <Grid.Column width={4}>
-              <User user={this.props.users.find((user) => user.owner === Meteor.user().username)}/>
+              <User user={this.props.doc}/>
             </Grid.Column>
             <Grid.Column width={12}>
               <Menu pointing secondary borderless>
@@ -136,16 +136,20 @@ UserProfile.propTypes = {
   posts: PropTypes.array.isRequired,
   ready: PropTypes.bool.isRequired,
   users: PropTypes.array.isRequired,
+  doc: PropTypes.object,
 };
 
-export default withTracker(() => {
+export default withTracker(({ match }) => {
+  const documentId = match.params._id;
   const subscription = Meteor.subscribe(Posts.userPublicationName) && Meteor.subscribe(Users.userPublicationName);
   const ready = subscription.ready();
   const posts = Posts.collection.find({}).fetch();
   const users = Users.collection.find({}).fetch();
+  const doc = users.find((user) => user.owner === documentId);
   return {
     posts,
     users,
     ready,
+    doc,
   };
 })(UserProfile);

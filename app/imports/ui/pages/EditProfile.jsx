@@ -21,7 +21,6 @@ class EditProfile extends React.Component {
         if (error) {
           swal('Error', error.message, 'error');
         } else {
-          swal('Success', 'Item updated successfully', 'success');
           this.setState({ location: '/#/profile' });
         }
       });

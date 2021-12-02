@@ -12,7 +12,7 @@ class PostsCollection {
       }, {
         type: SimpleSchema.Integer,
       }),
-      image: String,
+      avatar: String,
       meta: SimpleSchema.Integer,
       summary: String,
       owner: String,
@@ -24,10 +24,10 @@ class PostsCollection {
         type: Array,
         optional: true,
       },
-      "extraImages.$": {
+      'extraImages.$': {
         type: String,
         optional: true,
-      }
+      },
     }, { tracker: Tracker });
     this.collection.attachSchema(this.schema);
     this.userPublicationName = `${this.name}.publication.username`;

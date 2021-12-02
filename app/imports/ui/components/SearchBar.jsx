@@ -5,8 +5,8 @@ import { withRouter } from 'react-router-dom';
 import { Users } from '../../api/user/User';
 
 const source = times(5, () => ({
-  image: Users.collection.find().fetch().avatar,
-  title: `${Users.collection.find().fetch().firstName} ${Users.collection.find().fetch().lastName}`,
+  avatar: Users.collection.find().avatar,
+  title: `${Users.collection.find().firstName} ${Users.collection.find().lastName}`,
 }));
 
 const initState = {

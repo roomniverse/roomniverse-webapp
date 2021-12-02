@@ -11,15 +11,18 @@ class PostEvent extends React.Component {
     const diff = curr - date;
     if (diff < 1.8e6) {
       return 'Just now';
-    } else if (diff < 7.2e6) {
-        return 'An hour ago';
-    } else if (diff < 8.64e7) {
-      return 'Today';
-    } else if (diff < 1.728e8) {
-      return 'Yesterday';
-    } else {
-      return date.toDateString();
     }
+    if (diff < 7.2e6) {
+      return 'An hour ago';
+    }
+    if (diff < 8.64e7) {
+      return 'Today';
+    }
+    if (diff < 1.728e8) {
+      return 'Yesterday';
+    }
+    return date.toDateString();
+
   }
 
   album(images) {
@@ -79,8 +82,8 @@ class PostEvent extends React.Component {
               <Icon as={Button} name="heart" onClick={this.handleMeta}>
                 {`${meta} likes`}
               </Icon>
-            </Segment compact>
-            <Segment>
+            </Segment>
+            <Segment compact>
               <Icon name='comments' >
                 Comments
               </Icon>
@@ -93,7 +96,7 @@ class PostEvent extends React.Component {
           </Segment.Group>
         </Segment.Group>
       );
-    } else if (text === "" && images.length > 0) {
+    } if (text === '' && images.length > 0) {
       return (
         <Segment.Group>
           <Segment.Group horizontal>
@@ -119,33 +122,33 @@ class PostEvent extends React.Component {
           </Segment.Group>
         </Segment.Group>
       );
-    } else {
-      return (
-        <Segment.Group>
-          <Segment.Group horizontal>
-            <Segment>
-              <Image src={avatar} avatar href={`/#/profile/${user.key}`}>
-                {` ${user.firstName} ${user.lastName} `}
-              </Image>
-              <Segment content={summary}/>
-            </Segment>
-            <Segment floated="right" textAlign="right">
-              {this.handleDate(date)}
-            </Segment>
-          </Segment.Group>
-          <Segment.Group>
-            {this.album(images)}
-          </Segment.Group>
-          <Segment.Group horizontal>
-            <Segment>
-              <Button icon name="heart" onClick={this.handleMeta}>
-                {`${meta} likes`}
-              </Button>
-            </Segment>
-          </Segment.Group>
-        </Segment.Group>
-      );
     }
+    return (
+      <Segment.Group>
+        <Segment.Group horizontal>
+          <Segment>
+            <Image src={avatar} avatar href={`/#/profile/${user.key}`}>
+              {` ${user.firstName} ${user.lastName} `}
+            </Image>
+            <Segment content={summary}/>
+          </Segment>
+          <Segment floated="right" textAlign="right">
+            {this.handleDate(date)}
+          </Segment>
+        </Segment.Group>
+        <Segment.Group>
+          {this.album(images)}
+        </Segment.Group>
+        <Segment.Group horizontal>
+          <Segment>
+            <Button icon name="heart" onClick={this.handleMeta}>
+              {`${meta} likes`}
+            </Button>
+          </Segment>
+        </Segment.Group>
+      </Segment.Group>
+    );
+
   }
 }
 

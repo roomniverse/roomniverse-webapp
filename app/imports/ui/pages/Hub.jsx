@@ -26,7 +26,7 @@ class Hub extends React.Component {
             </Button>
           </div>
           <div style={{ marginTop: '20px' }}>
-            {rend.forEach((post) => <PostEvent key={post._id} />)}
+            {rend.splice().reverse.forEach((post) => <PostEvent key={post._id} />)}
           </div>
         </Container>
       </div>

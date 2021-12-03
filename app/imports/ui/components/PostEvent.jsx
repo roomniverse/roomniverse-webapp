@@ -1,5 +1,5 @@
 import React from 'react';
-import { Loader, Segment } from 'semantic-ui-react';
+import { Button, Icon, Image, Loader, Segment } from 'semantic-ui-react';
 import { withTracker } from 'meteor/react-meteor-data';
 import { Meteor } from 'meteor/meteor';
 import { Accounts } from 'meteor/accounts-base';
@@ -86,19 +86,20 @@ class PostEvent extends React.Component {
               </Icon>
             </Segment>
             <Segment compact>
-              <Icon name='comments' >
+              <Icon name='comments'>
                 Comments
               </Icon>
             </Segment>
             <Segment floated="right">
-              <Icon name="share square" >
+              <Icon name="share square">
                 Share
               </Icon>
             </Segment>
           </Segment.Group>
         </Segment.Group>
       );
-    } if (text === '' && images.length > 0) {
+    }
+    if (text === '' && images.length > 0) {
       return (
         <Segment.Group>
           <Segment.Group horizontal>
@@ -154,7 +155,8 @@ class PostEvent extends React.Component {
 }
 
 PostEvent.propTypes = {
-  posts: PropTypes.array,
+  key: PropTypes.string,
+  post: PropTypes.array,
   ready: PropTypes.bool,
   users: PropTypes.array,
 };

@@ -71,17 +71,15 @@ class PostEvent extends React.Component {
           <Segment.Group horizontal>
             <Segment compact>
               <Icon name="heart" onClick={this.handleMeta}/>
-                {`${meta} likes`}
+              {`${meta} Likes`}
             </Segment>
             <Segment compact>
-              <Icon name='comments'>
-                Comments
-              </Icon>
+              <Icon name='comments'/>
+              Comments
             </Segment>
             <Segment floated="right">
-              <Icon name="share square">
-                Share
-              </Icon>
+              <Icon name="share square"/>
+              Share
             </Segment>
           </Segment.Group>
         </Segment.Group>
@@ -104,19 +102,16 @@ class PostEvent extends React.Component {
           </Segment.Group>
           <Segment.Group horizontal>
             <Segment compact>
-              <Icon as={Button} name="heart" onClick={this.handleMeta}>
-                {`${meta} likes`}
-              </Icon>
+              <Icon name="heart" onClick={this.handleMeta}/>
+              {`${meta} Likes`}
             </Segment>
             <Segment compact>
-              <Icon name='comments'>
-                Comments
-              </Icon>
+              <Icon name='comments'/>
+              Comments
             </Segment>
             <Segment floated="right">
-              <Icon name="share square">
-                Share
-              </Icon>
+              <Icon name="share square"/>
+              Share
             </Segment>
           </Segment.Group>
         </Segment.Group>
@@ -139,19 +134,16 @@ class PostEvent extends React.Component {
           </Segment.Group>
           <Segment.Group horizontal>
             <Segment compact>
-              <Icon as={Button} name="heart" onClick={this.handleMeta}>
-                {`${meta} likes`}
-              </Icon>
+              <Icon name="heart" onClick={this.handleMeta}/>
+              {`${meta} Likes`}
             </Segment>
             <Segment compact>
-              <Icon name='comments'>
-                Comments
-              </Icon>
+              <Icon name='comments'/>
+              Comments
             </Segment>
             <Segment floated="right">
-              <Icon name="share square">
-                Share
-              </Icon>
+              <Icon name="share square"/>
+              Share
             </Segment>
           </Segment.Group>
         </Segment.Group>
@@ -171,19 +163,16 @@ class PostEvent extends React.Component {
         </Segment.Group>
         <Segment.Group horizontal>
           <Segment compact>
-            <Icon as={Button} name="heart" onClick={this.handleMeta}>
-              {`${meta} likes`}
-            </Icon>
+            <Icon name="heart" onClick={this.handleMeta}/>
+            {`${meta} Likes`}
           </Segment>
           <Segment compact>
-            <Icon name='comments'>
-                Comments
-            </Icon>
+            <Icon name='comments'/>
+              Comments
           </Segment>
           <Segment floated="right">
-            <Icon name="share square">
-                Share
-            </Icon>
+            <Icon name="share square"/>
+              Share
           </Segment>
         </Segment.Group>
       </Segment.Group>

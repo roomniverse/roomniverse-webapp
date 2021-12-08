@@ -1,13 +1,11 @@
 import React from 'react';
-import { escapeRegExp, filter, times } from 'lodash';
+import { filter, matches, times, map } from 'lodash';
 import { Search } from 'semantic-ui-react';
 import { withRouter } from 'react-router-dom';
+import PropTypes from 'prop-types';
+import { withTracker } from 'meteor/react-meteor-data';
+import { Meteor } from 'meteor/meteor';
 import { Users } from '../../api/user/User';
-
-const source = times(5, () => ({
-  image: Users.collection.find().fetch().avatar,
-  title: `${Users.collection.find().fetch().firstName} ${Users.collection.find().fetch().lastName}`,
-}));
 
 const initState = {
   loading: false,
@@ -17,9 +15,10 @@ const initState = {
 
 function handleSubmit(state, action) {
   if (action.type === 'CLICK_SELECTION') {
-    this.location = '/#/profile';
-  } else if (action.type === 'SEARCH') {
-    this.location = '/#/search';
+    this.location = `/#/profile/${action.selection}`;
+  } else
+  if (action.type === 'SEARCH') {
+    this.location = `/#/search/${action.selection}`;
   }
 }
 
@@ -59,11 +58,13 @@ function SearchBar() {
         return;
       }
 
-      const re = new RegExp(escapeRegExp(data.value), 'i');
-      const isMatch = (result) => re.test(result.title);
       dispatch({
         type: 'FINISH_SEARCH',
-        results: filter(source, isMatch),
+        results: map(times(5, filter(this.props.users, matches(data.value))), (entry) => ({
+          image: entry.avatar,
+          title: `${entry.firstName} ${entry.lastName}`,
+          key: `${entry._id}`,
+        })),
       });
     }, 300);
   }, []);
@@ -75,7 +76,7 @@ function SearchBar() {
   return (
     <Search
       loading={loading}
-      onResultSelect={(e, data) => dispatch({ type: 'CLICK_SELECTION', selection: data.result.title })}
+      onResultSelect={(e, data) => dispatch({ type: 'CLICK_SELECTION', selection: data.result.key })}
       onSearchChange={handleSearchChange}
       onKeyDown={(e) => listenEnter(e)}
       results={results}
@@ -85,4 +86,17 @@ function SearchBar() {
   );
 }
 
-export default withRouter(SearchBar);
+SearchBar.propTypes = {
+  users: PropTypes.array.isRequired,
+  ready: PropTypes.bool.isRequired,
+};
+
+export default withRouter(withTracker(() => {
+  const subscription = Meteor.subscribe(Users.userPublicationName);
+  const ready = subscription.ready();
+  const users = Users.collection.find({}).fetch();
+  return {
+    users,
+    ready,
+  };
+})(SearchBar));

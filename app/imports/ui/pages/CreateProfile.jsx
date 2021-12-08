@@ -31,7 +31,7 @@ const bridge = new SimpleSchema2Bridge(formSchema);
 class CreateProfile extends React.Component {
 
   // On submit, insert the data.
-  submit(data, formRef) {
+  submit(data) {
     const { firstName, lastName, gender, major, gradYear, avatar } = data;
     const _id = Meteor.userId();
     const owner = Meteor.user().username;
@@ -40,22 +40,19 @@ class CreateProfile extends React.Component {
         if (error) {
           swal('Error', error.message, 'error');
         } else {
-          // eslint-disable-next-line no-undef
-          swal('Success', 'Item added successfully', 'success').then(function () { window.location = `/#/profile/${owner}`; });
-          formRef.reset();
+          this.setState({ location: `/#/profile/${_id}` });
         }
       });
   }
 
   // Render the form. Use Uniforms: https://github.com/vazco/uniforms
   render() {
-    let fRef = null;
     return (
       <div className="page-padding">
         <Grid id="createprofile-page" container centered>
           <Grid.Column>
             <Header as="h2" textAlign="center">Create Profile</Header>
-            <AutoForm ref={ref => { fRef = ref; }} schema={bridge} onSubmit={data => this.submit(data, fRef)}>
+            <AutoForm schema={bridge} onSubmit={data => this.submit(data)}>
               <Segment>
                 <TextField name='firstName'/>
                 <TextField name='lastName'/>

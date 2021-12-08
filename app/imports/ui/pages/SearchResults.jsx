@@ -8,7 +8,6 @@ import { Users } from '../../api/user/User';
 import User from '../components/User';
 
 class SearchResults extends React.Component {
-
   render() {
     return (
       (this.props.ready) ? this.renderPage() : <Loader active>Getting data</Loader>
@@ -22,7 +21,7 @@ class SearchResults extends React.Component {
     return (
       <div className="page-padding">
         <Container id="searchresult-page">
-          <Header as="h2" textAlign="center">Search Results for {this.props.value}</Header>
+          <Header as="h2" textAlign="center">Search Results for "{this.props.value}"</Header>
           <hr/>
           <Grid padded relaxed stackable stretched columns={3}>
             {results.map((user) => (
@@ -43,12 +42,14 @@ SearchResults.propTypes = {
   ready: PropTypes.bool,
 };
 
-export default withTracker(() => {
+export default withTracker(({ match }) => {
+  const value = match.params._id;
   const subscription = Meteor.subscribe(Users.userPublicationName);
   const ready = subscription.ready();
   const users = Users.collection.find().fetch();
   return {
     users,
+    value,
     ready,
   };
 })(SearchResults);

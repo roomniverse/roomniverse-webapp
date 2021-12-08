@@ -46,8 +46,7 @@ class PostEvent extends React.Component {
     const summary = this.props.post.summary;
     const text = this.props.post.extraText;
     const images = this.props.post.extraImages;
-    const length = this.props.post.extraImages.length;
-    if (text && length > 0) {
+    if (text && images) {
       return (
         <Segment.Group piled stacked>
           <Segment.Group horizontal>
@@ -84,7 +83,7 @@ class PostEvent extends React.Component {
           </Segment.Group>
         </Segment.Group>
       );
-    } if (!text && length > 0) {
+    } if (!text && images) {
       return (
         <Segment.Group piled stacked>
           <Segment.Group horizontal>

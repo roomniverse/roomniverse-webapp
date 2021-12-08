@@ -1,17 +1,13 @@
 import React from 'react';
 import { Meteor } from 'meteor/meteor';
 import { Container, Grid, Header, Loader } from 'semantic-ui-react';
-// import { escapeRegExp, filter } from 'lodash';
+import { escapeRegExp, filter } from 'lodash';
 import { withTracker } from 'meteor/react-meteor-data';
 import PropTypes from 'prop-types';
 import { Users } from '../../api/user/User';
 import User from '../components/User';
 
 class SearchResults extends React.Component {
-  constructor(value) {
-    super();
-    this.value = value;
-  }
 
   render() {
     return (
@@ -20,16 +16,16 @@ class SearchResults extends React.Component {
   }
 
   renderPage() {
-    // const re = new RegExp(escapeRegExp(this.value), 'i');
-    // const isMatch = (result) => re.test(`${result.firstName} ${result.lastName}`);
-    // const results = filter(this.props.users, isMatch);
+    const re = new RegExp(escapeRegExp(this.value), 'i');
+    const isMatch = (result) => re.test(`${result.firstName} ${result.lastName}`);
+    const results = filter(this.props.users, isMatch);
     return (
       <div className="page-padding">
         <Container id="searchresult-page">
-          <Header as="h2" textAlign="center">Search Results for </Header>
+          <Header as="h2" textAlign="center">Search Results for {this.props.value}</Header>
           <hr/>
           <Grid padded relaxed stackable stretched columns={3}>
-            {this.props.users.map((user) => (
+            {results.map((user) => (
               <Grid.Column key={user._id}>
                 <User user={user} key={user._id}/>
               </Grid.Column>

@@ -1,12 +1,9 @@
 import React from 'react';
-import { filter, map, matches, times } from 'lodash';
+import { escapeRegExp, filter, map, times } from 'lodash';
 import { Search } from 'semantic-ui-react';
-import { withRouter } from 'react-router-dom';
-import PropTypes from 'prop-types';
-import { withTracker } from 'meteor/react-meteor-data';
-import { Meteor } from 'meteor/meteor';
 import { Users } from '../../api/user/User';
 
+const users = Users.collection.find({}).fetch();
 const initState = {
   loading: false,
   results: [],
@@ -18,7 +15,7 @@ function handleSubmit(state, action) {
     this.location = `/#/profile/${action.selection}`;
   } else
   if (action.type === 'SEARCH') {
-    this.location = `/#/search/${action.selection}`;
+    this.location = `/#/search/${action.value}`;
   }
 }
 
@@ -32,10 +29,10 @@ function reducer(state, action) {
     return { ...state, loading: false, value: action.results };
   case 'CLICK_SELECTION':
     handleSubmit(state, action);
-    return { ...state, loading: false, value: initState.value };
+    return initState;
   case 'SEARCH':
     handleSubmit(state, action);
-    return { ...state, loading: false, value: initState.value };
+    return initState;
   default:
     throw new Error();
   }
@@ -43,13 +40,8 @@ function reducer(state, action) {
 
 function SearchBar() {
   const [state, dispatch] = React.useReducer(reducer, initState);
-  const { loading, results, value } = state || initState;
+  const { loading, results, value } = state;
   const timeoutRef = React.useRef();
-  const listenEnter = (e) => {
-    if (e.keyCode === 13) {
-      dispatch({ type: 'SEARCH', selection: value });
-    }
-  };
 
   const handleSearchChange = React.useCallback((e, data) => {
     clearTimeout(timeoutRef.current);
@@ -59,13 +51,19 @@ function SearchBar() {
         dispatch({ type: 'CLEAN_QUERY' });
         return;
       }
+      if (e.keyCode === 13) {
+        dispatch({ type: 'SEARCH', submit: data.value });
+        return;
+      }
 
+      const re = new RegExp(escapeRegExp(data.value), 'i');
+      const isMatch = (result) => re.test(`${result.firstName} ${result.lastName}`);
       dispatch({
         type: 'FINISH_SEARCH',
-        results: map(times(5, filter(this.props.users, matches(data.value))), (entry) => ({
-          image: entry.avatar,
+        results: map(times(5, filter(users, isMatch)), (entry) => ({
           title: `${entry.firstName} ${entry.lastName}`,
-          key: `${entry._id}`,
+          image: entry.avatar,
+          id: entry._id,
         })),
       });
     }, 300);
@@ -73,14 +71,14 @@ function SearchBar() {
 
   React.useEffect(() => () => {
     clearTimeout(timeoutRef.current);
-  });
+  }, []);
 
   return (
     <Search
       loading={loading}
-      onResultSelect={(e, data) => dispatch({ type: 'CLICK_SELECTION', selection: data.result.key })}
+      onResultSelect={(e, data) => dispatch({ type: 'CLICK_SELECTION', selection: data.result.id })}
       onSearchChange={handleSearchChange}
-      onKeyDown={(e) => listenEnter(e)}
+      onKeyDown={handleSearchChange}
       results={results}
       value={value}
       fluid
@@ -88,17 +86,4 @@ function SearchBar() {
   );
 }
 
-SearchBar.propTypes = {
-  users: PropTypes.array.isRequired,
-  ready: PropTypes.bool.isRequired,
-};
-
-export default withRouter(withTracker(() => {
-  const subscription = Meteor.subscribe(Users.userPublicationName);
-  const ready = subscription.ready();
-  const users = Users.collection.find({}).fetch();
-  return {
-    users,
-    ready,
-  };
-})(SearchBar));
+export default SearchBar;

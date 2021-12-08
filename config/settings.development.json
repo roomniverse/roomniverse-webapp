@@ -43,34 +43,29 @@
   "defaultPosts": [
     {
       "date": 1638402148381,
-      "avatar": "images/default-image.jpeg",
+      "avatar": "https://static7.depositphotos.com/1155356/677/i/600/depositphotos_6778932-stock-photo-regular-guy-concerned.jpg",
       "meta": 1,
       "summary": "posted to their page",
       "owner": "john@foo.com",
-      "extraText": "All developers say \"Hello World\" but never \"How is the World?\"",
-      "extraImages": []
+      "extraText": "All developers say \"Hello World\" but never \"How is the World?\""
     },
     {
       "date": 1638406148381,
-      "avatar": "images/default-image.jpeg",
+      "avatar": "https://static7.depositphotos.com/1155356/677/i/600/depositphotos_6778932-stock-photo-regular-guy-concerned.jpg",
       "meta": 1,
       "summary": "added you as a friend",
-      "owner": "john@foo.com",
-      "extraText": "",
-      "extraImages": []
+      "owner": "john@foo.com"
     },
     {
       "date": 1638502148381,
-      "avatar": "images/default-image.jpeg",
+      "avatar": "https://static7.depositphotos.com/1155356/677/i/600/depositphotos_6778932-stock-photo-regular-guy-concerned.jpg",
       "meta": 1,
       "summary": "tagged you in a picture",
-      "owner": "john@foo.com",
-      "extraText": "",
-      "extraImages": []
+      "owner": "john@foo.com"
     },
     {
       "date": 1638552148381,
-      "avatar": "images/default-image.jpeg",
+      "avatar": "https://static7.depositphotos.com/1155356/677/i/600/depositphotos_6778932-stock-photo-regular-guy-concerned.jpg",
       "meta": 1,
       "summary": "added 2 new photos",
       "owner": "john@foo.com",
@@ -82,12 +77,11 @@
     },
     {
       "date": 1639402148381,
-      "avatar": "images/default-image.jpeg",
+      "avatar": "https://static7.depositphotos.com/1155356/677/i/600/depositphotos_6778932-stock-photo-regular-guy-concerned.jpg",
       "meta": 1,
       "summary": "posted to their page",
       "owner": "john@foo.com",
-      "extraText": "me: *peeling a banana* may I take your jacket? coworker also in break room: do you think other people can't hear you?",
-      "extraImages": []
+      "extraText": "me: *peeling a banana* may I take your jacket? coworker also in break room: do you think other people can't hear you?"
     }
   ]
 }

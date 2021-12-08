@@ -15,7 +15,7 @@ const bridge = new SimpleSchema2Bridge(Posts.schema);
 /** Renders a page to ceate a new instance of the Post Collection. */
 class AddPost extends React.Component {
   submit(data) {
-    if (data.extraText === null && data.extraImages === null) {
+    if (!data.extraText && !data.extraImages) {
       swal('Error', 'Please upload images or write something.', 'error');
     } else {
       Posts.collection.insert(data,
@@ -23,7 +23,7 @@ class AddPost extends React.Component {
           if (error) {
             swal('Error', error.message, 'error');
           } else {
-            this.setState({ location: '/#/hub' });
+            this.setState({ location: `/#/hub` });
           }
         });
     }
@@ -54,7 +54,7 @@ class AddPost extends React.Component {
             <div className="button-style">
               Upload Images:
               {/* <AutoField name="extraImages" /> */}
-              <Button name="extraImages" style={{ marginLeft: '10px' }} defaultValue={[]}>Browse</Button>
+              <Button name="extraImages" style={{ marginLeft: '10px' }}>Browse</Button>
             </div>
             <br/>
             <div>

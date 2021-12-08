@@ -35,7 +35,7 @@ class AddPost extends React.Component {
 
   renderPage() {
     const account = this.props.users.find((user) => user.owner === Meteor.user().username);
-    const image = account.avatar;
+    const avatar = account.avatar;
     const date = new Date().getTime();
     const summary = 'posted to their page';
     const meta = 0;
@@ -44,17 +44,17 @@ class AddPost extends React.Component {
       <div id="addpost-page" className="white-theme page-padding">
         <Container>
           <Header as="h2" textAlign="center">Create New Post</Header>
-          <AutoForm schema={bridge} onSubmit={data => this.submit(data)}>
+          <AutoForm schema={bridge} onSubmit={data => this.submit(data)} label={false}>
             <HiddenField name="date" value={date}/>
-            <HiddenField name="image" value={image}/>
+            <HiddenField name="avatar" value={avatar}/>
             <HiddenField name="meta" value={meta}/>
             <HiddenField name="summary" value={summary}/>
             <HiddenField name="owner" value={owner}/>
             <LongTextField name="extraText" placeholder="What's on your mind?"/>
             <div className="button-style">
               Upload Images:
-              {/* <AutoField name="extraImage" /> */}
-              <Button name="extraImages" style={{ marginLeft: '10px' }}>Browse</Button>
+              {/* <AutoField name="extraImages" /> */}
+              <Button name="extraImages" style={{ marginLeft: '10px' }} defaultValue={[]}>Browse</Button>
             </div>
             <br/>
             <div>

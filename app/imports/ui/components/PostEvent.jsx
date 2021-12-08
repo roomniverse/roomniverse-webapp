@@ -7,6 +7,7 @@ class PostEvent extends React.Component {
   handleDate(date) {
     const curr = new Date().getTime();
     const diff = curr - date;
+    const dateString = new Date(date);
     if (diff < 1.8e6) {
       return 'Just now';
     }
@@ -19,7 +20,7 @@ class PostEvent extends React.Component {
     if (diff < 1.728e8) {
       return 'Yesterday';
     }
-    return date.toString();
+    return dateString.toDateString();
 
   }
 

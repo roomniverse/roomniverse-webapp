@@ -1,9 +1,9 @@
 import React from 'react';
-import { escapeRegExp, filter, map, times } from 'lodash';
+import { escapeRegExp, map, times } from 'lodash';
 import { Search } from 'semantic-ui-react';
 import { Users } from '../../api/user/User';
 
-const users = Users.collection.find({}).fetch();
+const users = Users.collection.find();
 const initState = {
   loading: false,
   results: [],
@@ -13,28 +13,28 @@ const initState = {
 function handleSubmit(state, action) {
   if (action.type === 'CLICK_SELECTION') {
     this.location = `/#/profile/${action.selection}`;
-  } else
+  }
   if (action.type === 'SEARCH') {
-    this.location = `/#/search/${action.value}`;
+    this.location = `/#/search/${action.submit}`;
   }
 }
 
 function reducer(state, action) {
   switch (action.type) {
-  case 'CLEAN_QUERY':
-    return initState;
-  case 'START_SEARCH':
-    return { ...state, loading: true, value: action.query };
-  case 'FINISH_SEARCH':
-    return { ...state, loading: false, value: action.results };
-  case 'CLICK_SELECTION':
-    handleSubmit(state, action);
-    return initState;
-  case 'SEARCH':
-    handleSubmit(state, action);
-    return initState;
-  default:
-    throw new Error();
+    case 'CLEAN_QUERY':
+      return initState;
+    case 'START_SEARCH':
+      return { ...state, loading: true, value: action.query };
+    case 'FINISH_SEARCH':
+      return { ...state, loading: false, results: action.results };
+    case 'CLICK_SELECTION':
+      handleSubmit(state, action);
+      return initState;
+    case 'SEARCH':
+      handleSubmit(state, action);
+      return initState;
+    default:
+      throw new Error();
   }
 }
 
@@ -43,24 +43,32 @@ function SearchBar() {
   const { loading, results, value } = state;
   const timeoutRef = React.useRef();
 
+  const listenEnter = (e) => {
+    if (e.keyCode === 13) {
+      dispatch({ type: 'SEARCH', submit: value });
+    }
+  }
+
   const handleSearchChange = React.useCallback((e, data) => {
+    const res = [];
     clearTimeout(timeoutRef.current);
     dispatch({ type: 'START_SEARCH', query: data.value });
-    timeoutRef.current = setTimeout(() => {
+    timeoutRef.current = setTimeout(async () => {
       if (data.value.length === 0) {
         dispatch({ type: 'CLEAN_QUERY' });
-        return;
-      }
-      if (e.keyCode === 13) {
-        dispatch({ type: 'SEARCH', submit: data.value });
         return;
       }
 
       const re = new RegExp(escapeRegExp(data.value), 'i');
       const isMatch = (result) => re.test(`${result.firstName} ${result.lastName}`);
+      await users.forEach((user) => {
+        if (isMatch(user)) {
+          res.push(user);
+        }
+      });
       dispatch({
         type: 'FINISH_SEARCH',
-        results: map(times(5, filter(users, isMatch)), (entry) => ({
+        results: map(res, (entry) => ({
           title: `${entry.firstName} ${entry.lastName}`,
           image: entry.avatar,
           id: entry._id,
@@ -78,7 +86,7 @@ function SearchBar() {
       loading={loading}
       onResultSelect={(e, data) => dispatch({ type: 'CLICK_SELECTION', selection: data.result.id })}
       onSearchChange={handleSearchChange}
-      onKeyDown={handleSearchChange}
+      onKeyDown={(e) => listenEnter(e)}
       results={results}
       value={value}
       fluid

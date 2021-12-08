@@ -23,7 +23,7 @@ class AddPost extends React.Component {
           if (error) {
             swal('Error', error.message, 'error');
           } else {
-            this.setState({ location: `/#/hub` });
+            this.location = '/#/hub';
           }
         });
     }

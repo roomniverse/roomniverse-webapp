@@ -1,5 +1,5 @@
 import React from 'react';
-import { escapeRegExp, map, times } from 'lodash';
+import { escapeRegExp, map } from 'lodash';
 import { Search } from 'semantic-ui-react';
 import { Users } from '../../api/user/User';
 

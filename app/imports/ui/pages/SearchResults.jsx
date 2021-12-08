@@ -21,7 +21,7 @@ class SearchResults extends React.Component {
     return (
       <div className="page-padding">
         <Container id="searchresult-page">
-          <Header as="h2" textAlign="center">Search Results for "{this.props.value}"</Header>
+          <Header as="h2" textAlign="center">Search Results for &quot{this.props.value}&quot</Header>
           <hr/>
           <Grid padded relaxed stackable stretched columns={3}>
             {results.map((user) => (

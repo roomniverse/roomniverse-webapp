@@ -1,6 +1,6 @@
 import React from 'react';
 import { Meteor } from 'meteor/meteor';
-import { Button, Container, Feed, Grid, Icon, Loader, Menu } from 'semantic-ui-react';
+import { Button, Container, Grid, Loader, Menu } from 'semantic-ui-react';
 import { withTracker } from 'meteor/react-meteor-data';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
@@ -16,7 +16,9 @@ class UserProfile extends React.Component {
   }
 
   renderPage() {
-    const rend = this.props.posts;
+    const rend = this.props.posts.filter((post) => {
+      return post.owner === Meteor.user().username;
+    });
     return (
       <div className="white-theme profile">
         <Container id="userprofile-page">

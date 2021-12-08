@@ -1,5 +1,5 @@
 import React from 'react';
-import { Button, Icon, Image, Segment } from 'semantic-ui-react';
+import { Icon, Image, Segment } from 'semantic-ui-react';
 import PropTypes from 'prop-types';
 import { withRouter } from 'react-router-dom';
 

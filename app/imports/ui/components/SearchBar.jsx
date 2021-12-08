@@ -1,5 +1,5 @@
 import React from 'react';
-import { filter, matches, times, map } from 'lodash';
+import { filter, map, matches, times } from 'lodash';
 import { Search } from 'semantic-ui-react';
 import { withRouter } from 'react-router-dom';
 import PropTypes from 'prop-types';
@@ -31,9 +31,11 @@ function reducer(state, action) {
   case 'FINISH_SEARCH':
     return { ...state, loading: false, value: action.results };
   case 'CLICK_SELECTION':
-    return handleSubmit(state, action);
+    handleSubmit(state, action);
+    return { ...state, loading: false, value: initState.value };
   case 'SEARCH':
-    return handleSubmit(state, action);
+    handleSubmit(state, action);
+    return { ...state, loading: false, value: initState.value };
   default:
     throw new Error();
   }

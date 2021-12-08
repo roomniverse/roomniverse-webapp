@@ -10,11 +10,30 @@
   flex-shrink: 0;
 }
 
+.grey-theme {
+  color: white;
+  background: #343434 !important;
+}
+
+.white-theme {
+  color: black;
+  background-color: white;
+}
+
 .nav-style, .footer-container{
   border: 0 !important;
   color: white !important;
   background-color: #024731 !important;
   width: 100% !important;
+  position: sticky;
+  z-index: 100;
+}
+
+.footer-container {
+  height: 110px;
+  align-items: center;
+  justify-content: center;
+  min-width: 360px;
 }
 
 .nav-style .right.menu .item {
@@ -64,23 +83,6 @@
   width: 580px;
   margin: auto;
   align-items: center;
-}
-
-.footer-container {
-  height: 110px;
-  align-items: center;
-  justify-content: center;
-  min-width: 360px;
-}
-
-.grey-theme {
-  color: white;
-  background: #343434 !important;
-}
-
-.white-theme {
-  color: black;
-  background-color: white;
 }
 
 .landing {

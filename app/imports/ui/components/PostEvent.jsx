@@ -130,7 +130,9 @@ class PostEvent extends React.Component {
             </Segment>
           </Segment.Group>
           <Segment.Group>
-            <Segment content={text}/>
+            <Segment>
+              {text}
+            </Segment>
           </Segment.Group>
           <Segment.Group horizontal>
             <Segment compact>

@@ -1,11 +1,13 @@
 {
   "defaultAccounts": [
     {
+      "username": "admin@foo.com",
       "email": "admin@foo.com",
       "password": "changeme",
       "role": "admin"
     },
     {
+      "username": "john@foo.com",
       "email": "john@foo.com",
       "password": "changeme"
     }
@@ -45,7 +47,7 @@
       "meta": 1,
       "summary": "posted to their page",
       "owner": "john@foo.com",
-      "extraText": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. In et mi magna. Fusce ornare venenatis arcu, vitae blandit elit eleifend et. Vivamus suscipit rhoncus nibh sit amet auctor. Proin tempor feugiat ante, a viverra ex vestibulum at. Donec et arcu massa. Ut in felis ut dolor imperdiet tempus sed id nisi. Phasellus maximus sapien non enim rhoncus ultricies.",
+      "extraText": "All developers say \"Hello World\" but never \"How is the World?\"",
       "extraImages": []
     },
     {
@@ -61,7 +63,7 @@
       "date": 1638502148381,
       "avatar": "images/default-image.jpeg",
       "meta": 1,
-      "summary": "added you as a friend",
+      "summary": "tagged you in a picture",
       "owner": "john@foo.com",
       "extraText": "",
       "extraImages": []
@@ -74,8 +76,8 @@
       "owner": "john@foo.com",
       "extraText": "Fun day at the beach",
       "extraImages": [
-        "https://react.semantic-ui.com/images/wireframe/image.png",
-        "https://react.semantic-ui.com/images/wireframe/image.png"
+        "https://media.istockphoto.com/photos/tropical-beach-in-punta-cana-dominican-republic-caribbean-island-picture-id1150862958?b=1&k=20&m=1150862958&s=170667a&w=0&h=Fp6mNIh4pWJBBnm4dkpQfi-rjU-9D-HzEAV5Zgyc6wE=",
+        "https://media.istockphoto.com/photos/tropical-beach-background-picture-id1145474071?b=1&k=20&m=1145474071&s=170667a&w=0&h=IrDN8nWy3ZOf2tnXG3JBbFqY-34dT-sKmYPAH2-DMb8="
       ]
     },
     {
@@ -84,7 +86,7 @@
       "meta": 1,
       "summary": "posted to their page",
       "owner": "john@foo.com",
-      "extraText": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. In et mi magna. Fusce ornare venenatis arcu, vitae blandit elit eleifend et. Vivamus suscipit rhoncus nibh sit amet auctor. Proin tempor feugiat ante, a viverra ex vestibulum at. Donec et arcu massa. Ut in felis ut dolor imperdiet tempus sed id nisi. Phasellus maximus sapien non enim rhoncus ultricies.",
+      "extraText": "me: *peeling a banana* may I take your jacket? coworker also in break room: do you think other people can't hear you?",
       "extraImages": []
     }
   ]

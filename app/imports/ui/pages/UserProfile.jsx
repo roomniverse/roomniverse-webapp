@@ -16,9 +16,7 @@ class UserProfile extends React.Component {
   }
 
   renderPage() {
-    const rend = this.props.posts.filter((post) => {
-      return post.owner === Meteor.user().username;
-    });
+    const rend = this.props.posts.filter((post) => post.owner === Meteor.user().username);
     return (
       <div className="white-theme profile">
         <Container id="userprofile-page">

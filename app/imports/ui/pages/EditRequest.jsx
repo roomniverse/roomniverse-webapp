@@ -23,7 +23,6 @@ class EditRequest extends React.Component {
           if (error) {
             swal('Error', error.message, 'error');
           } else {
-            swal('Success', 'Item updated successfully', 'success');
             this.setState({ location: '/#/find' });
           }
         });
@@ -40,8 +39,6 @@ class EditRequest extends React.Component {
           if (error) {
             swal('Error', error.message, 'error');
           } else {
-            console.log('success');
-            swal('Success', 'Item removed successfully', 'success');
             this.setState({ location: '/#/find' });
           }
         });

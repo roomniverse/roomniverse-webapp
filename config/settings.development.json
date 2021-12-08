@@ -40,45 +40,52 @@
 
   "defaultPosts": [
     {
-      "date": "Just Now",
-      "image": "images/default-image.jpeg",
+      "date": 1638402148381,
+      "avatar": "images/default-image.jpeg",
       "meta": 1,
-      "summary": "User Two posted to their page",
+      "summary": "posted to their page",
       "owner": "john@foo.com",
-      "extraText": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. In et mi magna. Fusce ornare venenatis arcu, vitae blandit elit eleifend et. Vivamus suscipit rhoncus nibh sit amet auctor. Proin tempor feugiat ante, a viverra ex vestibulum at. Donec et arcu massa. Ut in felis ut dolor imperdiet tempus sed id nisi. Phasellus maximus sapien non enim rhoncus ultricies."
+      "extraText": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. In et mi magna. Fusce ornare venenatis arcu, vitae blandit elit eleifend et. Vivamus suscipit rhoncus nibh sit amet auctor. Proin tempor feugiat ante, a viverra ex vestibulum at. Donec et arcu massa. Ut in felis ut dolor imperdiet tempus sed id nisi. Phasellus maximus sapien non enim rhoncus ultricies.",
+      "extraImages": []
     },
     {
-      "date": "Just Now",
-      "image": "images/default-image.jpeg",
+      "date": 1638406148381,
+      "avatar": "images/default-image.jpeg",
       "meta": 1,
-      "summary": "User One added you as a friend",
-      "owner": "john@foo.com"
-    },
-    {
-      "date": "Just Now",
-      "image": "images/default-image.jpeg",
-      "meta": 1,
-      "summary": "User Three added you as a friend",
-      "owner": "john@foo.com"
-    },
-    {
-      "date": "Just Now",
-      "image": "images/default-image.jpeg",
-      "meta": 1,
-      "summary": "User Two added 2 new photos",
+      "summary": "added you as a friend",
       "owner": "john@foo.com",
+      "extraText": "",
+      "extraImages": []
+    },
+    {
+      "date": 1638502148381,
+      "avatar": "images/default-image.jpeg",
+      "meta": 1,
+      "summary": "added you as a friend",
+      "owner": "john@foo.com",
+      "extraText": "",
+      "extraImages": []
+    },
+    {
+      "date": 1638552148381,
+      "avatar": "images/default-image.jpeg",
+      "meta": 1,
+      "summary": "added 2 new photos",
+      "owner": "john@foo.com",
+      "extraText": "Fun day at the beach",
       "extraImages": [
         "https://react.semantic-ui.com/images/wireframe/image.png",
         "https://react.semantic-ui.com/images/wireframe/image.png"
       ]
     },
     {
-      "date": "Just Now",
-      "image": "images/default-image.jpeg",
+      "date": 1639402148381,
+      "avatar": "images/default-image.jpeg",
       "meta": 1,
-      "summary": "User Three posted to their page",
+      "summary": "posted to their page",
       "owner": "john@foo.com",
-      "extraText": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. In et mi magna. Fusce ornare venenatis arcu, vitae blandit elit eleifend et. Vivamus suscipit rhoncus nibh sit amet auctor. Proin tempor feugiat ante, a viverra ex vestibulum at. Donec et arcu massa. Ut in felis ut dolor imperdiet tempus sed id nisi. Phasellus maximus sapien non enim rhoncus ultricies."
+      "extraText": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. In et mi magna. Fusce ornare venenatis arcu, vitae blandit elit eleifend et. Vivamus suscipit rhoncus nibh sit amet auctor. Proin tempor feugiat ante, a viverra ex vestibulum at. Donec et arcu massa. Ut in felis ut dolor imperdiet tempus sed id nisi. Phasellus maximus sapien non enim rhoncus ultricies.",
+      "extraImages": []
     }
   ]
 }

@@ -1,16 +1,13 @@
 import React from 'react';
-import { Button, Icon, Image, Loader, Segment } from 'semantic-ui-react';
-import { withTracker } from 'meteor/react-meteor-data';
-import { Meteor } from 'meteor/meteor';
-import { Accounts } from 'meteor/accounts-base';
+import { Icon, Image, Segment } from 'semantic-ui-react';
 import PropTypes from 'prop-types';
-import { Posts } from '../../api/social/Posts';
-import { Users } from '../../api/user/User';
+import { withRouter } from 'react-router-dom';
 
 class PostEvent extends React.Component {
   handleDate(date) {
-    const curr = new Date.GetTime();
+    const curr = new Date().getTime();
     const diff = curr - date;
+    const dateString = new Date(date);
     if (diff < 1.8e6) {
       return 'Just now';
     }
@@ -23,7 +20,7 @@ class PostEvent extends React.Component {
     if (diff < 1.728e8) {
       return 'Yesterday';
     }
-    return date.toDateString();
+    return dateString.toDateString();
 
   }
 
@@ -33,42 +30,34 @@ class PostEvent extends React.Component {
         images.map((image) => <Image alt="image" src={image} key={image._id}/>)
       );
     }
-    return images.map((image) => (
-      <Image src={image} alt="image" key={image._id}/>
-    ));
-  }
-
-  handleMeta() {
-    Users.collection.find(this.props.post._id).update({ meta: this.props.post.meta + 1 });
-  }
-
-  render() {
     return (
-      (this.props.ready) ? this.renderComponent() : <Loader active>Getting data</Loader>
+      images.map((image, index) => <Image src={image} alt="image" key={image._id + index.toString()}/>)
     );
   }
 
-  renderComponent() {
-    this.props.post = Posts.collection.find((post) => post.key === this.props.key);
-    this.props.users = Users.collection.find((user) => user.owner === Accounts.user().username);
+  handleMeta() {
+    this.props.post.update({ meta: this.props.post.meta + 1 });
+  }
+
+  render() {
     const date = this.props.post.date;
     const avatar = this.props.post.avatar;
     const meta = this.props.post.meta;
     const summary = this.props.post.summary;
     const text = this.props.post.extraText;
     const images = this.props.post.extraImages;
-    if (text.length > 0 && images.length > 0) {
+    const length = this.props.post.extraImages.length;
+    if (text && length > 0) {
       return (
         <Segment.Group piled stacked>
           <Segment.Group horizontal>
             <Segment>
-              <Image src={avatar} avatar href={`/#/profile/${this.props.users.key}`}>
-                {` ${this.props.users.firstName} ${this.props.users.lastName} `}
-              </Image>
+              <Image src={avatar} avatar href={`/#/profile/${this.props.user._id}`} key={this.props.user._id}/>
+              {` ${this.props.user.firstName} ${this.props.user.lastName} `}
               {summary}
-            </Segment>
-            <Segment floated="right" textAlign="right">
-              {this.handleDate(date)}
+              <div style={{ display: 'inline', float: 'right' }}>
+                {this.handleDate(date)}
+              </div>
             </Segment>
           </Segment.Group>
           <Segment.Group>
@@ -81,94 +70,120 @@ class PostEvent extends React.Component {
           </Segment.Group>
           <Segment.Group horizontal>
             <Segment compact>
-              <Icon as={Button} name="heart" onClick={this.handleMeta}>
-                {`${meta} likes`}
-              </Icon>
+              <Icon name="heart" onClick={this.handleMeta}/>
+              {`${meta} Likes`}
             </Segment>
             <Segment compact>
-              <Icon name='comments'>
-                Comments
-              </Icon>
+              <Icon name='comments'/>
+              Comments
             </Segment>
             <Segment floated="right">
-              <Icon name="share square">
-                Share
-              </Icon>
+              <Icon name="share square"/>
+              Share
             </Segment>
           </Segment.Group>
         </Segment.Group>
       );
-    }
-    if (text === '' && images.length > 0) {
+    } if (!text && length > 0) {
       return (
-        <Segment.Group>
+        <Segment.Group piled stacked>
           <Segment.Group horizontal>
             <Segment>
-              <Image src={avatar} avatar href={`/#/profile/${this.props.users.key}`}>
-                {` ${this.props.users.firstName} ${this.props.users.lastName} `}
-              </Image>
-              <Segment content={summary}/>
-            </Segment>
-            <Segment floated="right" textAlign="right">
-              {this.handleDate(date)}
+              <Image src={avatar} avatar href={`/#/profile/${this.props.user._id}`} key={this.props.user._id}/>
+              {` ${this.props.user.firstName} ${this.props.user.lastName} `}
+              {summary}
+              <div style={{ display: 'inline', float: 'right' }}>
+                {this.handleDate(date)}
+              </div>
             </Segment>
           </Segment.Group>
           <Segment.Group>
-            <Segment content={summary}/>
+            {this.album(images)}
           </Segment.Group>
           <Segment.Group horizontal>
+            <Segment compact>
+              <Icon name="heart" onClick={this.handleMeta}/>
+              {`${meta} Likes`}
+            </Segment>
+            <Segment compact>
+              <Icon name='comments'/>
+              Comments
+            </Segment>
+            <Segment floated="right">
+              <Icon name="share square"/>
+              Share
+            </Segment>
+          </Segment.Group>
+        </Segment.Group>
+      );
+    } if (text) {
+      return (
+        <Segment.Group piled stacked>
+          <Segment.Group horizontal>
             <Segment>
-              <Button icon name="heart" onClick={this.handleMeta}>
-                {`${meta} likes`}
-              </Button>
+              <Image src={avatar} avatar href={`/#/profile/${this.props.user._id}`} key={this.props.user._id}/>
+              {` ${this.props.user.firstName} ${this.props.user.lastName} `}
+              {summary}
+              <div style={{ display: 'inline', float: 'right' }}>
+                {this.handleDate(date)}
+              </div>
+            </Segment>
+          </Segment.Group>
+          <Segment.Group>
+            <Segment content={text}/>
+          </Segment.Group>
+          <Segment.Group horizontal>
+            <Segment compact>
+              <Icon name="heart" onClick={this.handleMeta}/>
+              {`${meta} Likes`}
+            </Segment>
+            <Segment compact>
+              <Icon name='comments'/>
+              Comments
+            </Segment>
+            <Segment floated="right">
+              <Icon name="share square"/>
+              Share
             </Segment>
           </Segment.Group>
         </Segment.Group>
       );
     }
     return (
-      <Segment.Group>
+      <Segment.Group piled stacked>
         <Segment.Group horizontal>
           <Segment>
-            <Image src={avatar} avatar href={`/#/profile/${this.props.users.key}`}>
-              {` ${this.props.users.firstName} ${this.props.users.lastName} `}
-            </Image>
-            <Segment content={summary}/>
+            <Image src={avatar} avatar href={`/#/profile/${this.props.user._id}`} key={this.props.user._id}/>
+            {` ${this.props.user.firstName} ${this.props.user.lastName} `}
+            {summary}
+            <div style={{ display: 'inline', float: 'right' }}>
+              {this.handleDate(date)}
+            </div>
           </Segment>
-          <Segment floated="right" textAlign="right">
-            {this.handleDate(date)}
-          </Segment>
-        </Segment.Group>
-        <Segment.Group>
-          {this.album(images)}
         </Segment.Group>
         <Segment.Group horizontal>
-          <Segment>
-            <Button icon name="heart" onClick={this.handleMeta}>
-              {`${meta} likes`}
-            </Button>
+          <Segment compact>
+            <Icon name="heart" onClick={this.handleMeta}/>
+            {`${meta} Likes`}
+          </Segment>
+          <Segment compact>
+            <Icon name='comments'/>
+              Comments
+          </Segment>
+          <Segment floated="right">
+            <Icon name="share square"/>
+              Share
           </Segment>
         </Segment.Group>
       </Segment.Group>
     );
+
   }
 }
 
 PostEvent.propTypes = {
-  key: PropTypes.string,
-  post: PropTypes.array,
-  ready: PropTypes.bool,
-  users: PropTypes.array,
+  post: PropTypes.object.isRequired,
+  user: PropTypes.object.isRequired,
 };
 
-export default withTracker(() => {
-  // Get access to Stuff documents.
-  const subscription = Meteor.subscribe(Posts.userPublicationName);
-  const sub2 = Meteor.subscribe(Users.userPublicationName);
-  // Determine if the subscription is ready
-  const ready = subscription.ready();
-  const ready2 = sub2.ready();
-  return {
-    ready: (ready && ready2),
-  };
-})(PostEvent);
+export default withRouter(PostEvent);

@@ -17,6 +17,11 @@ class RequestsCollection {
       avatar: String,
       description: String,
       owner: String,
+      major: {
+        type: String,
+        allowedValues: ['ICS/CENG', 'Other'],
+      },
+      gradYear: String,
     }, { tracker: Tracker });
     this.collection.attachSchema(this.schema);
     this.userPublicationName = `${this.name}.publication.user`;

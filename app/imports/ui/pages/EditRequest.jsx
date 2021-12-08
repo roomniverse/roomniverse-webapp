@@ -16,9 +16,9 @@ class EditRequest extends React.Component {
 
   // On successful submit, insert the data.
   submit(data) {
-    const { name, gender, location, image, description, _id, owner } = data;
+    const { name, gender, location, image, description, _id, owner, gradYear, major } = data;
     if (Meteor.user().username === owner) {
-      Requests.collection.update(_id, { $set: { name, gender, location, image, description } },
+      Requests.collection.update(_id, { $set: { name, gender, location, image, description, gradYear, major } },
         (error) => {
           if (error) {
             swal('Error', error.message, 'error');

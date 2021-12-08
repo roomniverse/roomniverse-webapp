@@ -1,6 +1,6 @@
 import React from 'react';
 import { Meteor } from 'meteor/meteor';
-import { Container, Item, Header, Loader, Input, Grid, Dropdown, Button } from 'semantic-ui-react';
+import { Container, Item, Header, Loader, Input, Grid, Dropdown, Button, Segment } from 'semantic-ui-react';
 import { withTracker } from 'meteor/react-meteor-data';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
@@ -31,7 +31,7 @@ const genderOptions = [
   {
     key: 'Female',
     text: 'Sort by Female',
-    value: 'Sort by Female',
+    value: 'Female',
   },
   {
     key: 'Other',
@@ -73,6 +73,13 @@ const marginTop = {
 
 /** Renders a table containing all of the Stuff documents. Use <StuffItem> to render each row. */
 class FindRoommate extends React.Component {
+  state = { genderValue: null, yearValue: null, majorValue: null }
+
+  genderHandleChange = (e, { value }) => this.setState({ genderValue: value })
+
+  majorHandleChange = (e, { value }) => this.setState({ majorValue: value })
+
+  yearHandleChange = (e, { value }) => this.setState({ yearValue: value })
 
   // If the subscription(s) have been received, render the page, otherwise show a loading icon.
   render() {
@@ -81,31 +88,49 @@ class FindRoommate extends React.Component {
 
   // Render the page once subscriptions have been received.
   renderPage() {
+    const { genderValue, majorValue, yearValue } = this.state;
+    // const { yearValue } = this.yearState;
+    // const { majorValue } = this.majorState;
+    const fData = this.props.requests.filter((request) => request.gender === 'Male');
+    console.log(fData);
     return (
       <div id="find-roommate-page" className="white-theme page-padding">
         <Container>
           <Header as="h2" textAlign="center">Find Roommate</Header>
-          <Grid columns={3}>
+          <Grid columns={4}>
             <Grid.Column>
               <Dropdown
+                onChange={this.majorHandleChange}
                 placeholder='Sort by Major'
                 selection
                 options={majorOptions}
+                value={majorValue}
               />
             </Grid.Column>
             <Grid.Column>
               <Dropdown
+                onChange={this.genderHandleChange}
                 placeholder='Sort by Gender'
                 selection
                 options={genderOptions}
+                value={genderValue}
               />
             </Grid.Column>
             <Grid.Column>
               <Dropdown
+                onChange={this.yearHandleChange}
                 placeholder='Sort by Class Year'
                 selection
                 options={yearOptions}
+                value={yearValue}
               />
+            </Grid.Column>
+            <Grid.Column>
+              <Segment secondary>
+                <pre>Current gender value: {genderValue}</pre>
+                <pre>Current major value: {majorValue}</pre>
+                <pre>Current year value: {yearValue}</pre>
+              </Segment>
             </Grid.Column>
           </Grid>
           <Input fluid icon='search' placeholder='Search...' style={marginTop} />
@@ -113,7 +138,7 @@ class FindRoommate extends React.Component {
             <Link id="findroommate-addrequest" style={linkStyle} to={`/addrequest/${Meteor.userId()}`}>Add Request</Link>
           </Button>
           <Item.Group divided>
-            {this.props.requests.map((request, index) => <Request key={index} request={request}/>)}
+            {(genderValue == null) ? this.props.requests.map((request, index) => <Request key={index} request={request}/>) : this.props.requests.filter((request) => request.gender === genderValue).map((request, index) => <Request key={index} request={request}/>)}
           </Item.Group>
         </Container>
       </div>

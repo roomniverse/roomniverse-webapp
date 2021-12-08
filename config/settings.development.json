@@ -72,7 +72,7 @@
       "meta": 1,
       "summary": "added 2 new photos",
       "owner": "john@foo.com",
-      "extraText": "",
+      "extraText": "Fun day at the beach",
       "extraImages": [
         "https://react.semantic-ui.com/images/wireframe/image.png",
         "https://react.semantic-ui.com/images/wireframe/image.png"

@@ -1,6 +1,6 @@
 import React from 'react';
 import { Meteor } from 'meteor/meteor';
-import { Container, Grid, Menu, Loader, Feed, Icon, Button } from 'semantic-ui-react';
+import { Button, Container, Feed, Grid, Icon, Loader, Menu } from 'semantic-ui-react';
 import { withTracker } from 'meteor/react-meteor-data';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
@@ -36,7 +36,11 @@ class UserProfile extends React.Component {
                 </Button>
               </div>
               <div style={{ marginTop: '20px' }}>
-                {rend.map((post) => <PostEvent key={post._id}/>)}
+                {rend.slice(0).reverse().map((post) => <PostEvent
+                  key={post._id}
+                  post={post}
+                  user={this.props.users.find((user) => user.owner === post.owner)}
+                />)}
               </div>
               <Feed>
                 <Feed.Event>
@@ -49,7 +53,9 @@ class UserProfile extends React.Component {
                     <Feed.Extra text>
                       Lorem ipsum dolor sit amet, consectetur adipiscing elit. In et mi magna. Fusce
                       ornare venenatis arcu, vitae blandit elit eleifend et. Vivamus suscipit rhoncus
-                      nibh sit amet auctor. Proin tempor feugiat ante, a viverra ex vestibulum at. Donec et arcu massa. Ut in felis ut dolor imperdiet tempus sed id nisi. Phasellus maximus sapien non enim rhoncus ultricies.
+                      nibh sit amet auctor. Proin tempor feugiat ante, a viverra ex vestibulum at. Donec et arcu massa.
+                      Ut in felis ut dolor imperdiet tempus sed id nisi. Phasellus maximus sapien non enim rhoncus
+                      ultricies.
                     </Feed.Extra>
                     <Feed.Meta>
                       <Feed.Like>

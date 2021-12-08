@@ -1,15 +1,12 @@
 import React from 'react';
 import { Button, Icon, Image, Loader, Segment } from 'semantic-ui-react';
-import { withTracker } from 'meteor/react-meteor-data';
-import { Meteor } from 'meteor/meteor';
-import { Accounts } from 'meteor/accounts-base';
 import PropTypes from 'prop-types';
-import { Posts } from '../../api/social/Posts';
 import { Users } from '../../api/user/User';
+import { withRouter } from 'react-router-dom';
 
 class PostEvent extends React.Component {
   handleDate(date) {
-    const curr = new Date.GetTime();
+    const curr = new Date().getTime();
     const diff = curr - date;
     if (diff < 1.8e6) {
       return 'Just now';
@@ -23,7 +20,7 @@ class PostEvent extends React.Component {
     if (diff < 1.728e8) {
       return 'Yesterday';
     }
-    return date.toDateString();
+    return date.toString();
 
   }
 
@@ -49,21 +46,20 @@ class PostEvent extends React.Component {
   }
 
   renderComponent() {
-    this.props.post = Posts.collection.find((post) => post.key === this.props.key);
-    this.props.users = Users.collection.find((user) => user.owner === Accounts.user().username);
+    const users = Users.collection.find((user) => user.owner === this.props.post.owner);
     const date = this.props.post.date;
     const avatar = this.props.post.avatar;
     const meta = this.props.post.meta;
     const summary = this.props.post.summary;
     const text = this.props.post.extraText;
     const images = this.props.post.extraImages;
-    if (text.length > 0 && images.length > 0) {
+    if (text && images) {
       return (
         <Segment.Group piled stacked>
           <Segment.Group horizontal>
             <Segment>
-              <Image src={avatar} avatar href={`/#/profile/${this.props.users.key}`}>
-                {` ${this.props.users.firstName} ${this.props.users.lastName} `}
+              <Image src={avatar} avatar href={`/#/profile/${users.key}`}>
+                {` ${users.firstName} ${users.lastName} `}
               </Image>
               {summary}
             </Segment>
@@ -104,8 +100,8 @@ class PostEvent extends React.Component {
         <Segment.Group>
           <Segment.Group horizontal>
             <Segment>
-              <Image src={avatar} avatar href={`/#/profile/${this.props.users.key}`}>
-                {` ${this.props.users.firstName} ${this.props.users.lastName} `}
+              <Image src={avatar} avatar href={`/#/profile/${users.key}`}>
+                {` ${users.firstName} ${users.lastName} `}
               </Image>
               <Segment content={summary}/>
             </Segment>
@@ -130,8 +126,8 @@ class PostEvent extends React.Component {
       <Segment.Group>
         <Segment.Group horizontal>
           <Segment>
-            <Image src={avatar} avatar href={`/#/profile/${this.props.users.key}`}>
-              {` ${this.props.users.firstName} ${this.props.users.lastName} `}
+            <Image src={avatar} avatar href={`/#/profile/${users.key}`}>
+              {` ${users.firstName} ${users.lastName} `}
             </Image>
             <Segment content={summary}/>
           </Segment>
@@ -156,20 +152,7 @@ class PostEvent extends React.Component {
 }
 
 PostEvent.propTypes = {
-  key: PropTypes.string,
-  post: PropTypes.array,
-  ready: PropTypes.bool,
-  users: PropTypes.array,
+  post: PropTypes.object.isRequired,
 };
 
-export default withTracker(() => {
-  // Get access to Stuff documents.
-  const subscription = Meteor.subscribe(Posts.userPublicationName);
-  const sub2 = Meteor.subscribe(Users.userPublicationName);
-  // Determine if the subscription is ready
-  const ready = subscription.ready();
-  const ready2 = sub2.ready();
-  return {
-    ready: (ready && ready2),
-  };
-})(PostEvent);
+export default withRouter(PostEvent);

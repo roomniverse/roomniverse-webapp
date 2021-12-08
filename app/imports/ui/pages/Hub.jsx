@@ -53,7 +53,7 @@ export default withTracker(() => {
   const ready2 = sub2.ready();
   // Get the Stuff documents
   const posts = Posts.collection.find({}).fetch();
-  const users = Posts.collection.find({}).fetch();
+  const users = Users.collection.find({}).fetch();
   return {
     posts,
     users,

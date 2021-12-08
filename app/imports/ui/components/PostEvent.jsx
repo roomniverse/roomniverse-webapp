@@ -31,7 +31,7 @@ class PostEvent extends React.Component {
       );
     }
     return (
-      images.map((image) => <Image src={image} alt="image" key={image._id}/>)
+      images.map((image, index) => <Image src={image} alt="image" key={image._id + index.toString()}/>)
     );
   }
 
@@ -52,7 +52,7 @@ class PostEvent extends React.Component {
         <Segment.Group piled stacked>
           <Segment.Group horizontal>
             <Segment>
-              <Image src={avatar} avatar href={`/#/profile/${this.props.user.key}`} key={this.props.user.key}/>
+              <Image src={avatar} avatar href={`/#/profile/${this.props.user._id}`} key={this.props.user._id}/>
               {` ${this.props.user.firstName} ${this.props.user.lastName} `}
               {summary}
               <div style={{ display: 'inline', float: 'right' }}>
@@ -70,9 +70,8 @@ class PostEvent extends React.Component {
           </Segment.Group>
           <Segment.Group horizontal>
             <Segment compact>
-              <Icon as={Button} name="heart" onClick={this.handleMeta}>
+              <Icon name="heart" onClick={this.handleMeta}/>
                 {`${meta} likes`}
-              </Icon>
             </Segment>
             <Segment compact>
               <Icon name='comments'>
@@ -92,7 +91,7 @@ class PostEvent extends React.Component {
         <Segment.Group piled stacked>
           <Segment.Group horizontal>
             <Segment>
-              <Image src={avatar} avatar href={`/#/profile/${this.props.user.key}`} key={this.props.user.key}/>
+              <Image src={avatar} avatar href={`/#/profile/${this.props.user._id}`} key={this.props.user._id}/>
               {` ${this.props.user.firstName} ${this.props.user.lastName} `}
               {summary}
               <div style={{ display: 'inline', float: 'right' }}>
@@ -127,7 +126,7 @@ class PostEvent extends React.Component {
         <Segment.Group piled stacked>
           <Segment.Group horizontal>
             <Segment>
-              <Image src={avatar} avatar href={`/#/profile/${this.props.user.key}`} key={this.props.user.key}/>
+              <Image src={avatar} avatar href={`/#/profile/${this.props.user._id}`} key={this.props.user._id}/>
               {` ${this.props.user.firstName} ${this.props.user.lastName} `}
               {summary}
               <div style={{ display: 'inline', float: 'right' }}>
@@ -162,7 +161,7 @@ class PostEvent extends React.Component {
       <Segment.Group piled stacked>
         <Segment.Group horizontal>
           <Segment>
-            <Image src={avatar} avatar href={`/#/profile/${this.props.user.key}`} key={this.props.user.key}/>
+            <Image src={avatar} avatar href={`/#/profile/${this.props.user._id}`} key={this.props.user._id}/>
             {` ${this.props.user.firstName} ${this.props.user.lastName} `}
             {summary}
             <div style={{ display: 'inline', float: 'right' }}>

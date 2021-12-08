@@ -30,9 +30,9 @@ const bridge = new SimpleSchema2Bridge(Requests.schema);
 class AddRequest extends React.Component {
 
   submit(data) {
-    const { firstName, lastName, avatar, location, gender, description } = data;
+    const { firstName, lastName, avatar, location, gender, description, major, gradYear } = data;
     const owner = Meteor.user().username;
-    Requests.collection.insert({ firstName, lastName, avatar, location, gender, description, owner },
+    Requests.collection.insert({ firstName, lastName, avatar, location, gender, description, owner, major, gradYear },
       (error) => {
         if (error) {
           swal('Error', error.message, 'error');
@@ -66,6 +66,8 @@ class AddRequest extends React.Component {
                 <HiddenField name='gender' value={find.gender} />
                 <HiddenField name='avatar' value={find.avatar}/>
                 <HiddenField name='owner' value={find.owner}/>
+                <HiddenField name='gradYear' value={find.gradYear}/>
+                <HiddenField name='major' value={find.major}/>
               </AutoForm>
             </Segment>
           </Grid.Column>

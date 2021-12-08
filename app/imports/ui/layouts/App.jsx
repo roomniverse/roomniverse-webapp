@@ -37,7 +37,7 @@ class App extends React.Component {
               <ProtectedRoute path="/create" component={CreateProfile}/>
               <ProtectedRoute path="/hub" component={Hub}/>
               <ProtectedRoute path="/add" component={AddPost}/>
-              <ProtectedRoute path="/search" component={SearchResults}/>
+              <ProtectedRoute path="/search/:query" component={SearchResults}/>
               <ProtectedRoute path="/find" component={Find}/>
               <ProtectedRoute path="/addrequest/:_id" component={AddRequest}/>
               <ProtectedRoute path="/edit/:_id" component={EditRequest}/>

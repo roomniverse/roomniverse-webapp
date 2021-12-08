@@ -15,7 +15,7 @@ class SearchResults extends React.Component {
   }
 
   renderPage() {
-    const re = new RegExp(escapeRegExp(this.value), 'i');
+    const re = new RegExp(escapeRegExp(this.props.value), 'i');
     const isMatch = (result) => re.test(`${result.firstName} ${result.lastName}`);
     const results = filter(this.props.users, isMatch);
     return (
@@ -43,7 +43,7 @@ SearchResults.propTypes = {
 };
 
 export default withTracker(({ match }) => {
-  const value = match.params._id;
+  const value = match.params.query;
   const subscription = Meteor.subscribe(Users.userPublicationName);
   const ready = subscription.ready();
   const users = Users.collection.find().fetch();

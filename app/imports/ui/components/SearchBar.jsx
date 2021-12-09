@@ -21,20 +21,20 @@ function handleSubmit(state, action) {
 
 function reducer(state, action) {
   switch (action.type) {
-    case 'CLEAN_QUERY':
-      return initState;
-    case 'START_SEARCH':
-      return { ...state, loading: true, value: action.query };
-    case 'FINISH_SEARCH':
-      return { ...state, loading: false, results: action.results };
-    case 'CLICK_SELECTION':
-      handleSubmit(state, action);
-      return initState;
-    case 'SEARCH':
-      handleSubmit(state, action);
-      return initState;
-    default:
-      throw new Error();
+  case 'CLEAN_QUERY':
+    return initState;
+  case 'START_SEARCH':
+    return { ...state, loading: true, value: action.query };
+  case 'FINISH_SEARCH':
+    return { ...state, loading: false, results: action.results };
+  case 'CLICK_SELECTION':
+    handleSubmit(state, action);
+    return initState;
+  case 'SEARCH':
+    handleSubmit(state, action);
+    return initState;
+  default:
+    throw new Error();
   }
 }
 
@@ -47,7 +47,7 @@ function SearchBar() {
     if (e.keyCode === 13) {
       dispatch({ type: 'SEARCH', submit: value });
     }
-  }
+  };
 
   const handleSearchChange = React.useCallback((e, data) => {
     const res = [];

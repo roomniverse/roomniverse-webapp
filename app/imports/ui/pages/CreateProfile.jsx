@@ -5,6 +5,8 @@ import swal from 'sweetalert';
 import { Meteor } from 'meteor/meteor';
 import SimpleSchema2Bridge from 'uniforms-bridge-simple-schema-2';
 import SimpleSchema from 'simpl-schema';
+import { Redirect } from 'react-router-dom';
+import PropTypes from 'prop-types';
 import { Users } from '../../api/user/User';
 
 // Create a schema to specify the structure of the data to appear in the form.
@@ -29,6 +31,10 @@ const bridge = new SimpleSchema2Bridge(formSchema);
 
 /** Renders the Page for adding a document. */
 class CreateProfile extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = { redirect: false };
+  }
 
   // On submit, insert the data.
   submit(data) {
@@ -40,13 +46,19 @@ class CreateProfile extends React.Component {
         if (error) {
           swal('Error', error.message, 'error');
         } else {
-          this.setState({ location: `/#/profile/${_id}` });
+          this.setState({ redirect: true });
         }
       });
   }
 
   // Render the form. Use Uniforms: https://github.com/vazco/uniforms
   render() {
+    const { from } = this.props.location.state || { from: { pathname: `/profile/${Meteor.user()._id}` } };
+    // if correct authentication, redirect to page instead of login screen
+    if (this.state.redirect) {
+      return <Redirect to={from}/>;
+    }
+
     return (
       <div className="page-padding">
         <Grid id="createprofile-page" container centered>
@@ -70,5 +82,9 @@ class CreateProfile extends React.Component {
     );
   }
 }
+
+CreateProfile.propTypes = {
+  location: PropTypes.object,
+};
 
 export default CreateProfile;

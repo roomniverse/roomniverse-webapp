@@ -6,12 +6,17 @@ import { Meteor } from 'meteor/meteor';
 import { withTracker } from 'meteor/react-meteor-data';
 import PropTypes from 'prop-types';
 import SimpleSchema2Bridge from 'uniforms-bridge-simple-schema-2';
+import { Redirect } from 'react-router-dom';
 import { Users } from '../../api/user/User';
 
 const bridge = new SimpleSchema2Bridge(Users.schema);
 
 /** Renders the Page for editing a single document. */
 class EditProfile extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = { redirectToReferer: false };
+  }
 
   // On successful submit, insert the data.
   submit(data) {
@@ -21,7 +26,7 @@ class EditProfile extends React.Component {
         if (error) {
           swal('Error', error.message, 'error');
         } else {
-          this.setState({ location: '/#/profile' });
+          this.setState({ redirectToReferer: true });
         }
       });
   }
@@ -33,6 +38,11 @@ class EditProfile extends React.Component {
 
   // Render the form. Use Uniforms: https://github.com/vazco/uniforms
   renderPage() {
+    const { from } = this.props.location.state || { from: { pathname: `/profile/${Meteor.user()._id}` } };
+    // if correct authentication, redirect to page instead of login screen
+    if (this.state.redirectToReferer) {
+      return <Redirect to={from}/>;
+    }
     return (
       <div className="page-padding">
         <Grid id="editprofile-page" container centered>
@@ -60,6 +70,7 @@ class EditProfile extends React.Component {
 
 // Require the presence of a Stuff document in the props object. Uniforms adds 'model' to the props, which we use.
 EditProfile.propTypes = {
+  location: PropTypes.object,
   doc: PropTypes.object,
   model: PropTypes.object,
   ready: PropTypes.bool.isRequired,

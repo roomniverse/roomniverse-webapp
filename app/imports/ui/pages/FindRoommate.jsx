@@ -6,6 +6,7 @@ import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import { Requests } from '../../api/social/Requests';
 import Request from '../components/Request';
+import { Users } from '../../api/user/User';
 
 // import { Link } from 'react-router-dom';
 
@@ -167,10 +168,16 @@ class FindRoommate extends React.Component {
             </Grid.Column>
           </Grid>
           <Button primary floated='right' style={marginTop}>
-            <Link id="findroommate-addrequest" style={linkStyle} to={`/addrequest/${Meteor.userId()}`}>Add Request</Link>
+            <Link
+              id="findroommate-addrequest"
+              style={linkStyle}
+              to={`/addrequest/${Meteor.userId()}`}
+            >Add Request</Link>
           </Button>
           <Item.Group divided>
-            {(mapData.length === 0) ? <Header as='h1' textAlign='center'> No roommates found </Header> : mapData.map((request, index) => <Request key={index} request={request}/>)}
+            {(mapData.length === 0) ?
+              <Header as='h1' textAlign='center'> No roommates found </Header> :
+              mapData.map((request, index) => <Request key={index} request={request}/>)}
           </Item.Group>
         </Container>
       </div>
@@ -187,7 +194,7 @@ FindRoommate.propTypes = {
 // withTracker connects Meteor data to React components. https://guide.meteor.com/react.html#using-withTracker
 export default withTracker(() => {
   // Get access to Stuff documents.
-  const subscription = Meteor.subscribe(Requests.userPublicationName);
+  const subscription = Meteor.subscribe(Requests.userPublicationName) && Meteor.subscribe(Users.userPublicationName);
   // Determine if the subscription is ready
   const ready = subscription.ready();
   // Get the Stuff documents

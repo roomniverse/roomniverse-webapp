@@ -1,6 +1,6 @@
 import React from 'react';
 import { Button, Container, Header, Loader } from 'semantic-ui-react';
-import { Link } from 'react-router-dom';
+import { Link, Redirect } from 'react-router-dom';
 import swal from 'sweetalert';
 import { Meteor } from 'meteor/meteor';
 import SimpleSchema2Bridge from 'uniforms-bridge-simple-schema-2';
@@ -14,6 +14,11 @@ const bridge = new SimpleSchema2Bridge(Posts.schema);
 
 /** Renders a page to ceate a new instance of the Post Collection. */
 class AddPost extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = { redirectToReferer: false };
+  }
+
   submit(data) {
     if (!data.extraText && !data.extraImages) {
       swal('Error', 'Please upload images or write something.', 'error');
@@ -23,7 +28,7 @@ class AddPost extends React.Component {
           if (error) {
             swal('Error', error.message, 'error');
           } else {
-            this.location = '/#/hub';
+            this.setState({ redirectToReferer: true });
           }
         });
     }
@@ -34,6 +39,11 @@ class AddPost extends React.Component {
   }
 
   renderPage() {
+    const { from } = this.props.location.state || { from: { pathname: '/hub' } };
+    // if correct authentication, redirect to page instead of login screen
+    if (this.state.redirectToReferer) {
+      return <Redirect to={from}/>;
+    }
     const account = this.props.users.find((user) => user.owner === Meteor.user().username);
     const avatar = account.avatar;
     const date = new Date().getTime();
@@ -72,6 +82,7 @@ class AddPost extends React.Component {
 }
 
 AddPost.propTypes = {
+  location: PropTypes.object,
   users: PropTypes.array.isRequired,
   ready: PropTypes.bool.isRequired,
 };

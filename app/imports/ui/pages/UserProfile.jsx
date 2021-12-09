@@ -16,7 +16,6 @@ class UserProfile extends React.Component {
   }
 
   renderPage() {
-    const rend = this.props.posts.filter((post) => post.owner === Meteor.user().username);
     return (
       <div className="white-theme profile">
         <Container id="userprofile-page">
@@ -36,10 +35,10 @@ class UserProfile extends React.Component {
                 </Button>
               </div>
               <div style={{ marginTop: '20px' }}>
-                {rend.slice(0).reverse().map((post) => <PostEvent
+                {this.props.posts.slice(0).reverse().map((post) => <PostEvent
                   key={post._id}
                   post={post}
-                  user={this.props.users.find((user) => user.owner === post.owner)}
+                  user={this.props.doc}
                 />)}
               </div>
             </Grid.Column>
@@ -53,7 +52,6 @@ class UserProfile extends React.Component {
 UserProfile.propTypes = {
   posts: PropTypes.array.isRequired,
   ready: PropTypes.bool.isRequired,
-  users: PropTypes.array.isRequired,
   doc: PropTypes.object,
 };
 
@@ -61,12 +59,12 @@ export default withTracker(({ match }) => {
   const documentId = match.params._id;
   const subscription = Meteor.subscribe(Posts.userPublicationName) && Meteor.subscribe(Users.userPublicationName);
   const ready = subscription.ready();
-  const posts = Posts.collection.find({}).fetch();
   const users = Users.collection.find({}).fetch();
-  const doc = users.find((user) => user.owner === documentId);
+  const doc = users.find((user) => user._id === documentId);
+  const postCollection = Posts.collection.find({ }).fetch();
+  const posts = postCollection.filter((post) => post.owner === doc.owner);
   return {
     posts,
-    users,
     ready,
     doc,
   };

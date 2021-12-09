@@ -7,6 +7,7 @@ import SimpleSchema2Bridge from 'uniforms-bridge-simple-schema-2';
 // import SimpleSchema from 'simpl-schema';
 import PropTypes from 'prop-types';
 import { withTracker } from 'meteor/react-meteor-data';
+import { Redirect } from 'react-router-dom';
 import { Users } from '../../api/user/User';
 import { Requests } from '../../api/social/Requests';
 
@@ -28,6 +29,10 @@ const bridge = new SimpleSchema2Bridge(Requests.schema);
 
 /** Renders a table containing all of the Stuff documents. Use <StuffItem> to render each row. */
 class AddRequest extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = { redirectToReferer: false };
+  }
 
   submit(data) {
     const { firstName, lastName, avatar, location, gender, description, major, gradYear } = data;
@@ -37,7 +42,7 @@ class AddRequest extends React.Component {
         if (error) {
           swal('Error', error.message, 'error');
         } else {
-          this.setState({ location: '/#/find' });
+          this.setState({ redirectToReferer: true });
         }
       });
   }
@@ -48,6 +53,11 @@ class AddRequest extends React.Component {
 
   // Render the page once subscriptions have been received.
   renderPage() {
+    const { from } = this.props.location.state || { from: { pathname: '/find' } };
+    // if correct authentication, redirect to page instead of login screen
+    if (this.state.redirectToReferer) {
+      return <Redirect to={from}/>;
+    }
     const find = this.props.users.find((user) => user.owner === Meteor.user().username);
     // let fRef = null;
     return (
@@ -79,6 +89,7 @@ class AddRequest extends React.Component {
 
 // Require an array of Stuff documents in the props.
 AddRequest.propTypes = {
+  location: PropTypes.object,
   ready: PropTypes.bool.isRequired,
   users: PropTypes.array.isRequired,
 };

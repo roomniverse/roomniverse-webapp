@@ -16,7 +16,6 @@ class Hub extends React.Component {
   }
 
   renderPage() {
-    const rend = this.props.posts;
     return (
       <div className="white-theme hub">
         <Container id="hub-page" className="post-feed">
@@ -26,7 +25,7 @@ class Hub extends React.Component {
             </Button>
           </div>
           <div style={{ marginTop: '20px' }}>
-            {rend.slice(0).reverse().map((post) => <PostEvent
+            {this.props.posts.slice(0).reverse().map((post) => <PostEvent
               key={post._id}
               post={post}
               user={this.props.users.find((user) => user.owner === post.owner)}

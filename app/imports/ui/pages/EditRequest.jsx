@@ -8,11 +8,16 @@ import PropTypes from 'prop-types';
 import SimpleSchema2Bridge from 'uniforms-bridge-simple-schema-2';
 // import { Link } from 'react-router-dom';
 import { Requests } from '../../api/social/Requests';
+import { Redirect } from 'react-router-dom';
 
 const bridge = new SimpleSchema2Bridge(Requests.schema);
 
 /** Renders the Page for editing a single document. */
 class EditRequest extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = { redirectToReferer: false };
+  }
 
   // On successful submit, insert the data.
   submit(data) {
@@ -23,7 +28,7 @@ class EditRequest extends React.Component {
           if (error) {
             swal('Error', error.message, 'error');
           } else {
-            this.setState({ location: '/#/find' });
+            this.setState({ redirectToReferer: true });
           }
         });
     } else {
@@ -39,7 +44,7 @@ class EditRequest extends React.Component {
           if (error) {
             swal('Error', error.message, 'error');
           } else {
-            this.setState({ location: '/#/find' });
+            this.setState({ redirectToReferer: true });
           }
         });
     } else {
@@ -54,6 +59,11 @@ class EditRequest extends React.Component {
 
   // Render the form. Use Uniforms: https://github.com/vazco/uniforms
   renderPage() {
+    const { from } = this.props.location.state || { from: { pathname: '/find' } };
+    // if correct authentication, redirect to page instead of login screen
+    if (this.state.redirectToReferer) {
+      return <Redirect to={from}/>;
+    }
     return (
       <div id="editrequest-page" className="page-padding">
         <Grid container centered>

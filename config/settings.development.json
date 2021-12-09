@@ -10,6 +10,31 @@
       "username": "john@foo.com",
       "email": "john@foo.com",
       "password": "changeme"
+    },
+    {
+      "username": "jubin@gmail.com",
+      "email": "jubin@gmail.com",
+      "password": "jubin"
+    },
+    {
+      "username": "eric@gmail.com",
+      "email": "eric@gmail.com",
+      "password": "eric"
+    },
+    {
+      "username": "jon@gmail.com",
+      "email": "jon@gmail.com",
+      "password": "jon"
+    },
+    {
+      "username": "scott@gmail.com",
+      "email": "scott@gmail.com",
+      "password": "scott"
+    },
+    {
+      "username": "tracy@gmail.com",
+      "email": "tracy@gmail.com",
+      "password": "tracy"
     }
   ],
   "defaultProfileData": [
@@ -30,15 +55,60 @@
       "gradYear": "2024",
       "avatar": "https://d2gg9evh47fn9z.cloudfront.net/800px_COLOURBOX4257428.jpg",
       "owner": "admin@foo.com"
+    },
+    {
+      "firstName": "Ju-Bin",
+      "lastName": "Choi",
+      "gender": "Male",
+      "major": "ICS/CENG",
+      "gradYear": "2022",
+      "avatar": "https://jubinc0911.github.io/images/jubinc0911.jpeg",
+      "owner": "jubin@gmail.com"
+    },
+    {
+      "firstName": "Eric",
+      "lastName": "Song",
+      "gender": "Male",
+      "major": "ICS/CENG",
+      "gradYear": "2022",
+      "avatar": "https://eric-song1773.github.io/images/hyunjun.jpg",
+      "owner": "eric@gmail.com"
+    },
+    {
+      "firstName": "Jon",
+      "lastName": "Ma",
+      "gender": "Male",
+      "major": "ICS/CENG",
+      "gradYear": "2022",
+      "avatar": "https://jon-valencia.github.io/images/me.jpg",
+      "owner": "jon@gmail.com"
+    },
+    {
+      "firstName": "Scott",
+      "lastName": "Vore",
+      "gender": "Male",
+      "major": "ICS/CENG",
+      "gradYear": "2022",
+      "avatar": "https://syhv-git.github.io/images/headshot.jpg",
+      "owner": "scott@gmail.com"
+    },
+    {
+      "firstName": "Tracy",
+      "lastName": "Bui",
+      "gender": "Female",
+      "major": "ICS/CENG",
+      "gradYear": "2022",
+      "avatar": "https://tbui00.github.io/images/IMG_2727_Original.JPG",
+      "owner": "tracy@gmail.com"
     }
   ],
   "defaultRequests": [
-    { "firstName": "Ju-Bin", "lastName": "Choi", "gender": "Male", "location": "Waikiki", "avatar": "https://jubinc0911.github.io/images/jubinc0911.jpeg", "description": "Description of Ju-Bin",  "owner": "john@foo.com", "gradYear": "2022", "major": "ICS/CENG"
+    { "firstName": "Ju-Bin", "lastName": "Choi", "gender": "Male", "location": "Waikiki", "avatar": "https://jubinc0911.github.io/images/jubinc0911.jpeg", "description": "Description of Ju-Bin",  "owner": "jubin@gmail.com", "gradYear": "2022", "major": "ICS/CENG"
     },
-    { "firstName": "Eric", "lastName": "Song", "gender": "Male", "location": "Manoa", "avatar": "https://eric-song1773.github.io/images/hyunjun.jpg", "description": "Description of Eric", "owner": "john@foo.com", "gradYear": "2022", "major": "ICS/CENG"},
-    { "firstName": "Scott", "lastName": "Vore", "gender": "Male", "location": "Hawaii Kai", "avatar": "https://syhv-git.github.io/images/headshot.jpg", "description": "Description of Scott",  "owner": "john@foo.com", "gradYear": "2022", "major": "ICS/CENG"},
-    { "firstName": "Tracy", "lastName": "Bui", "gender": "Female", "location": "McCully", "avatar": "https://tbui00.github.io/images/IMG_2727_Original.JPG", "description": "Description of Tracy",  "owner": "john@foo.com", "gradYear": "2022", "major": "ICS/CENG"},
-    { "firstName": "Jon", "lastName": "Ma", "gender": "Male", "location": "Manoa", "avatar": "https://jon-valencia.github.io/images/me.jpg", "description": "Description of Jon",  "owner": "john@foo.com", "gradYear": "2022", "major": "ICS/CENG"}
+    { "firstName": "Eric", "lastName": "Song", "gender": "Male", "location": "Manoa", "avatar": "https://eric-song1773.github.io/images/hyunjun.jpg", "description": "Description of Eric", "owner": "eric@gmail.com", "gradYear": "2022", "major": "ICS/CENG"},
+    { "firstName": "Scott", "lastName": "Vore", "gender": "Male", "location": "Hawaii Kai", "avatar": "https://syhv-git.github.io/images/headshot.jpg", "description": "Description of Scott",  "owner": "scott@gmail.com", "gradYear": "2022", "major": "ICS/CENG"},
+    { "firstName": "Tracy", "lastName": "Bui", "gender": "Female", "location": "McCully", "avatar": "https://tbui00.github.io/images/IMG_2727_Original.JPG", "description": "Description of Tracy",  "owner": "tracy@gmail.com", "gradYear": "2022", "major": "ICS/CENG"},
+    { "firstName": "Jon", "lastName": "Ma", "gender": "Male", "location": "Manoa", "avatar": "https://jon-valencia.github.io/images/me.jpg", "description": "Description of Jon",  "owner": "jon@gmail.com", "gradYear": "2022", "major": "ICS/CENG"}
     ],
 
   "defaultPosts": [

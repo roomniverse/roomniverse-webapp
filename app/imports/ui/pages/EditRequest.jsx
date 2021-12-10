@@ -7,8 +7,8 @@ import { withTracker } from 'meteor/react-meteor-data';
 import PropTypes from 'prop-types';
 import SimpleSchema2Bridge from 'uniforms-bridge-simple-schema-2';
 // import { Link } from 'react-router-dom';
-import { Requests } from '../../api/social/Requests';
 import { Redirect } from 'react-router-dom';
+import { Requests } from '../../api/social/Requests';
 
 const bridge = new SimpleSchema2Bridge(Requests.schema);
 

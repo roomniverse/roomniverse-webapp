@@ -1,5 +1,5 @@
 import React from 'react';
-import { Icon, Image, Segment } from 'semantic-ui-react';
+import { Dropdown, Icon, Image, Segment } from 'semantic-ui-react';
 import PropTypes from 'prop-types';
 import { withRouter } from 'react-router-dom';
 
@@ -46,6 +46,22 @@ class PostEvent extends React.Component {
     const summary = this.props.post.summary;
     const text = this.props.post.extraText;
     const images = this.props.post.extraImages;
+    const options = [
+      {
+        key: 'edit',
+        icon: 'edit',
+        text: 'Edit Post',
+        value: 'edit',
+      },
+
+      {
+        key: 'delete',
+        icon: 'delete',
+        text: 'Remove Post',
+        value: 'delete',
+      },
+    ];
+
     if (text && images) {
       return (
         <Segment.Group piled stacked>
@@ -57,6 +73,11 @@ class PostEvent extends React.Component {
               <div style={{ display: 'inline', float: 'right' }}>
                 {this.handleDate(date)}
               </div>
+              <Dropdown
+                className='button icon'
+                floating
+                options={options}
+                trigger={<></>}/>
             </Segment>
           </Segment.Group>
           <Segment.Group>
@@ -94,6 +115,11 @@ class PostEvent extends React.Component {
               <div style={{ display: 'inline', float: 'right' }}>
                 {this.handleDate(date)}
               </div>
+              <Dropdown
+                className='button icon'
+                floating
+                options={options}
+                trigger={<></>}/>
             </Segment>
           </Segment.Group>
           <Segment.Group>
@@ -126,6 +152,11 @@ class PostEvent extends React.Component {
               <div style={{ display: 'inline', float: 'right' }}>
                 {this.handleDate(date)}
               </div>
+              <Dropdown
+                className='button icon'
+                floating
+                options={options}
+                trigger={<></>}/>
             </Segment>
           </Segment.Group>
           <Segment.Group>
@@ -160,6 +191,11 @@ class PostEvent extends React.Component {
             <div style={{ display: 'inline', float: 'right' }}>
               {this.handleDate(date)}
             </div>
+            <Dropdown
+              className='button icon'
+              floating
+              options={options}
+              trigger={<></>}/>
           </Segment>
         </Segment.Group>
         <Segment.Group horizontal>

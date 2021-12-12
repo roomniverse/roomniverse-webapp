@@ -4,16 +4,33 @@ import { Link, Redirect } from 'react-router-dom';
 import swal from 'sweetalert';
 import { Meteor } from 'meteor/meteor';
 import SimpleSchema2Bridge from 'uniforms-bridge-simple-schema-2';
-import { AutoForm, ErrorsField, HiddenField, LongTextField, SubmitField } from 'uniforms-semantic';
+import { AutoForm, ErrorsField, LongTextField, SubmitField } from 'uniforms-semantic';
 import { withTracker } from 'meteor/react-meteor-data';
 import PropTypes from 'prop-types';
-import { Users } from '../../api/user/User';
 import { Posts } from '../../api/social/Posts';
+
+const bridge = new SimpleSchema2Bridge(Posts.schema);
 
 class EditPost extends React.Component {
   constructor(props) {
     super(props);
     this.state = { redirectToReferer: false };
+  }
+
+  submit(data) {
+    if (!data.extraText && !data.extraImages) {
+      swal('Error', 'Please upload images or write something.', 'error');
+    } else {
+      const { extraText, extraImages } = data;
+      Posts.collection.update(this.post._id, { $set: { extraText, extraImages } },
+        (error) => {
+          if (error) {
+            swal('Error', error.message, 'error');
+          } else {
+            this.setState({ redirectToReferer: true });
+          }
+        });
+    }
   }
 
   render() {
@@ -28,24 +45,42 @@ class EditPost extends React.Component {
     }
 
     return (
-
+      <div id="editpost-page" className="white-theme page-padding">
+        <Container>
+          <Header as="h2" textAlign="center">Create New Post</Header>
+          <AutoForm schema={bridge} onSubmit={data => this.submit(data)} label={false}>
+            <LongTextField name="extraText" defaultValue={this.post.extraText}/>
+            <div className="button-style">
+              Upload Images:
+              {/* <AutoField name="extraImages" /> */}
+              <Button name="extraImages" style={{ marginLeft: '10px' }}>Browse</Button>
+            </div>
+            <br/>
+            <div>
+              <SubmitField value='Submit'/>
+              <Button style={{ marginLeft: '10px' }} as={Link} to='/hub'>
+                Cancel
+              </Button>
+            </div>
+            <ErrorsField/>
+          </AutoForm>
+        </Container>
+      </div>
     );
   }
 }
 
 EditPost.propTypes = {
   location: PropTypes.object,
-  users: PropTypes.array,
   ready: PropTypes.bool.isRequired,
-  post: PropTypes.object,
-}
+  key: PropTypes.string.isRequired,
+};
 
 export default withTracker(() => {
-  const subscription = Meteor.subscribe(Users.userPublicationName) && Meteor.subscribe(Posts.userPublicationName);
+  const subscription = Meteor.subscribe(Posts.userPublicationName);
   const ready = subscription.ready();
-  const users = Users.collection.find({}).fetch();
+  const post = this.props.post.find((post) => post._id === this.props.key);
   return {
-    users,
     ready,
   };
 })(EditPost);

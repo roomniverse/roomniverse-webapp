@@ -72,12 +72,12 @@ class PostEvent extends React.Component {
               {summary}
               <div style={{ display: 'inline', float: 'right' }}>
                 {this.handleDate(date)}
-              </div>
               <Dropdown
                 className='button icon'
                 floating
                 options={options}
                 trigger={<></>}/>
+              </div>
             </Segment>
           </Segment.Group>
           <Segment.Group>

@@ -22,7 +22,7 @@ class EditPost extends React.Component {
       swal('Error', 'Please upload images or write something.', 'error');
     } else {
       const { extraText, extraImages } = data;
-      Posts.collection.update(this.post._id, { $set: { extraText, extraImages } },
+      Posts.collection.update(this.props.post._id, { $set: { extraText, extraImages } },
         (error) => {
           if (error) {
             swal('Error', error.message, 'error');
@@ -74,13 +74,15 @@ EditPost.propTypes = {
   location: PropTypes.object,
   ready: PropTypes.bool.isRequired,
   key: PropTypes.string.isRequired,
+  post: PropTypes.object.isRequired,
 };
 
 export default withTracker(() => {
   const subscription = Meteor.subscribe(Posts.userPublicationName);
   const ready = subscription.ready();
-  const post = this.props.post.find((post) => post._id === this.props.key);
+  const post = Posts.collection.find((item) => item._id === this.props.key);
   return {
     ready,
+    post,
   };
 })(EditPost);

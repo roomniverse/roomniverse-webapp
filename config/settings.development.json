@@ -70,6 +70,11 @@
       "username": "gabrielle@gmail.com",
       "email": "gabrielle@gmail.com",
       "password": "gabrielle"
+    },
+    {
+      "username": "stephanie@gmail.com",
+      "email": "stephanie@gmail.com",
+      "password": "stephanie"
     }
   ],
   "defaultProfileData": [
@@ -198,6 +203,15 @@
       "gradYear": "2023",
       "avatar": "https://i.imgur.com/kdLUXm4.jpeg",
       "owner": "gabrielle@gmail.com"
+    },
+    {
+      "firstName": "Stephanie",
+      "lastName": "Lewis",
+      "gender": "Female",
+      "major": "ICS/CENG",
+      "gradYear": "2024",
+      "avatar": "https://i0.wp.com/varbai.com/wp-content/uploads/2019/02/thispersondoesnotexis.jpg?w=1024&ssl=1",
+      "owner": "stephanie@gmail.com"
     }
   ],
   "defaultRequests": [
@@ -212,7 +226,9 @@
     { "firstName": "Summer", "lastName": "Brown", "gender": "Female", "location": "McCully", "avatar": "https://media.istockphoto.com/photos/carefree-stylish-woman-enjoying-summer-picture-id1211312450?k=20&m=1211312450&s=612x612&w=0&h=ErVx9Ry7t66AjS0YG_rxvnnqlAjeoFY40tLIKiDmCVE=", "description": "2 Beds & 1 Bathroon. Wanna find 2 roommates who majoring Computer Science in UH Manoa campus. The location is in Manoa side and contact me via email for more information. ",  "owner": "summer@gmail.com", "gradYear": "2023", "major": "ICS/CENG"},
     { "firstName": "Shawn", "lastName": "Lee", "gender": "Male", "location": "Manoa", "avatar": "https://roncallimedia.com/wp-content/uploads/2017/02/IMG_8500-900x600.jpg", "description": "3 Beds & 1 Bathroom. Looking for 2 roommates who wanna live outside the campus. Majoring CENG so prefers the same major. Either gender is fine.",  "owner": "shawn@gmail.com", "gradYear": "2022", "major": "ICS/CENG"},
     { "firstName": "Henry", "lastName": "Miller", "gender": "Male", "location": "Waikiki", "avatar": "https://helios-i.mashable.com/imagery/articles/00P75b42pg1pyijQKD2z87G/hero-image.fill.size_1200x1200.v1623372500.jpg", "description": "2 Beds & 1 Bathrooms, but no reserved parking lot. Looking for a roommate who wanna live in Waikiki area. I'm a freshman, so prefer either freshman or sophomore at UH Manoa. All rooms are furnished and contact me through email for more information.",  "owner": "henry@gmail.com", "gradYear": "2024", "major": "Other"},
-    { "firstName": "Hannah", "lastName": "Green", "gender": "Female", "location": "Manoa", "avatar": "https://mk0qomafemocnned3wjh.kinstacdn.com/wp-content/uploads/2019/02/AI-thispersondoesnotexist.jpg", "description": "3 Beds & 2 Bathrooms. Looking for two more female roommates who wanna live in Manoa side near UH Manoa campus. All basic household items are furnished. For more information, contact me through email.",  "owner": "hannah@gmail.com", "gradYear": "2023", "major": "Other"}
+    { "firstName": "Hannah", "lastName": "Green", "gender": "Female", "location": "Manoa", "avatar": "https://mk0qomafemocnned3wjh.kinstacdn.com/wp-content/uploads/2019/02/AI-thispersondoesnotexist.jpg", "description": "3 Beds & 2 Bathrooms. Looking for two more female roommates who wanna live in Manoa side near UH Manoa campus. All basic household items are furnished. For more information, contact me through email.",  "owner": "hannah@gmail.com", "gradYear": "2023", "major": "Other"},
+    { "firstName": "Gabrielle", "lastName": "Young", "gender": "Female", "location": "Kahala", "avatar": "https://i.imgur.com/kdLUXm4.jpeg", "description": "Hi, I'm Gabi. I wanna find a female roommate who wants to live in Kahala together. There are 2 Beds & 1 Bathroom with household items. It's a few minutes away from Kahala mall. For more information, please contact me through email!",  "owner": "hannah@gmail.com", "gradYear": "2023", "major": "Other"},
+    { "firstName": "Stephanie", "lastName": "Lewis", "gender": "Female", "location": "Kapiolani", "avatar": "https://i0.wp.com/varbai.com/wp-content/uploads/2019/02/thispersondoesnotexis.jpg?w=1024&ssl=1", "description": "4 Beds and 3 Bathrooms. Parking lot available. 2 Rooms are occupied by one man and one woman. Either gender is fine. It's near from KCC. For more information, contact me through eamil.",  "owner": "stephanie@gmail.com", "gradYear": "2024", "major": "ICS/CENG"}
   ],
 
   "defaultPosts": [

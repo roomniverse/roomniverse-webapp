@@ -10,6 +10,66 @@
       "username": "john@foo.com",
       "email": "john@foo.com",
       "password": "changeme"
+    },
+    {
+      "username": "jubin@gmail.com",
+      "email": "jubin@gmail.com",
+      "password": "jubin"
+    },
+    {
+      "username": "eric@gmail.com",
+      "email": "eric@gmail.com",
+      "password": "eric"
+    },
+    {
+      "username": "jon@gmail.com",
+      "email": "jon@gmail.com",
+      "password": "jon"
+    },
+    {
+      "username": "scott@gmail.com",
+      "email": "scott@gmail.com",
+      "password": "scott"
+    },
+    {
+      "username": "tracy@gmail.com",
+      "email": "tracy@gmail.com",
+      "password": "tracy"
+    },
+    {
+      "username": "chloe@gmail.com",
+      "email": "chloe@gmail.com",
+      "password": "chloe"
+    },
+    {
+      "username": "summer@gmail.com",
+      "email": "summer@gmail.com",
+      "password": "summer"
+    },
+    {
+      "username": "shawn@gmail.com",
+      "email": "shwan@gmail.com",
+      "password": "shawn"
+    },
+    {
+      "username": "henry@gmail.com",
+      "email": "henry@gmail.com",
+      "password": "henry"
+    },
+    {
+      "username": "hannah@gmail.com",
+      "email": "hannah@gmail.com",
+      "password": "hannah"
+    },
+    {
+      "username": "tyler@gmail.com",
+      "email": "tyler@gmail.com",
+      "password": "tyler"
+    },
+    {
+      "username": "gabrielle@gmail.com",
+      "email": "gabrielle@gmail.com",
+      "password": "gabrielle"
     }
   ],
   "defaultProfileData": [
@@ -30,16 +90,130 @@
       "gradYear": "2024",
       "avatar": "https://d2gg9evh47fn9z.cloudfront.net/800px_COLOURBOX4257428.jpg",
       "owner": "admin@foo.com"
+    },
+    {
+      "firstName": "Ju-Bin",
+      "lastName": "Choi",
+      "gender": "Male",
+      "major": "ICS/CENG",
+      "gradYear": "2022",
+      "avatar": "https://jubinc0911.github.io/images/jubinc0911.jpeg",
+      "owner": "jubin@gmail.com"
+    },
+    {
+      "firstName": "Eric",
+      "lastName": "Song",
+      "gender": "Male",
+      "major": "ICS/CENG",
+      "gradYear": "2022",
+      "avatar": "https://eric-song1773.github.io/images/hyunjun.jpg",
+      "owner": "eric@gmail.com"
+    },
+    {
+      "firstName": "Jon",
+      "lastName": "Ma",
+      "gender": "Male",
+      "major": "ICS/CENG",
+      "gradYear": "2022",
+      "avatar": "https://jon-valencia.github.io/images/me.jpg",
+      "owner": "jon@gmail.com"
+    },
+    {
+      "firstName": "Scott",
+      "lastName": "Vore",
+      "gender": "Male",
+      "major": "ICS/CENG",
+      "gradYear": "2022",
+      "avatar": "https://syhv-git.github.io/images/headshot.jpg",
+      "owner": "scott@gmail.com"
+    },
+    {
+      "firstName": "Tracy",
+      "lastName": "Bui",
+      "gender": "Female",
+      "major": "ICS/CENG",
+      "gradYear": "2022",
+      "avatar": "https://tbui00.github.io/images/IMG_2727_Original.JPG",
+      "owner": "tracy@gmail.com"
+    },
+    {
+      "firstName": "Chloe",
+      "lastName": "Abigail",
+      "gender": "Female",
+      "major": "Other",
+      "gradYear": "2024",
+      "avatar": "https://m.media-amazon.com/images/M/MV5BODI1MTA0ZTMtN2M3Yi00MmMxLThiMmItMDE3MGNmMThhZWFmXkEyXkFqcGdeQXVyODcwNjc1OA@@._V1_UX214_CR0,0,214,317_AL_.jpg",
+      "owner": "chloe@gmail.com"
+    },
+    {
+      "firstName": "Summer",
+      "lastName": "Brown",
+      "gender": "Female",
+      "major": "ICS/CENG",
+      "gradYear": "2023",
+      "avatar": "https://media.istockphoto.com/photos/carefree-stylish-woman-enjoying-summer-picture-id1211312450?k=20&m=1211312450&s=612x612&w=0&h=ErVx9Ry7t66AjS0YG_rxvnnqlAjeoFY40tLIKiDmCVE=",
+      "owner": "summer@gmail.com"
+    },
+    {
+      "firstName": "Shawn",
+      "lastName": "Lee",
+      "gender": "Male",
+      "major": "ICS/CENG",
+      "gradYear": "2022",
+      "avatar": "https://roncallimedia.com/wp-content/uploads/2017/02/IMG_8500-900x600.jpg",
+      "owner": "shawn@gmail.com"
+    },
+    {
+      "firstName": "Henry",
+      "lastName": "Miller",
+      "gender": "Male",
+      "major": "Other",
+      "gradYear": "2024",
+      "avatar": "https://helios-i.mashable.com/imagery/articles/00P75b42pg1pyijQKD2z87G/hero-image.fill.size_1200x1200.v1623372500.jpg",
+      "owner": "henry@gmail.com"
+    },
+    {
+      "firstName": "Hannah",
+      "lastName": "Green",
+      "gender": "Female",
+      "major": "Other",
+      "gradYear": "2023",
+      "avatar": "https://mk0qomafemocnned3wjh.kinstacdn.com/wp-content/uploads/2019/02/AI-thispersondoesnotexist.jpg",
+      "owner": "hannah@gmail.com"
+    },
+    {
+      "firstName": "Tyler",
+      "lastName": "Carter",
+      "gender": "Male",
+      "major": "ICS/CENG",
+      "gradYear": "2024",
+      "avatar": "https://i.imgur.com/3Oixaop.jpeg",
+      "owner": "tyler@gmail.com"
+    },
+    {
+      "firstName": "Gabrielle",
+      "lastName": "Young",
+      "gender": "Female",
+      "major": "Other",
+      "gradYear": "2023",
+      "avatar": "https://i.imgur.com/kdLUXm4.jpeg",
+      "owner": "gabrielle@gmail.com"
     }
   ],
   "defaultRequests": [
-    { "firstName": "Ju-Bin", "lastName": "Choi", "gender": "Male", "location": "Waikiki", "avatar": "https://jubinc0911.github.io/images/jubinc0911.jpeg", "description": "Description of Ju-Bin",  "owner": "john@foo.com", "gradYear": "2022", "major": "ICS/CENG"
+    { "firstName": "Ju-Bin", "lastName": "Choi", "gender": "Male", "location": "Waikiki", "avatar": "https://jubinc0911.github.io/images/jubinc0911.jpeg", "description": "I want to find 2-3 roommates who want to live in Waikiki area. Currently, there are 3 beds with 2 bathrooms. Also, we have a reserved parking lot.",  "owner": "jubin@gmail.com", "gradYear": "2023", "major": "ICS/CENG"
     },
-    { "firstName": "Eric", "lastName": "Song", "gender": "Male", "location": "Manoa", "avatar": "https://eric-song1773.github.io/images/hyunjun.jpg", "description": "Description of Eric", "owner": "john@foo.com", "gradYear": "2022", "major": "ICS/CENG"},
-    { "firstName": "Scott", "lastName": "Vore", "gender": "Male", "location": "Hawaii Kai", "avatar": "https://syhv-git.github.io/images/headshot.jpg", "description": "Description of Scott",  "owner": "john@foo.com", "gradYear": "2022", "major": "ICS/CENG"},
-    { "firstName": "Tracy", "lastName": "Bui", "gender": "Female", "location": "McCully", "avatar": "https://tbui00.github.io/images/IMG_2727_Original.JPG", "description": "Description of Tracy",  "owner": "john@foo.com", "gradYear": "2022", "major": "ICS/CENG"},
-    { "firstName": "Jon", "lastName": "Ma", "gender": "Male", "location": "Manoa", "avatar": "https://jon-valencia.github.io/images/me.jpg", "description": "Description of Jon",  "owner": "john@foo.com", "gradYear": "2022", "major": "ICS/CENG"}
-    ],
+    { "firstName": "Eric", "lastName": "Song", "gender": "Male", "location": "Manoa", "avatar": "https://eric-song1773.github.io/images/hyunjun.jpg", "description": "2 Beds with 1 Bathroom. Looking for just one roommate who wanna live near UH Manoa campus.", "owner": "eric@gmail.com", "gradYear": "2024", "major": "ICS/CENG"},
+    { "firstName": "Scott", "lastName": "Vore", "gender": "Male", "location": "Hawaii Kai", "avatar": "https://syhv-git.github.io/images/headshot.jpg", "description": "Hi, I'm Scott, and I want to find folks who wanna get a room in Hawaii Kai with me. For more information, please contact me by email.",  "owner": "scott@gmail.com", "gradYear": "2022", "major": "ICS/CENG"},
+    { "firstName": "Tracy", "lastName": "Bui", "gender": "Female", "location": "McCully", "avatar": "https://tbui00.github.io/images/IMG_2727_Original.JPG", "description": "Looking for a woman who wants to live in McCully side. There are 3 roommates including me, and want to find one more roommate. Please contact me through email for more information.",  "owner": "tracy@gmail.com", "gradYear": "2022", "major": "ICS/CENG"},
+    { "firstName": "Jon", "lastName": "Valencia", "gender": "Male", "location": "Manoa", "avatar": "https://jon-valencia.github.io/images/me.jpg", "description": "4 Beds, 2 Bathrooms, 2 Parking lot. 2 of 4 Beds are occupied by other roommates including me. Either gender is fine. Looking for your contact.",  "owner": "jon@gmail.com", "gradYear": "2022", "major": "ICS/CENG"},
+    { "firstName": "Tyler", "lastName": "Carter", "gender": "Male", "location": "Hawaii Kai", "avatar": "https://i.imgur.com/3Oixaop.jpeg", "description": "Looking for a man who wanna live in Hawaii Kai area. We have 3 bedrooms and 2 bathrooms with 2 reserved parking lot. For more information, contact me through email.", "owner": "tyler@gmail.com", "gradYear": "2024", "major": "ICS/CENG"},
+    { "firstName": "Chloe", "lastName": "Abigail", "gender": "Female", "location": "Waikiki", "avatar": "https://m.media-amazon.com/images/M/MV5BODI1MTA0ZTMtN2M3Yi00MmMxLThiMmItMDE3MGNmMThhZWFmXkEyXkFqcGdeQXVyODcwNjc1OA@@._V1_UX214_CR0,0,214,317_AL_.jpg", "description": "5 Beds 3 Baths 3 Parking lot. Looking for 2 more women who wants to live in Waikiki side (There are 4 roommates including me living here). Please contact me through email for more information.",  "owner": "chloe@gmail.com", "gradYear": "2024", "major": "Other"},
+    { "firstName": "Summer", "lastName": "Brown", "gender": "Female", "location": "McCully", "avatar": "https://media.istockphoto.com/photos/carefree-stylish-woman-enjoying-summer-picture-id1211312450?k=20&m=1211312450&s=612x612&w=0&h=ErVx9Ry7t66AjS0YG_rxvnnqlAjeoFY40tLIKiDmCVE=", "description": "2 Beds & 1 Bathroon. Wanna find 2 roommates who majoring Computer Science in UH Manoa campus. The location is in Manoa side and contact me via email for more information. ",  "owner": "summer@gmail.com", "gradYear": "2023", "major": "ICS/CENG"},
+    { "firstName": "Shawn", "lastName": "Lee", "gender": "Male", "location": "Manoa", "avatar": "https://roncallimedia.com/wp-content/uploads/2017/02/IMG_8500-900x600.jpg", "description": "3 Beds & 1 Bathroom. Looking for 2 roommates who wanna live outside the campus. Majoring CENG so prefers the same major. Either gender is fine.",  "owner": "shawn@gmail.com", "gradYear": "2022", "major": "ICS/CENG"},
+    { "firstName": "Henry", "lastName": "Miller", "gender": "Male", "location": "Waikiki", "avatar": "https://helios-i.mashable.com/imagery/articles/00P75b42pg1pyijQKD2z87G/hero-image.fill.size_1200x1200.v1623372500.jpg", "description": "2 Beds & 1 Bathrooms, but no reserved parking lot. Looking for a roommate who wanna live in Waikiki area. I'm a freshman, so prefer either freshman or sophomore at UH Manoa. All rooms are furnished and contact me through email for more information.",  "owner": "henry@gmail.com", "gradYear": "2024", "major": "Other"},
+    { "firstName": "Hannah", "lastName": "Green", "gender": "Female", "location": "Manoa", "avatar": "https://mk0qomafemocnned3wjh.kinstacdn.com/wp-content/uploads/2019/02/AI-thispersondoesnotexist.jpg", "description": "3 Beds & 2 Bathrooms. Looking for two more female roommates who wanna live in Manoa side near UH Manoa campus. All basic household items are furnished. For more information, contact me through email.",  "owner": "hannah@gmail.com", "gradYear": "2023", "major": "Other"}
+  ],
 
   "defaultPosts": [
     {

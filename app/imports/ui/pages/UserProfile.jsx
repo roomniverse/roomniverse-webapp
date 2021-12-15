@@ -8,7 +8,6 @@ import User from '../components/User';
 import { Users } from '../../api/user/User';
 import PostEvent from '../components/PostEvent';
 import { Posts } from '../../api/social/Posts';
-import Request from '../components/Request';
 import { Requests } from '../../api/social/Requests';
 
 class UserProfile extends React.Component {
@@ -29,26 +28,27 @@ class UserProfile extends React.Component {
           </div>
           <div style={{ marginTop: '20px' }}>
             {this.props.posts.slice(0).reverse().map((post) => <PostEvent
-                key={post._id}
-                post={post}
-                user={this.props.doc}
+              key={post._id}
+              post={post}
+              user={this.props.doc}
             />)}
           </div>
-        </Tab.Pane>
+        </Tab.Pane>,
       },
       {
         menuItem: 'Request',
         render: () => {
           const requests = this.props.userRequest.find((request) => request.owner === this.props.currentUser);
           return <Tab.Pane>
-              <Segment vertical>
-                <p>Location: {requests?.location}</p></Segment>
-              <Segment vertical>
-                <p>Description: {requests?.description}</p></Segment>
-          </Tab.Pane>
-        }
+            <Segment vertical>
+              <p>Location: {requests?.location}</p></Segment>
+            <Segment vertical>
+              <p>Description: {requests?.description}</p></Segment>
+          </Tab.Pane>;
+        },
       },
-    ]
+    ];
+
     return (
       <div className="white-theme profile">
         <Container id="userprofile-page">

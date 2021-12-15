@@ -33,19 +33,22 @@ class UserProfile extends React.Component {
               user={this.props.doc}
             />)}
           </div>
-        </Tab.Pane>,
+        </Tab.Pane>
       },
       {
         menuItem: 'Request',
         render: () => {
-          const requests = this.props.userRequest.find((request) => request.owner === this.props.currentUser);
-          return <Tab.Pane>
-            <Segment vertical>
-              <p>Location: {requests?.location}</p></Segment>
-            <Segment vertical>
-              <p>Description: {requests?.description}</p></Segment>
-          </Tab.Pane>;
-        },
+          const requests = this.props.userRequest.filter((request) => request.owner === this.props.currentUser);
+          return <Tab.Pane> {
+            requests.map((currentRequest, index) => {
+              <div key={index}>
+                <Segment>Location: {currentRequest?.location}</Segment>
+                <Segment>Description: {currentRequest?.description}</Segment>
+              </div>
+            })
+          }
+          </Tab.Pane>
+        }
       },
     ];
 

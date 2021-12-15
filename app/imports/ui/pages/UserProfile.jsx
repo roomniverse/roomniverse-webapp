@@ -1,6 +1,6 @@
 import React from 'react';
 import { Meteor } from 'meteor/meteor';
-import { Button, Container, Grid, Loader, Tab, Segment } from 'semantic-ui-react';
+import { Button, Container, Grid, Loader, Tab, Segment, Header } from 'semantic-ui-react';
 import { withTracker } from 'meteor/react-meteor-data';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
@@ -17,6 +17,7 @@ class UserProfile extends React.Component {
   }
 
   renderPage() {
+    const requestTabStyle = { padding: "10px 10px 10px 10px" };
     const panes = [
       {
         menuItem: 'Posts',
@@ -41,9 +42,13 @@ class UserProfile extends React.Component {
           const requests = this.props.userRequest.filter((request) => request.owner === this.props.currentUser);
           return <Tab.Pane> {
             requests.map((currentRequest, index) => {
-              <div key={index}>
-                <Segment>Location: {currentRequest?.location}</Segment>
-                <Segment>Description: {currentRequest?.description}</Segment>
+              return <div style={requestTabStyle} key={index}>
+                <Segment>
+                  <Header as='h4'>Request:</Header>
+                  <hr/>
+                  <p>Location: {currentRequest?.location}</p>
+                  <p>Description: {currentRequest?.description}</p>
+                </Segment>
               </div>
             })
           }

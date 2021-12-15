@@ -7,8 +7,8 @@ import { withTracker } from 'meteor/react-meteor-data';
 import PropTypes from 'prop-types';
 import SimpleSchema2Bridge from 'uniforms-bridge-simple-schema-2';
 // import { Link } from 'react-router-dom';
-import { Requests } from '../../api/social/Requests';
 import { Redirect } from 'react-router-dom';
+import { Requests } from '../../api/social/Requests';
 
 const bridge = new SimpleSchema2Bridge(Requests.schema);
 
@@ -32,7 +32,7 @@ class EditRequest extends React.Component {
           }
         });
     } else {
-      swal('Error', 'Only owner can edit it', 'error');
+      swal('Error', 'Only owner of the request can edit', 'error');
     }
   }
 
@@ -48,7 +48,7 @@ class EditRequest extends React.Component {
           }
         });
     } else {
-      swal('Error', `Only ${owner} can remove`, 'error');
+      swal('Error', 'Only owner of the request can close request', 'error');
     }
   }
 

@@ -17,8 +17,10 @@ class UserProfile extends React.Component {
     const panes = [
       {
         menuItem: 'Posts',
-        render: () => <Tab.Pane>hi</Tab.Pane>
-      },
+        render: () => <Tab.Pane></Tab.Pane>
+        // post collection function for user will display here
+      }
+      ,
       {
         menuItem: 'Request',
         render: () => {
@@ -35,7 +37,8 @@ class UserProfile extends React.Component {
       },
       {
         menuItem: 'Random',
-        render: () => <Tab.Pane>hi</Tab.Pane>
+        render: () => <Tab.Pane></Tab.Pane>
+        // extra tab for extra items later on.
       },
     ]
 
@@ -71,7 +74,8 @@ export default withTracker(() => {
   const userRequest = Requests.collection.find({}).fetch();
   const ready = subscription.ready();
   const currentUser = Meteor.user() ? Meteor.user().username : '';
-  console.log(`this is the current user: ${currentUser}`);
+  // test to see if the current user for profile is correct
+  // console.log(`this is the current user: ${currentUser}`);
   return {
     users,
     userRequest,

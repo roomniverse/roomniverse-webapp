@@ -20,6 +20,7 @@ import SearchResults from '../pages/SearchResults';
 import CreateProfile from '../pages/CreateProfile';
 import AddRequest from '../pages/AddRequest';
 import EditRequest from '../pages/EditRequest';
+import EditPost from '../pages/EditPost';
 
 /** Top-level layout component for this application. Called in imports/startup/client/startup.jsx. */
 class App extends React.Component {
@@ -44,6 +45,7 @@ class App extends React.Component {
               <ProtectedRoute path="/profile/:_id" component={Profile}/>
               <ProtectedRoute path="/editprofile/:_id" component={EditProfile}/>
               <ProtectedRoute path="/addpost" component={AddPost}/>
+              <ProtectedRoute path="/editpost" component={EditPost}/>
               <Route component={NotFound}/>
             </Switch>
           </div>

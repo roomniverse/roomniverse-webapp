@@ -23,32 +23,32 @@ class UserProfile extends React.Component {
         menuItem: 'Posts',
         render: () => <Tab.Pane>
           <div>
-            <Button id="addpost-button-profile" fluid as={Link} to='/add'>
+            <Button id="addpost-button-profile" fluid as={Link} to='/add' referer={`/profile/${this.props.doc._id}`}>
               Create a New Post
             </Button>
           </div>
           <div style={{ marginTop: '20px' }}>
             {this.props.posts.slice(0).reverse().map((post) => <PostEvent
-                key={post._id}
-                post={post}
-                user={this.props.doc}
+              key={post._id}
+              post={post}
+              user={this.props.doc}
             />)}
           </div>
-        </Tab.Pane>
+        </Tab.Pane>,
       },
       {
         menuItem: 'Request',
         render: () => {
           const requests = this.props.userRequest.find((request) => request.owner === this.props.currentUser);
           return <Tab.Pane>
-              <Segment vertical>
-                <p>Location: {requests?.location}</p></Segment>
-              <Segment vertical>
-                <p>Description: {requests?.description}</p></Segment>
-          </Tab.Pane>
-        }
+            <Segment vertical>
+              <p>Location: {requests?.location}</p></Segment>
+            <Segment vertical>
+              <p>Description: {requests?.description}</p></Segment>
+          </Tab.Pane>;
+        },
       },
-    ]
+    ];
     return (
       <div className="white-theme profile">
         <Container id="userprofile-page">
@@ -85,7 +85,7 @@ export default withTracker(({ match }) => {
   const postCollection = Posts.collection.find({ }).fetch();
   const posts = postCollection.filter((post) => post.owner === doc.owner);
   const userRequest = Requests.collection.find({}).fetch();
-  const currentUser = Meteor.user() ? Meteor.user().username : '';
+  const currentUser = Meteor.user().username === doc.owner ? Meteor.user().username : '';
   return {
     posts,
     ready,

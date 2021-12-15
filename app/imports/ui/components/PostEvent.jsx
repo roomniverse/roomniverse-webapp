@@ -1,7 +1,8 @@
 import React from 'react';
+import { Meteor } from 'meteor/meteor';
 import { Dropdown, Icon, Image, Segment } from 'semantic-ui-react';
 import PropTypes from 'prop-types';
-import { withRouter } from 'react-router-dom';
+import { NavLink, withRouter } from 'react-router-dom';
 
 class PostEvent extends React.Component {
   handleDate(date) {
@@ -72,11 +73,21 @@ class PostEvent extends React.Component {
               {summary}
               <div style={{ display: 'inline', float: 'right' }}>
                 {this.handleDate(date)}
-              <Dropdown
-                className='button icon'
-                floating
-                options={options}
-                trigger={<></>}/>
+                {this.props.user._id === Meteor.userId() || Meteor.user().role === 'admin' ? (
+                  <Dropdown
+                    id="edit-post-dropdown"
+                    direction="right"
+                    inline >
+                    <Dropdown.Menu>
+                      <Dropdown.Item
+                        id="edit-post-link"
+                        icon="edit"
+                        text="Edit Post"
+                      />
+                      <Dropdown.Item id="delete-post" icon="trash alternate outline" text="Delete"/>
+                    </Dropdown.Menu>
+                  </Dropdown>
+                ) : ''}
               </div>
             </Segment>
           </Segment.Group>

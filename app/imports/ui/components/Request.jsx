@@ -13,6 +13,8 @@ class Request extends React.Component {
           <Item.Header as='a' color='white'>{this.props.request.firstName} {this.props.request.lastName}</Item.Header>
           <Item.Description>
             <p>Gender: {this.props.request.gender}</p>
+            <p>Major: {this.props.request.major}</p>
+            <p>Graduation Year: {this.props.request.gradYear}</p>
             <p>Location: {this.props.request.location}</p>
             <p>{this.props.request.description}</p>
           </Item.Description>

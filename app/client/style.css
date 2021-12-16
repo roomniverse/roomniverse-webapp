@@ -136,3 +136,33 @@
 .button-style {
   margin-top: 10px;
 }
+
+#admin-three-lists {
+  margin-left: 50px;
+  margin-right: 50px;
+}
+
+#users-list-column {
+  overflow: auto;
+  max-height: 1000px;
+}
+
+.all-positioning {
+  margin-top: 12px;
+  margin-right: 10px;
+}
+
+#posts-list-column {
+  overflow: auto;
+  max-height: 1000px;
+  margin-left: 5px;
+  margin-right: 5px;
+}
+
+
+#requests-list-column {
+  overflow: auto;
+  max-height: 1000px;
+  margin-left: 5px;
+  margin-right: 5px;
+}

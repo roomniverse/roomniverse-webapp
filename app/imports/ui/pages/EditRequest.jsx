@@ -71,9 +71,9 @@ class EditRequest extends React.Component {
             <Header as="h2" textAlign="center">Edit Request</Header>
             <Segment>
               <AutoForm schema={bridge} onSubmit={data => this.submit(data)} model={this.props.doc}>
-                <TextField name='location'/>
-                <LongTextField name='description'/>
-                <SubmitField value='Submit'/>
+                <TextField id="editrequest-location" name='location'/>
+                <LongTextField id="editrequest-description" name='description'/>
+                <SubmitField id="editrequest-submit" value='Submit'/>
                 <ErrorsField/>
                 <HiddenField name='owner'/>
               </AutoForm>

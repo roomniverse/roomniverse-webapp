@@ -67,9 +67,9 @@ class AddRequest extends React.Component {
             <Header as="h2" textAlign="center">Add Request</Header>
             <Segment>
               <AutoForm schema={bridge} onSubmit={data => this.submit(data)}>
-                <TextField name='location'/>
-                <LongTextField name='description'/>
-                <SubmitField value='Submit'/>
+                <TextField id="addrequest-location" name='location'/>
+                <LongTextField id="addrequest-description" name='description'/>
+                <SubmitField id="addrequest-submit" value='Submit'/>
                 <ErrorsField/>
                 <HiddenField name='firstName' value={find.firstName}/>
                 <HiddenField name='lastName' value={find.lastName}/>

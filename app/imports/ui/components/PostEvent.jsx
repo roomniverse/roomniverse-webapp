@@ -1,4 +1,5 @@
 import React from 'react';
+import { Roles } from 'meteor/alanning:roles';
 import { Dropdown, Image, Segment } from 'semantic-ui-react';
 import PropTypes from 'prop-types';
 import { Link, Redirect, withRouter } from 'react-router-dom';
@@ -55,45 +56,19 @@ class PostEvent extends React.Component {
       });
   }
 
-  deleteModal(username) {
-    if (Meteor.user().username === username) {
-      swal('Are you sure you want to delete your post?', {
-        buttons: {
-          proceed: {
-            text: 'Yes',
-            value: 'Yes',
-          },
-          cancel: 'No',
-        },
-      })
-        .then((value) => {
-          switch (value) {
-
-          case 'Yes':
-            swal('Delete post').then(() => {
-              this.deletePost();
-            });
-            break;
-
-          default:
-            swal('Cancel deletion');
-            break;
+  deletePost = (username) => {
+    if (Meteor.user().username === username || Roles.userIsInRole(Meteor.userId(), 'admin')) {
+      Posts.collection.remove(this.props.post._id,
+        (error) => {
+          if (error) {
+            swal('Error', error.message, 'error');
+          } else {
+            this.setState({ redirectToReferer: true });
           }
         });
     } else {
       swal('Error', `Only user: ${this.props.user.firstName} ${this.props.user.lastName} can remove this post`, 'error');
     }
-  }
-
-  deletePost = () => {
-    Posts.collection.remove(this.props.post._id,
-      (error) => {
-        if (error) {
-          swal('Error', error.message, 'error');
-        } else {
-          this.setState({ redirectToReferer: true });
-        }
-      });
   }
 
   postDigest() {
@@ -126,7 +101,7 @@ class PostEvent extends React.Component {
                   id="delete-post"
                   icon="trash alternate outline"
                   text="Delete"
-                  onClick={() => this.deleteModal(this.props.user.owner, true)}/>
+                  onClick={() => this.deletePost(this.props.user.owner)}/>
               </Dropdown.Menu>
             </Dropdown>
           </div>

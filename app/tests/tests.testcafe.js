@@ -12,6 +12,7 @@ import { editRequestPage } from './editrequest.page';
 import { hubPage } from './hub.page';
 import { addpostPage } from './addpost.page';
 import { searchresultPage } from './searchresult.page';
+import { editpostPage } from './editpost.page';
 /* global fixture:false, test:false */
 
 /** Credentials for one of the sample users defined in settings.development.json. */
@@ -20,6 +21,8 @@ const firstTime = { username: 'jane@foo.com', password: 'changeme', firstname: '
 const searchword = 'John';
 const requestInfo = { location: 'Manoa', description: 'Looking for roommates' };
 const editRequestInfo = { location: 'Makiki', description: 'Also looking for roommates' };
+const addPostInfo = { text: 'Anyone wanna hangout with me at 4:30?', image: 'https://cdn.dribbble.com/users/491349/screenshots/10413494/hangout_01_4x.jpg' };
+const editPostInfo = { text: "Let's eet at Ala Moana center by 5:00", image: 'https://wpcdn.us-east-1.vip.tn-cloud.net/www.hawaiimagazine.com/content/uploads/2020/12/IMG_1677.jpg' };
 
 fixture('meteor-application-template-react localhost test with default db')
   .page('http://localhost:3000');
@@ -57,10 +60,20 @@ test('Test that hubpage, searchresultpage and addpostpage work', async (testCont
   await signinPage.signin(testController, credentials.username, credentials.password);
   await navBar.isLoggedIn(testController, credentials.username);
   await hubPage.isDisplayed(testController);
+  await hubPage.gotoAddPost(testController);
+  await addpostPage.isDisplayed(testController);
+  await addpostPage.submitPost(testController, addPostInfo.text, addPostInfo.image);
+  await hubPage.isDisplayed(testController);
+  await hubPage.gotoEditPost(testController);
+  await editpostPage.isDisplayed(testController);
+  await editpostPage.submitPost(testController, editPostInfo.text, editPostInfo.image);
+  await hubPage.isDisplayed(testController);
+  await hubPage.deletePost(testController);
+  await hubPage.isDisplayed(testController);
+
   await searchresultPage.typeSearchword(testController, searchword);
   await searchresultPage.isDisplayed(testController);
   await navBar.gotoHubPage(testController);
-  await addpostPage.isDisplayed(testController);
 });
 
 test('Test that signin, findroommate, addrequest, and editrequest showing up correctly', async (testController) => {

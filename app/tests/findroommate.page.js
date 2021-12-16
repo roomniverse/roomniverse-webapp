@@ -17,9 +17,9 @@ class FindRoommatePage {
     await testController.click('#findroommate-addrequest');
   }
 
-  /** Asserts that AddRequest is correctly functioning. */
-  async gotoEditRequest(testController) {
-    await testController.click('#findroommate-editrequest');
+  /** Asserts that gotoEditRequest properly directs to EditRequest. */
+  async gotoEditRequest(testController, username) {
+    await testController.click(`#findroommate-editrequest-${username}`);
   }
 }
 

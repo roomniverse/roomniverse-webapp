@@ -28,7 +28,8 @@ class Request extends React.Component {
           </Item.Description>
           <Item.Extra>
             <Link to={`/profile/${user._id}`}>Link to the profile</Link>
-            <Link id="findroommate-editrequest" to={`/edit/${this.props.request._id}`}>Edit</Link>
+            <Link id={`findroommate-editrequest-${this.props.request.owner}`} to={`/edit/${this.props.request._id}`}>Edit</Link>
+            {console.log(this.props.request.owner)}
           </Item.Extra>
         </Item.Content>
       </Item>

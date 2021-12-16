@@ -83,6 +83,7 @@ class CreateProfile extends React.Component {
   }
 }
 
+// Declare the type of all properties.
 CreateProfile.propTypes = {
   location: PropTypes.object,
 };

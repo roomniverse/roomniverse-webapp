@@ -1,5 +1,4 @@
 import { Meteor } from 'meteor/meteor';
-// import { Roles } from 'meteor/alanning:roles';
 import { Posts } from '../../api/social/Posts';
 import { Users } from '../../api/user/User';
 import { Requests } from '../../api/social/Requests';
@@ -15,13 +14,7 @@ Meteor.publish(Users.userPublicationName, () => Users.collection.find());
 
 // Admin-level publication.
 // If logged in and with admin role, then publish all documents from all users. Otherwise publish nothing.
-
-/* Meteor.publish(Posts.adminPublicationName, function () {
-  if (this.userId && Roles.userIsInRole(this.userId, 'admin')) {
-    return Posts.collection.find();
-  }
-  return this.ready();
-}); */
+// Not implemented.
 
 // alanning:roles publication
 // Recommended code to publish roles for each user.

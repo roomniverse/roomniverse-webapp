@@ -12,7 +12,7 @@ import { Posts } from '../../api/social/Posts';
 
 const bridge = new SimpleSchema2Bridge(Posts.schema);
 
-/** Renders a page to ceate a new instance of the Post Collection. */
+/** Renders a page to create a new instance of the Post Collection. */
 class AddPost extends React.Component {
   constructor(props) {
     super(props);
@@ -81,6 +81,7 @@ class AddPost extends React.Component {
   }
 }
 
+// Declare the types of all properties.
 AddPost.propTypes = {
   location: PropTypes.object,
   users: PropTypes.array.isRequired,

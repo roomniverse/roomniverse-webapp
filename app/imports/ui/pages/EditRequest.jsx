@@ -7,13 +7,12 @@ import { Meteor } from 'meteor/meteor';
 import { withTracker } from 'meteor/react-meteor-data';
 import PropTypes from 'prop-types';
 import SimpleSchema2Bridge from 'uniforms-bridge-simple-schema-2';
-// import { Link } from 'react-router-dom';
 import { Redirect } from 'react-router-dom';
 import { Requests } from '../../api/social/Requests';
 
 const bridge = new SimpleSchema2Bridge(Requests.schema);
 
-/** Renders the Page for editing a single document. */
+/** Renders the page for editing a single Request. */
 class EditRequest extends React.Component {
   constructor(props) {
     super(props);
@@ -87,7 +86,7 @@ class EditRequest extends React.Component {
   }
 }
 
-// Require the presence of a Stuff document in the props object. Uniforms adds 'model' to the props, which we use.
+// Declare the types of all properties.
 EditRequest.propTypes = {
   location: PropTypes.object,
   doc: PropTypes.object,
@@ -99,7 +98,7 @@ EditRequest.propTypes = {
 export default withTracker(({ match }) => {
   // Get the documentID from the URL field. See imports/ui/layouts/App.jsx for the route containing :_id.
   const documentId = match.params._id;
-  // Get access to Stuff documents.
+  // Get access to Requests documents.
   const subscription = Meteor.subscribe(Requests.userPublicationName);
   // Determine if the subscription is ready
   const ready = subscription.ready();

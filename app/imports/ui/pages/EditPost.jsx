@@ -64,11 +64,11 @@ class EditPost extends React.Component {
         <Container>
           <Header as="h2" textAlign="center">Edit Your Post</Header>
           <AutoForm schema={bridge} onSubmit={(data) => this.submit(data)} label={false} model={this.props.post}>
-            <LongTextField name="extraText" defaultValue={this.state.textValue}/>
-            <TextField name='extraImages' placeholder='Please enter a URL of image'/>
+            <LongTextField id='editpost-text' name="extraText" defaultValue={this.state.textValue}/>
+            <TextField id='editpost-image' name='extraImages' placeholder='Please enter a URL of image'/>
             <br/>
             <div>
-              <SubmitField value='Submit'/>
+              <SubmitField id='editpost-submit' value='Submit'/>
               <Button style={{ marginLeft: '10px' }} as={Link} to='/hub'>
                 Cancel
               </Button>

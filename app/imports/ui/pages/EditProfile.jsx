@@ -50,13 +50,13 @@ class EditProfile extends React.Component {
             <Header as="h2" textAlign="center">Edit Profile</Header>
             <AutoForm schema={bridge} onSubmit={data => this.submit(data)} model={this.props.doc}>
               <Segment>
-                <TextField name='firstName'/>
-                <TextField name='lastName'/>
+                <TextField id='editprofile-first-name' name='firstName'/>
+                <TextField id='editprofile-last-name' name='lastName'/>
                 <SelectField name='gender'/>
                 <SelectField name='major'/>
-                <TextField name='gradYear'/>
-                <TextField name='avatar'/>
-                <SubmitField value='Submit'/>
+                <TextField id='editprofile-grad-year' name='gradYear'/>
+                <TextField id='editprofile-avatar' name='avatar'/>
+                <SubmitField id='editprofile-submit' value='Submit'/>
                 <ErrorsField/>
                 <HiddenField name='owner'/>
               </Segment>

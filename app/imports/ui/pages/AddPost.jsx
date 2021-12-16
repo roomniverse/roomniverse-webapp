@@ -61,11 +61,11 @@ class AddPost extends React.Component {
             <HiddenField name="meta" value={meta}/>
             <HiddenField name="summary" value={summary}/>
             <HiddenField name="owner" value={owner}/>
-            <LongTextField name="extraText" placeholder="What's on your mind?"/>
-            <TextField name='extraImages' placeholder='Please enter a URL of image'/>
+            <LongTextField id='addpost-text' name="extraText" placeholder="What's on your mind?"/>
+            <TextField id='addpost-image' name='extraImages' placeholder='Please enter a URL of image'/>
             <br/>
             <div>
-              <SubmitField value='Submit'/>
+              <SubmitField id='addpost-submit' value='Submit'/>
               <Button style={{ marginLeft: '10px' }} as={Link} to='/hub'>
                 Cancel
               </Button>

@@ -17,7 +17,7 @@ class EditPost extends React.Component {
     super(props);
     this.state = {
       redirectToReferer: false,
-      textValue: "",
+      textValue: '',
       imageValue: [],
     };
   }
@@ -51,7 +51,7 @@ class EditPost extends React.Component {
     }
 
     const { textValue, imageValue } = { textValue: this.props.post.extraText, imageValue: this.props.post.extraImages };
-    this.state = { textValue, imageValue };
+    this.setState({ textValue, imageValue });
     return (
       <div id="editpost-page" className="white-theme page-padding">
         <Container>
@@ -83,6 +83,7 @@ EditPost.propTypes = {
   ready: PropTypes.bool.isRequired,
   post: PropTypes.object,
   user: PropTypes.object,
+  userCollection: PropTypes.array,
 };
 
 export default withTracker(({ match }) => {

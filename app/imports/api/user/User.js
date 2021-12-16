@@ -39,6 +39,5 @@ class UsersCollection {
 
 /**
  * The singleton instance of the StuffsCollection.
- * @type {StuffsCollection}
  */
 export const Users = new UsersCollection();

@@ -39,7 +39,7 @@ class EditProfile extends React.Component {
 
   // Render the form. Use Uniforms: https://github.com/vazco/uniforms
   renderPage() {
-    const { from } = this.props.location.state || { from: { pathname: `/profile/${this.props.doc._id}` } };
+    const { from } = this.props.location.state || { from: { pathname: `/profile/${this.props.user._id}` } };
     // if correct authentication, redirect to page instead of login screen
     if (this.state.redirectToReferer) {
       return <Redirect to={from}/>;
@@ -49,7 +49,7 @@ class EditProfile extends React.Component {
         <Grid id="editprofile-page" container centered>
           <Grid.Column>
             <Header as="h2" textAlign="center">Edit Profile</Header>
-            <AutoForm schema={bridge} onSubmit={data => this.submit(data)} model={this.props.doc}>
+            <AutoForm schema={bridge} onSubmit={data => this.submit(data)} model={this.props.user}>
               <Segment>
                 <TextField name='firstName'/>
                 <TextField name='lastName'/>

@@ -4,9 +4,9 @@ import PropTypes from 'prop-types';
 import { Link, Redirect, withRouter } from 'react-router-dom';
 import { Meteor } from 'meteor/meteor';
 import swal from 'sweetalert';
+import { withTracker } from 'meteor/react-meteor-data';
 import { Posts } from '../../api/social/Posts';
 import { Users } from '../../api/user/User';
-import { withTracker } from 'meteor/react-meteor-data';
 
 class PostEvent extends React.Component {
   constructor() {
@@ -45,21 +45,21 @@ class PostEvent extends React.Component {
   }
 
   handleMeta(e, data) {
-    console.log(e)
-    console.log(data)
+    console.log(e);
+    console.log(data);
     this.props.post.update(this.props.post._id, { $inc: { meta: this.props.post.meta + 1 } },
       (error) => {
         if (error) {
           swal('Error', error.message, 'error');
         }
-    });
+      });
   }
 
   deleteModal(_id) {
     if (Meteor.userId() === _id) {
       swal({
-        title: "Are you sure you want to delete your post?",
-        text: "This action may be unrecoverable",
+        title: 'Are you sure you want to delete your post?',
+        text: 'This action may be unrecoverable',
         showDenyButton: true,
         confirmButtonText: 'Yes',
         denyButtonText: 'No',
@@ -76,12 +76,12 @@ class PostEvent extends React.Component {
   deletePost = () => {
     Posts.collection.remove(this.props.post._id,
       (error) => {
-      if (error) {
-        swal('Error', error.message, 'error');
-      } else {
-        this.setState({ redirectToReferer: true });
-      }
-    });
+        if (error) {
+          swal('Error', error.message, 'error');
+        } else {
+          this.setState({ redirectToReferer: true });
+        }
+      });
   }
 
   postDigest() {
@@ -120,7 +120,7 @@ class PostEvent extends React.Component {
           </div>
         </Segment>
       </Segment.Group>
-    )
+    );
   }
 
   segmentFooter() {
@@ -147,9 +147,6 @@ class PostEvent extends React.Component {
     // if correct authentication, redirect to page instead of login screen
     if (this.state.redirectToReferer) {
       return <Redirect to={from}/>;
-    }
-    if (this.state.redirect) {
-      return
     }
 
     if (this.props.post.extraText && this.props.post.extraImages) {

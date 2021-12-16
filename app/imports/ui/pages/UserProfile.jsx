@@ -17,7 +17,7 @@ class UserProfile extends React.Component {
   }
 
   renderPage() {
-    const requestTabStyle = { padding: "10px 10px 10px 10px" };
+    const requestTabStyle = { padding: '10px 10px 10px 10px' };
     const posts = this.props.postCollection.filter((post) => post.owner === this.props.doc.owner);
 
     const panes = [
@@ -43,19 +43,17 @@ class UserProfile extends React.Component {
         render: () => {
           const requests = this.props.userRequest.filter((request) => request.owner === this.props.currentUser);
           return <Tab.Pane> {
-            requests.map((currentRequest, index) => {
-              return <div style={requestTabStyle} key={index}>
-                <Segment>
-                  <Header as='h4'>Request:</Header>
-                  <hr/>
-                  <p>Location: {currentRequest?.location}</p>
-                  <p>Description: {currentRequest?.description}</p>
-                </Segment>
-              </div>
-            })
+            requests.map((currentRequest, index) => <div style={requestTabStyle} key={index}>
+              <Segment>
+                <Header as='h4'>Request:</Header>
+                <hr/>
+                <p>Location: {currentRequest?.location}</p>
+                <p>Description: {currentRequest?.description}</p>
+              </Segment>
+            </div>)
           }
-          </Tab.Pane>
-        }
+          </Tab.Pane>;
+        },
       },
     ];
 

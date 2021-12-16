@@ -5,12 +5,13 @@ import { Requests } from '../../api/social/Requests';
 
 /* eslint-disable no-console */
 
-// Initialize the database with a default data document.
+// Initialize the database with a default posts document.
 function addData(data) {
   console.log(`  Adding: Data for (${data.owner})`);
   Posts.collection.insert(data);
 }
 
+// Initialize the database with a default profiles document.
 function addProfile(data) {
   console.log(`  Adding Profile: ${data.lastName} (${data.owner})`);
   Users.collection.insert(data);
@@ -22,7 +23,7 @@ function addRequests(data) {
   Requests.collection.insert(data);
 }
 
-// Initialize the StuffsCollection if empty.
+// Initialize the PostsCollection if empty.
 if (Posts.collection.find().count() === 0) {
   if (Meteor.settings.defaultPosts) {
     console.log('Creating default data.');
@@ -30,6 +31,7 @@ if (Posts.collection.find().count() === 0) {
   }
 }
 
+// Initialize the UsersCollection if empty.
 if (Users.collection.find().count() === 0) {
   if (Meteor.settings.defaultProfileData) {
     console.log('Creating default profile data.');

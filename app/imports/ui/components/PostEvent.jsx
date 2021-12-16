@@ -9,6 +9,8 @@ import { withTracker } from 'meteor/react-meteor-data';
 import { Posts } from '../../api/social/Posts';
 import { Users } from '../../api/user/User';
 
+/** Renders a single post item. See pages/Hub.jsx.
+ */
 class PostEvent extends React.Component {
   constructor() {
     super();
@@ -168,6 +170,7 @@ class PostEvent extends React.Component {
   }
 }
 
+// Declare the types of all properties.
 PostEvent.propTypes = {
   location: PropTypes.object,
   post: PropTypes.object.isRequired,
@@ -176,10 +179,12 @@ PostEvent.propTypes = {
   posts: PropTypes.array,
 };
 
+// withTracker connects Meteor data to React components. https://guide.meteor.com/react.html#using-withTracker
 const PostTracker = withTracker(() => ({
   subscription: Meteor.subscribe(Users.userPublicationName) && Meteor.subscribe(Posts.userPublicationName),
   users: Users.collection.find({}).fetch(),
   posts: Posts.collection.find({}).fetch(),
 }))(PostEvent);
 
+// Enable ReactRouter for this component. https://reacttraining.com/react-router/web/api/withRouter
 export default withRouter(PostTracker);

@@ -10,6 +10,7 @@ import PostEvent from '../components/PostEvent';
 import { Requests } from '../../api/social/Requests';
 import Request from '../components/Request';
 
+/** Renders a page to display the Users, Posts, and Requests Collections with admin permissions. */
 class AdminPage extends React.Component {
 
   render() {
@@ -70,6 +71,7 @@ class AdminPage extends React.Component {
   }
 }
 
+// Declare the types of all properties.
 AdminPage.propTypes = {
   ready: PropTypes.bool.isRequired,
   users: PropTypes.array.isRequired,
@@ -77,6 +79,7 @@ AdminPage.propTypes = {
   requests: PropTypes.array.isRequired,
 };
 
+// withTracker connects Meteor data to React components. https://guide.meteor.com/react.html#using-withTracker
 export default withTracker(() => {
   // Get access to users, posts, and requests documents.
   const subscription =

@@ -6,7 +6,7 @@ import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import { withTracker } from 'meteor/react-meteor-data';
 
-/** Renders a single row in the List Stuff table. See pages/ListStuff.jsx. */
+/** Renders a single user card. See pages/UserProfile.jsx. */
 class User extends React.Component {
 
   render() {
@@ -40,7 +40,7 @@ class User extends React.Component {
   }
 }
 
-// Require a document to be passed to this component.
+// Declare the types of all properties.
 User.propTypes = {
   user: PropTypes.object.isRequired,
   currentUser: PropTypes.string.isRequired,

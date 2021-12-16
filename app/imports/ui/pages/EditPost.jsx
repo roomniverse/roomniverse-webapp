@@ -12,6 +12,7 @@ import { Users } from '../../api/user/User';
 
 const bridge = new SimpleSchema2Bridge(Posts.schema);
 
+/** Renders a page to edit an instance of the Post Collection. */
 class EditPost extends React.Component {
   constructor(props) {
     super(props);
@@ -81,6 +82,7 @@ class EditPost extends React.Component {
   }
 }
 
+// Declare the types of all properties.
 EditPost.propTypes = {
   location: PropTypes.object,
   docId: PropTypes.string.isRequired,
@@ -90,6 +92,7 @@ EditPost.propTypes = {
   userCollection: PropTypes.array,
 };
 
+// withTracker connects Meteor data to React components. https://guide.meteor.com/react.html#using-withTracker
 export default withTracker(({ match }) => {
   const docId = match.params._id;
   const subscription = Meteor.subscribe(Posts.userPublicationName) && Meteor.subscribe(Users.userPublicationName);

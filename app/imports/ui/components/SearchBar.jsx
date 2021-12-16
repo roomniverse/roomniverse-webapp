@@ -3,6 +3,9 @@ import { escapeRegExp, map } from 'lodash';
 import { Search } from 'semantic-ui-react';
 import { Users } from '../../api/user/User';
 
+/**
+ * Renders a search bar to search content. /components/NavBar.jsx.
+ */
 const users = Users.collection.find();
 const initState = {
   loading: false,

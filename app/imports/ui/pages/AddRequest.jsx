@@ -4,30 +4,15 @@ import { Grid, Segment, Header, Loader } from 'semantic-ui-react';
 import { AutoForm, ErrorsField, LongTextField, SubmitField, TextField, HiddenField } from 'uniforms-semantic';
 import swal from 'sweetalert';
 import SimpleSchema2Bridge from 'uniforms-bridge-simple-schema-2';
-// import SimpleSchema from 'simpl-schema';
 import PropTypes from 'prop-types';
 import { withTracker } from 'meteor/react-meteor-data';
 import { Redirect } from 'react-router-dom';
 import { Users } from '../../api/user/User';
 import { Requests } from '../../api/social/Requests';
 
-// import { Link } from 'react-router-dom';
-
-/* const formSchema = new SimpleSchema({
-  firstName: String,
-  lastName: String,
-  gender: {
-    type: String,
-    allowedValues: ['Male', 'Female', 'Other'],
-  },
-  location: String,
-  avatar: String,
-  description: String,
-}); */
-
 const bridge = new SimpleSchema2Bridge(Requests.schema);
 
-/** Renders a table containing all of the Stuff documents. Use <StuffItem> to render each row. */
+/** Renders a page to create a new instance of the Request Collection. */
 class AddRequest extends React.Component {
   constructor(props) {
     super(props);
@@ -59,7 +44,6 @@ class AddRequest extends React.Component {
       return <Redirect to={from}/>;
     }
     const find = this.props.users.find((user) => user.owner === Meteor.user().username);
-    // let fRef = null;
     return (
       <div id="addrequest-page" className="white-theme page-padding">
         <Grid container centered>
@@ -87,13 +71,14 @@ class AddRequest extends React.Component {
   }
 }
 
-// Require an array of Stuff documents in the props.
+// Declare the types of all properties.
 AddRequest.propTypes = {
   location: PropTypes.object,
   ready: PropTypes.bool.isRequired,
   users: PropTypes.array.isRequired,
 };
 
+// withTracker connects Meteor data to React components. https://guide.meteor.com/react.html#using-withTracker
 export default withTracker(() => {
   const subscription = Meteor.subscribe(Users.userPublicationName);
   const ready = subscription.ready();

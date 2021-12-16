@@ -23,6 +23,7 @@ const requestInfo = { location: 'Manoa', description: 'Looking for roommates' };
 const editRequestInfo = { location: 'Makiki', description: 'Also looking for roommates' };
 const addPostInfo = { text: 'Anyone wanna hangout with me at 4:30?', image: 'https://cdn.dribbble.com/users/491349/screenshots/10413494/hangout_01_4x.jpg' };
 const editPostInfo = { text: "Let's eet at Ala Moana center by 5:00", image: 'https://wpcdn.us-east-1.vip.tn-cloud.net/www.hawaiimagazine.com/content/uploads/2020/12/IMG_1677.jpg' };
+const editProfileInfo = { firstName: 'Joseph', lastName: 'Maxwell', gradYaer: '2023', avatar: 'https://petapixel.com/assets/uploads/2019/02/download-4-800x800.jpeg' };
 
 fixture('meteor-application-template-react localhost test with default db')
   .page('http://localhost:3000');
@@ -52,7 +53,25 @@ test('Test that editprofilepage and userprofilepage work', async (testController
   await navBar.isLoggedIn(testController, credentials.username);
   await navBar.gotoUserprofilePage(testController);
   await userprofilePage.isDisplayed(testController);
+  await userprofilePage.gotoEditProfile(testController);
   await editprofilePage.isDisplayed(testController);
+  await editprofilePage.submitProfile(testController, editProfileInfo.firstName, editProfileInfo.lastName, editProfileInfo.gradYaer, editProfileInfo.avatar);
+  await userprofilePage.isDisplayed(testController);
+
+  await userprofilePage.gotoAddPost(testController);
+  await addpostPage.isDisplayed(testController);
+  await addpostPage.submitPost(testController, addPostInfo.text, addPostInfo.image);
+  await navBar.gotoUserprofilePage(testController);
+  await userprofilePage.isDisplayed(testController);
+
+  await userprofilePage.gotoEditPost(testController);
+  await editpostPage.submitPost(testController, editPostInfo.text, editPostInfo.image);
+  await navBar.gotoUserprofilePage(testController);
+  await userprofilePage.isDisplayed(testController);
+
+  await userprofilePage.deletePost(testController);
+  await navBar.gotoUserprofilePage(testController);
+  await userprofilePage.isDisplayed(testController);
 });
 
 test('Test that hubpage, searchresultpage and addpostpage work', async (testController) => {

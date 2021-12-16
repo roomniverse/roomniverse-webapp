@@ -4,9 +4,9 @@ import PropTypes from 'prop-types';
 import { Link, Redirect, withRouter } from 'react-router-dom';
 import { Meteor } from 'meteor/meteor';
 import swal from 'sweetalert';
+import { withTracker } from 'meteor/react-meteor-data';
 import { Posts } from '../../api/social/Posts';
 import { Users } from '../../api/user/User';
-import { withTracker } from 'meteor/react-meteor-data';
 
 class PostEvent extends React.Component {
   constructor() {
@@ -45,29 +45,42 @@ class PostEvent extends React.Component {
   }
 
   handleMeta(e, data) {
-    console.log(e)
-    console.log(data)
+    console.log(e);
+    console.log(data);
     this.props.post.update(this.props.post._id, { $inc: { meta: this.props.post.meta + 1 } },
       (error) => {
         if (error) {
           swal('Error', error.message, 'error');
         }
-    });
+      });
   }
 
-  deleteModal(_id) {
-    if (Meteor.userId() === _id) {
-      swal({
-        title: "Are you sure you want to delete your post?",
-        text: "This action may be unrecoverable",
-        showDenyButton: true,
-        confirmButtonText: 'Yes',
-        denyButtonText: 'No',
-      }).then((result) => {
-        if (result.isConfirmed) {
-          this.deletePost();
-        }
-      });
+  deleteModal(username) {
+    if (Meteor.user().username === username) {
+      swal('Are you sure you want to delete your post?', {
+        buttons: {
+          proceed: {
+            text: 'Yes',
+            value: 'Yes',
+          },
+          cancel: 'No',
+        },
+      })
+        .then((value) => {
+          switch (value) {
+
+          case 'Yes':
+            swal('Delete post').then(() => {
+              this.deletePost();
+            });
+            break;
+
+          default:
+            swal('Cancel deletion');
+            break;
+          }
+        });
+
     } else {
       swal('Error', `Only user: ${this.props.user.firstName} ${this.props.user.lastName} can remove this post`, 'error');
     }
@@ -76,12 +89,12 @@ class PostEvent extends React.Component {
   deletePost = () => {
     Posts.collection.remove(this.props.post._id,
       (error) => {
-      if (error) {
-        swal('Error', error.message, 'error');
-      } else {
-        this.setState({ redirectToReferer: true });
-      }
-    });
+        if (error) {
+          swal('Error', error.message, 'error');
+        } else {
+          this.setState({ redirectToReferer: true });
+        }
+      });
   }
 
   postDigest() {
@@ -114,13 +127,13 @@ class PostEvent extends React.Component {
                   id="delete-post"
                   icon="trash alternate outline"
                   text="Delete"
-                  onClick={() => this.deleteModal(this.props.user._id, true)}/>
+                  onClick={() => this.deleteModal(this.props.user.owner, true)}/>
               </Dropdown.Menu>
             </Dropdown>
           </div>
         </Segment>
       </Segment.Group>
-    )
+    );
   }
 
   segmentFooter() {
@@ -149,7 +162,7 @@ class PostEvent extends React.Component {
       return <Redirect to={from}/>;
     }
     if (this.state.redirect) {
-      return
+      return '';
     }
 
     if (this.props.post.extraText && this.props.post.extraImages) {
@@ -167,7 +180,8 @@ class PostEvent extends React.Component {
           {this.segmentFooter()}
         </Segment.Group>
       );
-    } if (!this.props.post.extraText && this.props.post.extraImages) {
+    }
+    if (!this.props.post.extraText && this.props.post.extraImages) {
       return (
         <Segment.Group piled stacked>
           {this.postDigest()}
@@ -177,7 +191,8 @@ class PostEvent extends React.Component {
           {this.segmentFooter()}
         </Segment.Group>
       );
-    } if (this.props.post.extraText) {
+    }
+    if (this.props.post.extraText) {
       return (
         <Segment.Group piled stacked>
           {this.postDigest()}
@@ -211,6 +226,7 @@ PostEvent.propTypes = {
 };
 
 const PostTracker = withTracker(() => ({
+  subscription: Meteor.subscribe(Users.userPublicationName) && Meteor.subscribe(Posts.userPublicationName),
   users: Users.collection.find({}).fetch(),
   posts: Posts.collection.find({}).fetch(),
 }))(PostEvent);

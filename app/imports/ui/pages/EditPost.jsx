@@ -17,24 +17,29 @@ class EditPost extends React.Component {
     super(props);
     this.state = {
       redirectToReferer: false,
-      textValue: "",
+      textValue: '',
       imageValue: [],
     };
   }
 
   submit(data) {
-    if (!data.extraText && !data.extraImages) {
-      swal('Error', 'Please upload images or write something.', 'error');
+    const { owner } = data;
+    if (Meteor.user().username === owner) {
+      if (!data.extraText && !data.extraImages) {
+        swal('Error', 'Please upload images or write something.', 'error');
+      } else {
+        const { extraText, extraImages } = data;
+        Posts.collection.update(this.props.docId, { $set: { extraText, extraImages } },
+          (error) => {
+            if (error) {
+              swal('Error', error.message, 'error');
+            } else {
+              this.setState({ redirectToReferer: true });
+            }
+          });
+      }
     } else {
-      const { extraText, extraImages } = data;
-      Posts.collection.update(this.props.docId, { $set: { extraText, extraImages } },
-        (error) => {
-          if (error) {
-            swal('Error', error.message, 'error');
-          } else {
-            this.setState({ redirectToReferer: true });
-          }
-        });
+      swal('Error', 'Only owner can remove this post', 'error');
     }
   }
 
@@ -44,13 +49,14 @@ class EditPost extends React.Component {
 
   renderPage() {
     const { from } = this.props.location.state || { from: { pathname: '/hub' } };
-    this.user = this.props.userCollection.find((datum) => datum._id === Meteor.userId());
-    if (this.user._id !== Meteor.userId()) this.setState({ redirectToReferer: true });
+    this.user = this.props.userCollection.find((datum) => datum.owner === Meteor.user().username);
+    if (this.user.owner !== Meteor.user().username) this.setState({ redirectToReferer: true });
     if (this.state.redirectToReferer) {
       return <Redirect to={from}/>;
     }
 
     const { textValue, imageValue } = { textValue: this.props.post.extraText, imageValue: this.props.post.extraImages };
+    // eslint-disable-next-line react/no-direct-mutation-state
     this.state = { textValue, imageValue };
     return (
       <div id="editpost-page" className="white-theme page-padding">
@@ -83,6 +89,7 @@ EditPost.propTypes = {
   ready: PropTypes.bool.isRequired,
   post: PropTypes.object,
   user: PropTypes.object,
+  userCollection: PropTypes.array,
 };
 
 export default withTracker(({ match }) => {

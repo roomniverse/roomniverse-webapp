@@ -2,6 +2,9 @@ import { Mongo } from 'meteor/mongo';
 import SimpleSchema from 'simpl-schema';
 import { Tracker } from 'meteor/tracker';
 
+/**
+ * The PostsCollection. It encapsulates state and variable values for post.
+ */
 class PostsCollection {
   constructor() {
     this.name = 'PostsCollection';
@@ -31,8 +34,10 @@ class PostsCollection {
     }, { tracker: Tracker });
     this.collection.attachSchema(this.schema);
     this.userPublicationName = `${this.name}.publication.username`;
-    // this.adminPublicationName = `${this.name}.publication.admin`;
   }
 }
 
+/**
+ * The singleton instance of the PostsCollection.
+ */
 export const Posts = new PostsCollection();

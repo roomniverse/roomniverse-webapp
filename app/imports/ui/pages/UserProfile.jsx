@@ -10,6 +10,10 @@ import PostEvent from '../components/PostEvent';
 import { Posts } from '../../api/social/Posts';
 import { Requests } from '../../api/social/Requests';
 
+/**
+ * Renders a page for the Users collection, Posts Collection,
+ * and Requests Collection to display for the specific User.
+ */
 class UserProfile extends React.Component {
 
   render() {
@@ -76,6 +80,7 @@ class UserProfile extends React.Component {
   }
 }
 
+// Declare the types of all properties.
 UserProfile.propTypes = {
   postCollection: PropTypes.array.isRequired,
   ready: PropTypes.bool.isRequired,
@@ -84,6 +89,7 @@ UserProfile.propTypes = {
   currentUser: PropTypes.string.isRequired,
 };
 
+// withTracker connects Meteor data to React components. https://guide.meteor.com/react.html#using-withTracker
 export default withTracker(({ match }) => {
   const documentId = match.params._id;
   const subscription = Meteor.subscribe(Posts.userPublicationName) && Meteor.subscribe(Users.userPublicationName) && Meteor.subscribe(Requests.userPublicationName);

@@ -11,7 +11,7 @@ import { Users } from '../../api/user/User';
 
 const bridge = new SimpleSchema2Bridge(Users.schema);
 
-/** Renders the Page for editing a single document. */
+/** Renders the Page for editing a single User Profile document. */
 class EditProfile extends React.Component {
   constructor(props) {
     super(props);
@@ -68,7 +68,7 @@ class EditProfile extends React.Component {
   }
 }
 
-// Require the presence of a Stuff document in the props object. Uniforms adds 'model' to the props, which we use.
+// Declare the types of all properties.
 EditProfile.propTypes = {
   location: PropTypes.object,
   doc: PropTypes.object,
@@ -80,7 +80,7 @@ EditProfile.propTypes = {
 export default withTracker(({ match }) => {
   // Get the documentID from the URL field. See imports/ui/layouts/App.jsx for the route containing :_id.
   const documentId = match.params._id;
-  // Get access to Stuff documents.
+  // Get access to Users documents.
   const subscription = Meteor.subscribe(Users.userPublicationName);
   // Determine if the subscription is ready
   const ready = subscription.ready();

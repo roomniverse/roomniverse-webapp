@@ -6,7 +6,7 @@ import { withRouter, Link } from 'react-router-dom';
 import { withTracker } from 'meteor/react-meteor-data';
 import { Users } from '../../api/user/User';
 
-/** Renders a single row in the List Stuff table. See pages/ListStuff.jsx. */
+/** Renders a single request item. See pages/FindRoommate.jsx. */
 class Request extends React.Component {
   render() {
     return (this.props.ready) ? this.renderComponent() : <Loader active>Getting data</Loader>;
@@ -36,13 +36,14 @@ class Request extends React.Component {
   }
 }
 
-// Require a document to be passed to this component.
+// Declare the types of all properties.
 Request.propTypes = {
   request: PropTypes.object.isRequired,
   users: PropTypes.array.isRequired,
   ready: PropTypes.bool.isRequired,
 };
 
+// withTracker connects Meteor data to React components. https://guide.meteor.com/react.html#using-withTracker
 const RequestTracker = withTracker(() => {
   const subscription = Meteor.subscribe(Users.userPublicationName);
   const ready = subscription.ready();

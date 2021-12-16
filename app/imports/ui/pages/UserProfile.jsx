@@ -25,7 +25,7 @@ class UserProfile extends React.Component {
         menuItem: 'Posts',
         render: () => <Tab.Pane>
           <div>
-            <Button id="addpost-button-profile" fluid as={Link} to='/add' referer={`/profile/${this.props.doc._id}`}>
+            <Button id="addpost-button-profile" fluid as={Link} to='/addpost' referer={`/profile/${this.props.doc._id}`}>
               Create a New Post
             </Button>
           </div>

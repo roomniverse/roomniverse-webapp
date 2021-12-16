@@ -1,5 +1,5 @@
 import React from 'react';
-import { Dropdown, Icon, Image, Segment } from 'semantic-ui-react';
+import { Dropdown, Image, Segment } from 'semantic-ui-react';
 import PropTypes from 'prop-types';
 import { Link, Redirect, withRouter } from 'react-router-dom';
 import { Meteor } from 'meteor/meteor';
@@ -135,25 +135,6 @@ class PostEvent extends React.Component {
     );
   }
 
-  segmentFooter() {
-    return (
-      <Segment.Group horizontal>
-        <Segment compact>
-          <Icon name="heart" onClick={(e, data) => this.handleMeta(e, data)}/>
-          {`${this.props.post.meta} Likes`}
-        </Segment>
-        <Segment compact>
-          <Icon name='comments'/>
-          Comments
-        </Segment>
-        <Segment floated="right">
-          <Icon name="share square"/>
-          Share
-        </Segment>
-      </Segment.Group>
-    );
-  }
-
   render() {
     const { from } = this.props.location.state || { from: { pathname: '/hub' } };
     // if correct authentication, redirect to page instead of login screen
@@ -176,7 +157,6 @@ class PostEvent extends React.Component {
               {this.album(this.props.post.extraImages)}
             </Segment>
           </Segment.Group>
-          {this.segmentFooter()}
         </Segment.Group>
       );
     }
@@ -187,7 +167,6 @@ class PostEvent extends React.Component {
           <Segment.Group>
             {this.album(this.props.post.extraImages)}
           </Segment.Group>
-          {this.segmentFooter()}
         </Segment.Group>
       );
     }
@@ -200,7 +179,6 @@ class PostEvent extends React.Component {
               {this.props.post.extraText}
             </Segment>
           </Segment.Group>
-          {this.segmentFooter()}
         </Segment.Group>
       );
     }
@@ -208,7 +186,6 @@ class PostEvent extends React.Component {
       <div>
         <Segment.Group piled stacked>
           {this.postDigest()}
-          {this.segmentFooter()}
         </Segment.Group>
       </div>
     );

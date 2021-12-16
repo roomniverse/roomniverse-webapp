@@ -63,7 +63,7 @@ test('Test that hubpage, searchresultpage and addpostpage work', async (testCont
   await addpostPage.isDisplayed(testController);
 });
 
-test.only('Test that signin, findroommate, addrequest, and editrequest showing up correctly', async (testController) => {
+test('Test that signin, findroommate, addrequest, and editrequest showing up correctly', async (testController) => {
   await navBar.gotoSigninPage(testController);
   await signinPage.signin(testController, credentials.username, credentials.password);
   await navBar.gotoFindRoommatePage(testController);

@@ -1,5 +1,6 @@
 import React from 'react';
 import { Meteor } from 'meteor/meteor';
+import { Roles } from 'meteor/alanning:roles';
 import { Card, Image, Button } from 'semantic-ui-react';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
@@ -26,7 +27,7 @@ class User extends React.Component {
               Class of {user.gradYear}
           </Card.Meta>
           {
-            (this.props.user.owner === this.props.currentUser) ?
+            (this.props.user.owner === this.props.currentUser || Roles.userIsInRole(Meteor.userId(), 'admin')) ?
               <Card.Content>
                 <Button id="editprofile-link" floated='right' as={Link} to={`/editprofile/${this.props.user._id}`}>
                       Edit

@@ -1,4 +1,5 @@
 import React from 'react';
+import { Roles } from 'meteor/alanning:roles';
 import { Button, Grid, Header, Loader, Segment } from 'semantic-ui-react';
 import swal from 'sweetalert';
 import { AutoForm, ErrorsField, HiddenField, LongTextField, SubmitField, TextField } from 'uniforms-semantic';
@@ -22,7 +23,7 @@ class EditRequest extends React.Component {
   // On successful submit, insert the data.
   submit(data) {
     const { name, gender, location, image, description, _id, owner, gradYear, major } = data;
-    if (Meteor.user().username === owner) {
+    if (Meteor.user().username === owner || Roles.userIsInRole(Meteor.userId(), 'admin')) {
       Requests.collection.update(_id, { $set: { name, gender, location, image, description, gradYear, major } },
         (error) => {
           if (error) {
@@ -38,7 +39,7 @@ class EditRequest extends React.Component {
 
   remove(data) {
     const { _id, owner } = data;
-    if (Meteor.user().username === owner) {
+    if (Meteor.user().username === owner || Roles.userIsInRole(Meteor.userId(), 'admin')) {
       Requests.collection.remove(_id,
         (error) => {
           if (error) {

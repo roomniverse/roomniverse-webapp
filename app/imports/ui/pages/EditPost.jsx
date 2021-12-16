@@ -8,13 +8,18 @@ import { AutoForm, ErrorsField, LongTextField, SubmitField } from 'uniforms-sema
 import { withTracker } from 'meteor/react-meteor-data';
 import PropTypes from 'prop-types';
 import { Posts } from '../../api/social/Posts';
+import { Users } from '../../api/user/User';
 
 const bridge = new SimpleSchema2Bridge(Posts.schema);
 
 class EditPost extends React.Component {
   constructor(props) {
     super(props);
-    this.state = { redirectToReferer: false };
+    this.state = {
+      redirectToReferer: false,
+      textValue: "",
+      imageValue: [],
+    };
   }
 
   submit(data) {
@@ -22,7 +27,7 @@ class EditPost extends React.Component {
       swal('Error', 'Please upload images or write something.', 'error');
     } else {
       const { extraText, extraImages } = data;
-      Posts.collection.update(this.props.post._id, { $set: { extraText, extraImages } },
+      Posts.collection.update(this.props.docId, { $set: { extraText, extraImages } },
         (error) => {
           if (error) {
             swal('Error', error.message, 'error');
@@ -39,21 +44,23 @@ class EditPost extends React.Component {
 
   renderPage() {
     const { from } = this.props.location.state || { from: { pathname: '/hub' } };
-    // if correct authentication, redirect to page instead of login screen
+    this.user = this.props.userCollection.find((datum) => datum._id === Meteor.userId());
+    if (this.user._id !== Meteor.userId()) this.setState({ redirectToReferer: true });
     if (this.state.redirectToReferer) {
       return <Redirect to={from}/>;
     }
 
+    const { textValue, imageValue } = { textValue: this.props.post.extraText, imageValue: this.props.post.extraImages };
+    this.state = { textValue, imageValue };
     return (
       <div id="editpost-page" className="white-theme page-padding">
         <Container>
-          <Header as="h2" textAlign="center">Create New Post</Header>
-          <AutoForm schema={bridge} onSubmit={data => this.submit(data)} label={false}>
-            <LongTextField name="extraText" defaultValue={this.post.extraText}/>
+          <Header as="h2" textAlign="center">Edit Your Post</Header>
+          <AutoForm schema={bridge} onSubmit={(data) => this.submit(data)} label={false} model={this.props.post}>
+            <LongTextField name="extraText" defaultValue={this.state.textValue}/>
             <div className="button-style">
               Upload Images:
-              {/* <AutoField name="extraImages" /> */}
-              <Button name="extraImages" style={{ marginLeft: '10px' }}>Browse</Button>
+              <Button name="extraImages" defaultValue={this.state.imageValue} style={{ marginLeft: '10px' }}>Browse</Button>
             </div>
             <br/>
             <div>
@@ -72,17 +79,22 @@ class EditPost extends React.Component {
 
 EditPost.propTypes = {
   location: PropTypes.object,
+  docId: PropTypes.string.isRequired,
   ready: PropTypes.bool.isRequired,
-  key: PropTypes.string.isRequired,
-  post: PropTypes.object.isRequired,
+  post: PropTypes.object,
+  user: PropTypes.object,
 };
 
-export default withTracker(() => {
-  const subscription = Meteor.subscribe(Posts.userPublicationName);
+export default withTracker(({ match }) => {
+  const docId = match.params._id;
+  const subscription = Meteor.subscribe(Posts.userPublicationName) && Meteor.subscribe(Users.userPublicationName);
   const ready = subscription.ready();
-  const post = Posts.collection.find((item) => item._id === this.props.key);
+  const post = Posts.collection.findOne(docId);
+  const userCollection = Users.collection.find({}).fetch();
   return {
+    docId,
     ready,
     post,
+    userCollection,
   };
 })(EditPost);

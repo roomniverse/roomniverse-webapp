@@ -8,7 +8,6 @@ import User from '../components/User';
 import { Users } from '../../api/user/User';
 import PostEvent from '../components/PostEvent';
 import { Posts } from '../../api/social/Posts';
-import Request from '../components/Request';
 import { Requests } from '../../api/social/Requests';
 
 class UserProfile extends React.Component {
@@ -18,6 +17,8 @@ class UserProfile extends React.Component {
   }
 
   renderPage() {
+    const posts = this.props.postCollection.filter((post) => post.owner === this.props.doc.owner);
+
     const panes = [
       {
         menuItem: 'Posts',
@@ -28,7 +29,7 @@ class UserProfile extends React.Component {
             </Button>
           </div>
           <div style={{ marginTop: '20px' }}>
-            {this.props.posts.slice(0).reverse().map((post) => <PostEvent
+            {posts.slice(0).reverse().map((post) => <PostEvent
               key={post._id}
               post={post}
               user={this.props.doc}
@@ -69,7 +70,7 @@ class UserProfile extends React.Component {
 }
 
 UserProfile.propTypes = {
-  posts: PropTypes.array.isRequired,
+  postCollection: PropTypes.array.isRequired,
   ready: PropTypes.bool.isRequired,
   doc: PropTypes.object,
   userRequest: PropTypes.array.isRequired,
@@ -82,12 +83,11 @@ export default withTracker(({ match }) => {
   const ready = subscription.ready();
   const users = Users.collection.find({}).fetch();
   const doc = users.find((user) => user._id === documentId);
-  const postCollection = Posts.collection.find({ }).fetch();
-  const posts = postCollection.filter((post) => post.owner === doc.owner);
+  const postCollection = Posts.collection.find({}).fetch();
   const userRequest = Requests.collection.find({}).fetch();
-  const currentUser = Meteor.user().username === doc.owner ? Meteor.user().username : '';
+  const currentUser = Meteor.user() ? Meteor.user().username : '';
   return {
-    posts,
+    postCollection,
     ready,
     doc,
     userRequest,

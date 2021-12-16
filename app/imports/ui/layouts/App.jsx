@@ -37,7 +37,6 @@ class App extends React.Component {
               <Route path="/signout" component={Signout}/>
               <ProtectedRoute path="/create" component={CreateProfile}/>
               <ProtectedRoute path="/hub" component={Hub}/>
-              <ProtectedRoute path="/add" component={AddPost}/>
               <ProtectedRoute path="/search/:query" component={SearchResults}/>
               <ProtectedRoute path="/find" component={Find}/>
               <ProtectedRoute path="/addrequest/:_id" component={AddRequest}/>
@@ -45,7 +44,7 @@ class App extends React.Component {
               <ProtectedRoute path="/profile/:_id" component={Profile}/>
               <ProtectedRoute path="/editprofile/:_id" component={EditProfile}/>
               <ProtectedRoute path="/addpost" component={AddPost}/>
-              <ProtectedRoute path="/editpost" component={EditPost}/>
+              <ProtectedRoute path="/editpost/:_id" component={EditPost}/>
               <Route component={NotFound}/>
             </Switch>
           </div>

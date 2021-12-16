@@ -55,19 +55,31 @@ class PostEvent extends React.Component {
       });
   }
 
-  deleteModal(_id) {
-    if (Meteor.userId() === _id) {
-      swal({
-        title: 'Are you sure you want to delete your post?',
-        text: 'This action may be unrecoverable',
-        showDenyButton: true,
-        confirmButtonText: 'Yes',
-        denyButtonText: 'No',
-      }).then((result) => {
-        if (result.isConfirmed) {
-          this.deletePost();
-        }
-      });
+  deleteModal(username) {
+    if (Meteor.user().username === username) {
+      swal('Are you sure you want to delete your post?', {
+        buttons: {
+          proceed: {
+            text: 'Yes',
+            value: 'Yes',
+          },
+          cancel: 'No',
+        },
+      })
+        .then((value) => {
+          switch (value) {
+
+          case 'Yes':
+            swal('Delete post').then(() => {
+              this.deletePost();
+            });
+            break;
+
+          default:
+            swal('Cancel deletion');
+            break;
+          }
+        });
     } else {
       swal('Error', `Only user: ${this.props.user.firstName} ${this.props.user.lastName} can remove this post`, 'error');
     }
@@ -114,7 +126,7 @@ class PostEvent extends React.Component {
                   id="delete-post"
                   icon="trash alternate outline"
                   text="Delete"
-                  onClick={() => this.deleteModal(this.props.user._id, true)}/>
+                  onClick={() => this.deleteModal(this.props.user.owner, true)}/>
               </Dropdown.Menu>
             </Dropdown>
           </div>
@@ -148,6 +160,9 @@ class PostEvent extends React.Component {
     if (this.state.redirectToReferer) {
       return <Redirect to={from}/>;
     }
+    if (this.state.redirect) {
+      return '';
+    }
 
     if (this.props.post.extraText && this.props.post.extraImages) {
       return (
@@ -164,7 +179,8 @@ class PostEvent extends React.Component {
           {this.segmentFooter()}
         </Segment.Group>
       );
-    } if (!this.props.post.extraText && this.props.post.extraImages) {
+    }
+    if (!this.props.post.extraText && this.props.post.extraImages) {
       return (
         <Segment.Group piled stacked>
           {this.postDigest()}
@@ -174,7 +190,8 @@ class PostEvent extends React.Component {
           {this.segmentFooter()}
         </Segment.Group>
       );
-    } if (this.props.post.extraText) {
+    }
+    if (this.props.post.extraText) {
       return (
         <Segment.Group piled stacked>
           {this.postDigest()}
@@ -208,6 +225,7 @@ PostEvent.propTypes = {
 };
 
 const PostTracker = withTracker(() => ({
+  subscription: Meteor.subscribe(Users.userPublicationName) && Meteor.subscribe(Posts.userPublicationName),
   users: Users.collection.find({}).fetch(),
   posts: Posts.collection.find({}).fetch(),
 }))(PostEvent);

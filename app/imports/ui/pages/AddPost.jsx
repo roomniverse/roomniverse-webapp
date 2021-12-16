@@ -4,7 +4,7 @@ import { Link, Redirect } from 'react-router-dom';
 import swal from 'sweetalert';
 import { Meteor } from 'meteor/meteor';
 import SimpleSchema2Bridge from 'uniforms-bridge-simple-schema-2';
-import { AutoForm, ErrorsField, HiddenField, LongTextField, SubmitField } from 'uniforms-semantic';
+import { AutoForm, ErrorsField, HiddenField, LongTextField, SubmitField, TextField } from 'uniforms-semantic';
 import { withTracker } from 'meteor/react-meteor-data';
 import PropTypes from 'prop-types';
 import { Users } from '../../api/user/User';
@@ -62,10 +62,7 @@ class AddPost extends React.Component {
             <HiddenField name="summary" value={summary}/>
             <HiddenField name="owner" value={owner}/>
             <LongTextField name="extraText" placeholder="What's on your mind?"/>
-            <div className="button-style">
-              Upload Images:
-              <Button name="extraImages" style={{ marginLeft: '10px', display: 'inline' }}>Browse</Button>
-            </div>
+            <TextField name='extraImages' placeholder='Please enter a URL of image'/>
             <br/>
             <div>
               <SubmitField value='Submit'/>

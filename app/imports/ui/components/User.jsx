@@ -14,7 +14,7 @@ class User extends React.Component {
 
     return (
       <Card>
-        <Image src={user.avatar} wrapped ui={false}/>
+        <Image as={Link} to={`/profile/${user._id}`} src={user.avatar} wrapped ui={false} />
         <Card.Content>
           <Card.Header>{user.firstName} {user.lastName}</Card.Header>
           <Card.Meta>

@@ -44,6 +44,7 @@ class AddPost extends React.Component {
     if (this.state.redirectToReferer) {
       return <Redirect to={from}/>;
     }
+
     const account = this.props.users.find((user) => user.owner === Meteor.user().username);
     const avatar = account.avatar;
     const date = new Date().getTime();
@@ -63,8 +64,7 @@ class AddPost extends React.Component {
             <LongTextField name="extraText" placeholder="What's on your mind?"/>
             <div className="button-style">
               Upload Images:
-              {/* <AutoField name="extraImages" /> */}
-              <Button name="extraImages" style={{ marginLeft: '10px' }}>Browse</Button>
+              <Button name="extraImages" style={{ marginLeft: '10px', display: 'inline' }}>Browse</Button>
             </div>
             <br/>
             <div>

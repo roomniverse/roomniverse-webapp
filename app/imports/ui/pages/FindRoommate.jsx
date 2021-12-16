@@ -198,7 +198,7 @@ export default withTracker(() => {
   // Determine if the subscription is ready
   const ready = subscription.ready();
   // Get the Stuff documents
-  const requests = Requests.collection.find({}).fetch();
+  const requests = Requests.collection.find({}).fetch().reverse();
   return {
     requests,
     ready,

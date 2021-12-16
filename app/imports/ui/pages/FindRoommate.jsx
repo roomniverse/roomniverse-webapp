@@ -108,7 +108,7 @@ class FindRoommate extends React.Component {
     // const { yearValue } = this.yearState;
     // const { majorValue } = this.majorState;
 
-    let mapData = this.props.requests;
+    let mapData = this.props.requests.reverse();
     switch (true) {
     case (genderValue === null && yearValue != null && majorValue != null):
       mapData = mapData.filter((request) => request.gradYear === yearValue).filter((request) => request.major === majorValue);

@@ -71,10 +71,10 @@ test.only('Test that signin, findroommate, addrequest, and editrequest showing u
   await findRoommatePage.gotoAddRequest(testController);
   await addRequestPage.isDisplayed(testController);
   await addRequestPage.submitRequest(testController, requestInfo.location, requestInfo.description);
-  await findRoommatePage.gotoEditRequest(testController, credentials.username);
+  await findRoommatePage.gotoEditRequest(testController);
   await editRequestPage.isDisplayed(testController);
-  // await editRequestPage.submitEditRequest(testController, editRequestInfo.location, editRequestInfo.description);
-  // await navBar.gotoFindRoommatePage(testController);
+  await editRequestPage.submitEditRequest(testController, editRequestInfo.location, editRequestInfo.description);
+  await navBar.gotoFindRoommatePage(testController);
   // await findRoommatePage.gotoEditRequest(testController);
   // await editRequestPage.isDisplayed(testController);
 });

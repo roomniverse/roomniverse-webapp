@@ -78,7 +78,7 @@ class EditRequest extends React.Component {
                 <HiddenField name='owner'/>
               </AutoForm>
             </Segment>
-            <Button onClick={() => this.remove(this.props.doc)} floated='right'>Close Request</Button>
+            <Button id={'editrequest-close-request'} onClick={() => this.remove(this.props.doc)} floated='right'>Close Request</Button>
           </Grid.Column>
         </Grid>
       </div>

@@ -15,9 +15,15 @@ class EditRequestPage {
   /** Asserts that this page is correctly functioning. */
   async submitEditRequest(testController, location, description) {
     // This is where submitRequest writes and submits information into AddRequest Page
+    await testController.click('#editrequest-location').pressKey('ctrl+a delete');
     await testController.typeText('#editrequest-location', location);
+    await testController.click('#editrequest-description').pressKey('ctrl+a delete');
     await testController.typeText('#editrequest-description', description);
     await testController.typeText('#editrequest-submit', description);
+  }
+
+  async closeRequest(testController) {
+    await testController.click('#editrequest-close-request');
   }
 }
 

@@ -19,7 +19,7 @@ import { adminPage } from './admin.page';
 const credentials = { username: 'john@foo.com', password: 'changeme' };
 const adminCreds = { username: 'admin@foo.com', password: 'changeme' };
 const firstTime = { username: 'jane@foo.com', password: 'changeme', firstname: 'John', lastname: 'Foo', gradyear: '2024', avatar: 'https://mediamass.net/jdd/public/documents/celebrities/7874.jpg' };
-const searchword = 'JohnCena';
+const searchword = 'John';
 const requestInfo = { location: 'Manoa', description: 'Looking for roommates' };
 const editRequestInfo = { location: 'Makiki', description: 'Also looking for roommates' };
 

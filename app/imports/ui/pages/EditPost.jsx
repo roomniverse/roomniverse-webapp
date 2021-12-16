@@ -4,7 +4,7 @@ import { Link, Redirect } from 'react-router-dom';
 import swal from 'sweetalert';
 import { Meteor } from 'meteor/meteor';
 import SimpleSchema2Bridge from 'uniforms-bridge-simple-schema-2';
-import { AutoForm, ErrorsField, LongTextField, SubmitField } from 'uniforms-semantic';
+import { AutoForm, ErrorsField, LongTextField, SubmitField, TextField } from 'uniforms-semantic';
 import { withTracker } from 'meteor/react-meteor-data';
 import PropTypes from 'prop-types';
 import { Posts } from '../../api/social/Posts';
@@ -65,10 +65,7 @@ class EditPost extends React.Component {
           <Header as="h2" textAlign="center">Edit Your Post</Header>
           <AutoForm schema={bridge} onSubmit={(data) => this.submit(data)} label={false} model={this.props.post}>
             <LongTextField name="extraText" defaultValue={this.state.textValue}/>
-            <div className="button-style">
-              Upload Images:
-              <Button name="extraImages" defaultValue={this.state.imageValue} style={{ marginLeft: '10px' }}>Browse</Button>
-            </div>
+            <TextField name='extraImages' placeholder='Please enter a URL of image'/>
             <br/>
             <div>
               <SubmitField value='Submit'/>

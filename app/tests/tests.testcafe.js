@@ -22,7 +22,7 @@ const searchword = 'John';
 const requestInfo = { location: 'Manoa', description: 'Looking for roommates' };
 const editRequestInfo = { location: 'Makiki', description: 'Also looking for roommates' };
 const addPostInfo = { text: 'Anyone wanna hangout with me at 4:30?', image: 'https://cdn.dribbble.com/users/491349/screenshots/10413494/hangout_01_4x.jpg' };
-const editPostInfo = { text: "Let's eet at Ala Moana center by 5:00", image: 'https://wpcdn.us-east-1.vip.tn-cloud.net/www.hawaiimagazine.com/content/uploads/2020/12/IMG_1677.jpg' };
+const editPostInfo = { text: "Let's meet at Ala Moana center by 5:00", image: 'https://wpcdn.us-east-1.vip.tn-cloud.net/www.hawaiimagazine.com/content/uploads/2020/12/IMG_1677.jpg' };
 const editProfileInfo = { firstName: 'Joseph', lastName: 'Maxwell', gradYaer: '2023', avatar: 'https://petapixel.com/assets/uploads/2019/02/download-4-800x800.jpeg' };
 
 fixture('meteor-application-template-react localhost test with default db')

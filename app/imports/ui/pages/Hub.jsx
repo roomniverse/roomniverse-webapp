@@ -20,7 +20,7 @@ class Hub extends React.Component {
       <div className="white-theme hub">
         <Container id="hub-page" className="post-feed">
           <div>
-            <Button id="addpost-button" fluid as={Link} to='/add'>
+            <Button id="addpost-button" fluid as={Link} to='/addpost'>
               Create a New Post
             </Button>
           </div>
@@ -45,17 +45,15 @@ Hub.propTypes = {
 
 export default withTracker(() => {
   // Get access to Stuff documents.
-  const subscription = Meteor.subscribe(Posts.userPublicationName);
-  const sub2 = Meteor.subscribe(Users.userPublicationName);
+  const subscription = Meteor.subscribe(Posts.userPublicationName) && Meteor.subscribe(Users.userPublicationName);
   // Determine if the subscription is ready
   const ready = subscription.ready();
-  const ready2 = sub2.ready();
   // Get the Stuff documents
   const posts = Posts.collection.find({}).fetch();
   const users = Users.collection.find({}).fetch();
   return {
     posts,
     users,
-    ready: ready && ready2,
+    ready,
   };
 })(Hub);

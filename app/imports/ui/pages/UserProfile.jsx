@@ -18,23 +18,25 @@ class UserProfile extends React.Component {
 
   renderPage() {
     const requestTabStyle = { padding: "10px 10px 10px 10px" };
+    const posts = this.props.postCollection.filter((post) => post.owner === this.props.doc.owner);
+
     const panes = [
       {
         menuItem: 'Posts',
         render: () => <Tab.Pane>
           <div>
-            <Button id="addpost-button-profile" fluid as={Link} to='/add'>
+            <Button id="addpost-button-profile" fluid as={Link} to='/add' referer={`/profile/${this.props.doc._id}`}>
               Create a New Post
             </Button>
           </div>
           <div style={{ marginTop: '20px' }}>
-            {this.props.posts.slice(0).reverse().map((post) => <PostEvent
+            {posts.slice(0).reverse().map((post) => <PostEvent
               key={post._id}
               post={post}
               user={this.props.doc}
             />)}
           </div>
-        </Tab.Pane>
+        </Tab.Pane>,
       },
       {
         menuItem: 'Request',
@@ -77,7 +79,7 @@ class UserProfile extends React.Component {
 }
 
 UserProfile.propTypes = {
-  posts: PropTypes.array.isRequired,
+  postCollection: PropTypes.array.isRequired,
   ready: PropTypes.bool.isRequired,
   doc: PropTypes.object,
   userRequest: PropTypes.array.isRequired,
@@ -90,12 +92,11 @@ export default withTracker(({ match }) => {
   const ready = subscription.ready();
   const users = Users.collection.find({}).fetch();
   const doc = users.find((user) => user._id === documentId);
-  const postCollection = Posts.collection.find({ }).fetch();
-  const posts = postCollection.filter((post) => post.owner === doc.owner);
+  const postCollection = Posts.collection.find({}).fetch();
   const userRequest = Requests.collection.find({}).fetch();
   const currentUser = Meteor.user() ? Meteor.user().username : '';
   return {
-    posts,
+    postCollection,
     ready,
     doc,
     userRequest,

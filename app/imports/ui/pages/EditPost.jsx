@@ -4,26 +4,30 @@ import { Link, Redirect } from 'react-router-dom';
 import swal from 'sweetalert';
 import { Meteor } from 'meteor/meteor';
 import SimpleSchema2Bridge from 'uniforms-bridge-simple-schema-2';
-import { AutoForm, ErrorsField, HiddenField, LongTextField, SubmitField } from 'uniforms-semantic';
+import { AutoForm, ErrorsField, LongTextField, SubmitField } from 'uniforms-semantic';
 import { withTracker } from 'meteor/react-meteor-data';
 import PropTypes from 'prop-types';
-import { Users } from '../../api/user/User';
 import { Posts } from '../../api/social/Posts';
+import { Users } from '../../api/user/User';
 
 const bridge = new SimpleSchema2Bridge(Posts.schema);
 
-/** Renders a page to ceate a new instance of the Post Collection. */
-class AddPost extends React.Component {
+class EditPost extends React.Component {
   constructor(props) {
     super(props);
-    this.state = { redirectToReferer: false };
+    this.state = {
+      redirectToReferer: false,
+      textValue: "",
+      imageValue: [],
+    };
   }
 
   submit(data) {
     if (!data.extraText && !data.extraImages) {
       swal('Error', 'Please upload images or write something.', 'error');
     } else {
-      Posts.collection.insert(data,
+      const { extraText, extraImages } = data;
+      Posts.collection.update(this.props.docId, { $set: { extraText, extraImages } },
         (error) => {
           if (error) {
             swal('Error', error.message, 'error');
@@ -40,31 +44,23 @@ class AddPost extends React.Component {
 
   renderPage() {
     const { from } = this.props.location.state || { from: { pathname: '/hub' } };
-    // if correct authentication, redirect to page instead of login screen
+    this.user = this.props.userCollection.find((datum) => datum._id === Meteor.userId());
+    if (this.user._id !== Meteor.userId()) this.setState({ redirectToReferer: true });
     if (this.state.redirectToReferer) {
       return <Redirect to={from}/>;
     }
 
-    const account = this.props.users.find((user) => user.owner === Meteor.user().username);
-    const avatar = account.avatar;
-    const date = new Date().getTime();
-    const summary = 'posted to their page';
-    const meta = 0;
-    const owner = account.owner;
+    const { textValue, imageValue } = { textValue: this.props.post.extraText, imageValue: this.props.post.extraImages };
+    this.state = { textValue, imageValue };
     return (
-      <div id="addpost-page" className="white-theme page-padding">
+      <div id="editpost-page" className="white-theme page-padding">
         <Container>
-          <Header as="h2" textAlign="center">Create New Post</Header>
-          <AutoForm schema={bridge} onSubmit={data => this.submit(data)} label={false}>
-            <HiddenField name="date" value={date}/>
-            <HiddenField name="avatar" value={avatar}/>
-            <HiddenField name="meta" value={meta}/>
-            <HiddenField name="summary" value={summary}/>
-            <HiddenField name="owner" value={owner}/>
-            <LongTextField name="extraText" placeholder="What's on your mind?"/>
+          <Header as="h2" textAlign="center">Edit Your Post</Header>
+          <AutoForm schema={bridge} onSubmit={(data) => this.submit(data)} label={false} model={this.props.post}>
+            <LongTextField name="extraText" defaultValue={this.state.textValue}/>
             <div className="button-style">
               Upload Images:
-              <Button name="extraImages" style={{ marginLeft: '10px', display: 'inline' }}>Browse</Button>
+              <Button name="extraImages" defaultValue={this.state.imageValue} style={{ marginLeft: '10px' }}>Browse</Button>
             </div>
             <br/>
             <div>
@@ -81,19 +77,24 @@ class AddPost extends React.Component {
   }
 }
 
-AddPost.propTypes = {
+EditPost.propTypes = {
   location: PropTypes.object,
-  users: PropTypes.array.isRequired,
+  docId: PropTypes.string.isRequired,
   ready: PropTypes.bool.isRequired,
+  post: PropTypes.object,
+  user: PropTypes.object,
 };
 
-// withTracker connects Meteor data to React components. https://guide.meteor.com/react.html#using-withTracker
-export default withTracker(() => {
-  const subscription = Meteor.subscribe(Users.userPublicationName);
+export default withTracker(({ match }) => {
+  const docId = match.params._id;
+  const subscription = Meteor.subscribe(Posts.userPublicationName) && Meteor.subscribe(Users.userPublicationName);
   const ready = subscription.ready();
-  const users = Users.collection.find({}).fetch();
+  const post = Posts.collection.findOne(docId);
+  const userCollection = Users.collection.find({}).fetch();
   return {
-    users,
+    docId,
     ready,
+    post,
+    userCollection,
   };
-})(AddPost);
+})(EditPost);

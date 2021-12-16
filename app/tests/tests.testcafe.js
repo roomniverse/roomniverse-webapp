@@ -12,10 +12,12 @@ import { editRequestPage } from './editrequest.page';
 import { hubPage } from './hub.page';
 import { addpostPage } from './addpost.page';
 import { searchresultPage } from './searchresult.page';
+import { adminPage } from './admin.page';
 /* global fixture:false, test:false */
 
 /** Credentials for one of the sample users defined in settings.development.json. */
 const credentials = { username: 'john@foo.com', password: 'changeme' };
+const adminCreds = { username: 'admin@foo.com', password: 'changeme' };
 const firstTime = { username: 'jane@foo.com', password: 'changeme', firstname: 'John', lastname: 'Foo', gradyear: '2024', avatar: 'https://mediamass.net/jdd/public/documents/celebrities/7874.jpg' };
 const searchword = 'JohnCena';
 const requestInfo = { location: 'Manoa', description: 'Looking for roommates' };
@@ -75,5 +77,17 @@ test('Test that signin, findroommate, addrequest, and editrequest showing up cor
   await editRequestPage.isDisplayed(testController);
   await editRequestPage.submitEditRequest(testController, editRequestInfo.location, editRequestInfo.description);
   await findRoommatePage.gotoEditRequest(testController);
+  await editRequestPage.closeRequest(testController);
+});
+
+test('Test that signin and admin page works correctly', async (testController) => {
+  await navBar.gotoSigninPage(testController);
+  await signinPage.signin(testController, adminCreds.username, adminCreds.password);
+  await navBar.gotoAdminPage(testController);
+  await adminPage.isDisplayed(testController);
+  await editprofilePage.isDisplayed(testController);
+  await navBar.gotoAdminPage(testController);
+  await adminPage.isDisplayed(testController);
+  await adminPage.gotoEditRequest(testController);
   await editRequestPage.closeRequest(testController);
 });

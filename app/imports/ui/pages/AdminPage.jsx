@@ -22,7 +22,7 @@ class AdminPage extends React.Component {
         <Header as='h1'
           textAlign='center'
           style={{ padding: '20px 10px 10px 10px' }}>
-          Admin Page
+              Admin Page
         </Header>
         <Grid colummns={3} celled>
           <Grid.Row>
@@ -37,9 +37,8 @@ class AdminPage extends React.Component {
             <Grid.Column width={3}>
               <div id="users-list-column">
                 {this.props.users.map((user, index) => (
-                  // eslint-disable-next-line react/jsx-key
-                  <div className="all-positioning">
-                    <User key={index} user={user}/>
+                  <div key={index} className="all-positioning">
+                    <User id="admin-user" user={user}/>
                   </div>
                 ))}
               </div>
@@ -81,9 +80,9 @@ AdminPage.propTypes = {
 export default withTracker(() => {
   // Get access to users, posts, and requests documents.
   const subscription =
-    Meteor.subscribe(Users.userPublicationName)
-    && Meteor.subscribe(Posts.userPublicationName)
-    && Meteor.subscribe(Requests.userPublicationName);
+      Meteor.subscribe(Users.userPublicationName)
+      && Meteor.subscribe(Posts.userPublicationName)
+      && Meteor.subscribe(Requests.userPublicationName);
   // Determine if the subscription is ready
   const ready = subscription.ready();
   const sub2 = Meteor.subscribe(Users.userPublicationName);

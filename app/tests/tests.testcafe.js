@@ -117,7 +117,9 @@ test('Test that signin and admin page works correctly', async (testController) =
   await signinPage.signin(testController, adminCreds.username, adminCreds.password);
   await navBar.gotoAdminPage(testController);
   await adminPage.isDisplayed(testController);
-  await editprofilePage.isDisplayed(testController);
+  await adminPage.gotoEditRequest(testController);
+  await editRequestPage.isDisplayed(testController);
+  await editRequestPage.submitEditRequest(testController, editRequestInfo.location, editRequestInfo.description);
   await navBar.gotoAdminPage(testController);
   await adminPage.isDisplayed(testController);
   await adminPage.gotoEditRequest(testController);

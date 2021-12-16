@@ -57,7 +57,7 @@ class AdminPage extends React.Component {
             <Grid.Column width={7}>
               <div id="requests-list-column">
                 <Item.Group divided>
-                  {this.props.requests.map((request, index) => (
+                  {this.props.requests.reverse().map((request, index) => (
                     <Request className="all-positioning" key={index} request={request}/>
                   ))}
                 </Item.Group>

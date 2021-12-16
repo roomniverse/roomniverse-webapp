@@ -17,7 +17,7 @@ import { searchresultPage } from './searchresult.page';
 /** Credentials for one of the sample users defined in settings.development.json. */
 const credentials = { username: 'john@foo.com', password: 'changeme' };
 const firstTime = { username: 'jane@foo.com', password: 'changeme', firstname: 'John', lastname: 'Foo', gradyear: '2024', avatar: 'https://mediamass.net/jdd/public/documents/celebrities/7874.jpg' };
-const searchword = 'JohnCena';
+const searchword = 'John';
 const requestInfo = { location: 'Manoa', description: 'Looking for roommates' };
 const editRequestInfo = { location: 'Makiki', description: 'Also looking for roommates' };
 
@@ -52,7 +52,7 @@ test('Test that editprofilepage and userprofilepage work', async (testController
   await editprofilePage.isDisplayed(testController);
 });
 
-test('Test that hubpage, searchresultpage and addpostpage work', async (testController) => {
+test.only('Test that hubpage, searchresultpage and addpostpage work', async (testController) => {
   await navBar.gotoSigninPage(testController);
   await signinPage.signin(testController, credentials.username, credentials.password);
   await navBar.isLoggedIn(testController, credentials.username);
@@ -63,7 +63,7 @@ test('Test that hubpage, searchresultpage and addpostpage work', async (testCont
   await addpostPage.isDisplayed(testController);
 });
 
-test.only('Test that signin, findroommate, addrequest, and editrequest showing up correctly', async (testController) => {
+test('Test that signin, findroommate, addrequest, and editrequest showing up correctly', async (testController) => {
   await navBar.gotoSigninPage(testController);
   await signinPage.signin(testController, credentials.username, credentials.password);
   await navBar.gotoFindRoommatePage(testController);

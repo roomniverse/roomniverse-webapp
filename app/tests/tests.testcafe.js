@@ -18,6 +18,8 @@ import { searchresultPage } from './searchresult.page';
 const credentials = { username: 'john@foo.com', password: 'changeme' };
 const firstTime = { username: 'jane@foo.com', password: 'changeme', firstname: 'John', lastname: 'Foo', gradyear: '2024', avatar: 'https://mediamass.net/jdd/public/documents/celebrities/7874.jpg' };
 const searchword = 'JohnCena';
+const requestInfo = { location: 'Manoa', description: 'Looking for roommates' };
+const editRequestInfo = { location: 'Makiki', description: 'Also looking for roommates' };
 
 fixture('meteor-application-template-react localhost test with default db')
   .page('http://localhost:3000');
@@ -61,14 +63,17 @@ test('Test that hubpage, searchresultpage and addpostpage work', async (testCont
   await addpostPage.isDisplayed(testController);
 });
 
-test('Test that signin, findroommate, addrequest, and editrequest showing up correctly', async (testController) => {
+test.only('Test that signin, findroommate, addrequest, and editrequest showing up correctly', async (testController) => {
   await navBar.gotoSigninPage(testController);
   await signinPage.signin(testController, credentials.username, credentials.password);
   await navBar.gotoFindRoommatePage(testController);
   await findRoommatePage.isDisplayed(testController);
   await findRoommatePage.gotoAddRequest(testController);
   await addRequestPage.isDisplayed(testController);
-  await navBar.gotoFindRoommatePage(testController);
+  await addRequestPage.submitRequest(testController, requestInfo.location, requestInfo.description);
   await findRoommatePage.gotoEditRequest(testController);
   await editRequestPage.isDisplayed(testController);
+  await editRequestPage.submitEditRequest(testController, editRequestInfo.location, editRequestInfo.description);
+  await findRoommatePage.gotoEditRequest(testController);
+  await editRequestPage.closeRequest(testController);
 });

@@ -44,47 +44,6 @@ class PostEvent extends React.Component {
     );
   }
 
-  handleMeta(e, data) {
-    console.log(e);
-    console.log(data);
-    this.props.post.update(this.props.post._id, { $inc: { meta: this.props.post.meta + 1 } },
-      (error) => {
-        if (error) {
-          swal('Error', error.message, 'error');
-        }
-      });
-  }
-
-  deleteModal(username) {
-    if (Meteor.user().username === username) {
-      swal('Are you sure you want to delete your post?', {
-        buttons: {
-          proceed: {
-            text: 'Yes',
-            value: 'Yes',
-          },
-          cancel: 'No',
-        },
-      })
-        .then((value) => {
-          switch (value) {
-
-          case 'Yes':
-            swal('Delete post').then(() => {
-              this.deletePost();
-            });
-            break;
-
-          default:
-            swal('Cancel deletion');
-            break;
-          }
-        });
-
-    } else {
-      swal('Error', `Only user: ${this.props.user.firstName} ${this.props.user.lastName} can remove this post`, 'error');
-    }
-  }
 
   deletePost = () => {
     Posts.collection.remove(this.props.post._id,
@@ -127,7 +86,7 @@ class PostEvent extends React.Component {
                   id="delete-post"
                   icon="trash alternate outline"
                   text="Delete"
-                  onClick={() => this.deleteModal(this.props.user.owner, true)}/>
+                  onClick={() => deleteModal()}/>
               </Dropdown.Menu>
             </Dropdown>
           </div>

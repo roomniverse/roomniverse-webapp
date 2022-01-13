@@ -1,4 +1,5 @@
 import React from 'react';
+import { Roles } from 'meteor/alanning:roles';
 import { Button, Grid, Header, Loader, Segment } from 'semantic-ui-react';
 import swal from 'sweetalert';
 import { AutoForm, ErrorsField, HiddenField, LongTextField, SubmitField, TextField } from 'uniforms-semantic';
@@ -6,13 +7,12 @@ import { Meteor } from 'meteor/meteor';
 import { withTracker } from 'meteor/react-meteor-data';
 import PropTypes from 'prop-types';
 import SimpleSchema2Bridge from 'uniforms-bridge-simple-schema-2';
-// import { Link } from 'react-router-dom';
 import { Redirect } from 'react-router-dom';
 import { Requests } from '../../api/social/Requests';
 
 const bridge = new SimpleSchema2Bridge(Requests.schema);
 
-/** Renders the Page for editing a single document. */
+/** Renders the page for editing a single Request. */
 class EditRequest extends React.Component {
   constructor(props) {
     super(props);
@@ -22,7 +22,7 @@ class EditRequest extends React.Component {
   // On successful submit, insert the data.
   submit(data) {
     const { name, gender, location, image, description, _id, owner, gradYear, major } = data;
-    if (Meteor.user().username === owner) {
+    if (Meteor.user().username === owner || Roles.userIsInRole(Meteor.userId(), 'admin')) {
       Requests.collection.update(_id, { $set: { name, gender, location, image, description, gradYear, major } },
         (error) => {
           if (error) {
@@ -32,13 +32,13 @@ class EditRequest extends React.Component {
           }
         });
     } else {
-      swal('Error', 'Only owner can edit it', 'error');
+      swal('Error', 'Only owner of the request can edit', 'error');
     }
   }
 
   remove(data) {
     const { _id, owner } = data;
-    if (Meteor.user().username === owner) {
+    if (Meteor.user().username === owner || Roles.userIsInRole(Meteor.userId(), 'admin')) {
       Requests.collection.remove(_id,
         (error) => {
           if (error) {
@@ -48,7 +48,7 @@ class EditRequest extends React.Component {
           }
         });
     } else {
-      swal('Error', `Only ${owner} can remove`, 'error');
+      swal('Error', 'Only owner of the request can close request', 'error');
     }
   }
 
@@ -71,14 +71,14 @@ class EditRequest extends React.Component {
             <Header as="h2" textAlign="center">Edit Request</Header>
             <Segment>
               <AutoForm schema={bridge} onSubmit={data => this.submit(data)} model={this.props.doc}>
-                <TextField name='location'/>
-                <LongTextField name='description'/>
-                <SubmitField value='Submit'/>
+                <TextField id="editrequest-location" name='location'/>
+                <LongTextField id="editrequest-description" name='description'/>
+                <SubmitField id="editrequest-submit" value='Submit'/>
                 <ErrorsField/>
                 <HiddenField name='owner'/>
               </AutoForm>
             </Segment>
-            <Button onClick={() => this.remove(this.props.doc)} floated='right'>Close Request</Button>
+            <Button id={'editrequest-close-request'} onClick={() => this.remove(this.props.doc)} floated='right'>Close Request</Button>
           </Grid.Column>
         </Grid>
       </div>
@@ -86,7 +86,7 @@ class EditRequest extends React.Component {
   }
 }
 
-// Require the presence of a Stuff document in the props object. Uniforms adds 'model' to the props, which we use.
+// Declare the types of all properties.
 EditRequest.propTypes = {
   location: PropTypes.object,
   doc: PropTypes.object,
@@ -98,7 +98,7 @@ EditRequest.propTypes = {
 export default withTracker(({ match }) => {
   // Get the documentID from the URL field. See imports/ui/layouts/App.jsx for the route containing :_id.
   const documentId = match.params._id;
-  // Get access to Stuff documents.
+  // Get access to Requests documents.
   const subscription = Meteor.subscribe(Requests.userPublicationName);
   // Determine if the subscription is ready
   const ready = subscription.ready();

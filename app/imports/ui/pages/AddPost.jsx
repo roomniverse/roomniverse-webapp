@@ -4,7 +4,7 @@ import { Link, Redirect } from 'react-router-dom';
 import swal from 'sweetalert';
 import { Meteor } from 'meteor/meteor';
 import SimpleSchema2Bridge from 'uniforms-bridge-simple-schema-2';
-import { AutoForm, ErrorsField, HiddenField, LongTextField, SubmitField } from 'uniforms-semantic';
+import { AutoForm, ErrorsField, HiddenField, LongTextField, SubmitField, TextField } from 'uniforms-semantic';
 import { withTracker } from 'meteor/react-meteor-data';
 import PropTypes from 'prop-types';
 import { Users } from '../../api/user/User';
@@ -12,7 +12,7 @@ import { Posts } from '../../api/social/Posts';
 
 const bridge = new SimpleSchema2Bridge(Posts.schema);
 
-/** Renders a page to ceate a new instance of the Post Collection. */
+/** Renders a page to create a new instance of the Post Collection. */
 class AddPost extends React.Component {
   constructor(props) {
     super(props);
@@ -61,14 +61,11 @@ class AddPost extends React.Component {
             <HiddenField name="meta" value={meta}/>
             <HiddenField name="summary" value={summary}/>
             <HiddenField name="owner" value={owner}/>
-            <LongTextField name="extraText" placeholder="What's on your mind?"/>
-            <div className="button-style">
-              Upload Images:
-              <Button name="extraImages" style={{ marginLeft: '10px', display: 'inline' }}>Browse</Button>
-            </div>
+            <LongTextField id='addpost-text' name="extraText" placeholder="What's on your mind?"/>
+            <TextField id='addpost-image' name='extraImages' placeholder='Please enter a URL of image'/>
             <br/>
             <div>
-              <SubmitField value='Submit'/>
+              <SubmitField id='addpost-submit' value='Submit'/>
               <Button style={{ marginLeft: '10px' }} as={Link} to='/hub'>
                 Cancel
               </Button>
@@ -81,6 +78,7 @@ class AddPost extends React.Component {
   }
 }
 
+// Declare the types of all properties.
 AddPost.propTypes = {
   location: PropTypes.object,
   users: PropTypes.array.isRequired,

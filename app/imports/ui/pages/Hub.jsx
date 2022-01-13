@@ -8,6 +8,9 @@ import { Posts } from '../../api/social/Posts';
 import PostEvent from '../components/PostEvent';
 import { Users } from '../../api/user/User';
 
+/**
+ * Renders a page for the Posts Collection to load.
+ */
 class Hub extends React.Component {
   render() {
     return (
@@ -37,12 +40,14 @@ class Hub extends React.Component {
   }
 }
 
+// Declare the types of all properties.
 Hub.propTypes = {
   posts: PropTypes.array.isRequired,
   users: PropTypes.array.isRequired,
   ready: PropTypes.bool.isRequired,
 };
 
+// withTracker connects Meteor data to React components. https://guide.meteor.com/react.html#using-withTracker
 export default withTracker(() => {
   // Get access to Stuff documents.
   const subscription = Meteor.subscribe(Posts.userPublicationName) && Meteor.subscribe(Users.userPublicationName);

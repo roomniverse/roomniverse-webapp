@@ -2,6 +2,9 @@ import { Mongo } from 'meteor/mongo';
 import SimpleSchema from 'simpl-schema';
 import { Tracker } from 'meteor/tracker';
 
+/**
+ * The RequestsCollection. It encapsulates state and variable values for request.
+ */
 class RequestsCollection {
   constructor() {
     this.name = 'RequestsCollection';
@@ -29,4 +32,7 @@ class RequestsCollection {
   }
 }
 
+/**
+ * The singleton instance of the RequestsCollection.
+ */
 export const Requests = new RequestsCollection();

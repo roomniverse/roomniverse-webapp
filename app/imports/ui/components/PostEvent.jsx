@@ -1,5 +1,6 @@
 import React from 'react';
-import { Dropdown, Icon, Image, Segment } from 'semantic-ui-react';
+import { Roles } from 'meteor/alanning:roles';
+import { Dropdown, Image, Segment } from 'semantic-ui-react';
 import PropTypes from 'prop-types';
 import { Link, Redirect, withRouter } from 'react-router-dom';
 import { Meteor } from 'meteor/meteor';
@@ -8,6 +9,8 @@ import { withTracker } from 'meteor/react-meteor-data';
 import { Posts } from '../../api/social/Posts';
 import { Users } from '../../api/user/User';
 
+/** Renders a single post item. See pages/Hub.jsx.
+ */
 class PostEvent extends React.Component {
   constructor() {
     super();
@@ -44,16 +47,19 @@ class PostEvent extends React.Component {
     );
   }
 
-
-  deletePost = () => {
-    Posts.collection.remove(this.props.post._id,
-      (error) => {
-        if (error) {
-          swal('Error', error.message, 'error');
-        } else {
-          this.setState({ redirectToReferer: true });
-        }
-      });
+  deletePost = (username) => {
+    if (Meteor.user().username === username || Roles.userIsInRole(Meteor.userId(), 'admin')) {
+      Posts.collection.remove(this.props.post._id,
+        (error) => {
+          if (error) {
+            swal('Error', error.message, 'error');
+          } else {
+            this.setState({ redirectToReferer: true });
+          }
+        });
+    } else {
+      swal('Error', `Only user: ${this.props.user.firstName} ${this.props.user.lastName} can remove this post`, 'error');
+    }
   }
 
   postDigest() {
@@ -86,29 +92,10 @@ class PostEvent extends React.Component {
                   id="delete-post"
                   icon="trash alternate outline"
                   text="Delete"
-                  onClick={() => deleteModal()}/>
+                  onClick={() => this.deletePost(this.props.user.owner)}/>
               </Dropdown.Menu>
             </Dropdown>
           </div>
-        </Segment>
-      </Segment.Group>
-    );
-  }
-
-  segmentFooter() {
-    return (
-      <Segment.Group horizontal>
-        <Segment compact>
-          <Icon name="heart" onClick={(e, data) => this.handleMeta(e, data)}/>
-          {`${this.props.post.meta} Likes`}
-        </Segment>
-        <Segment compact>
-          <Icon name='comments'/>
-          Comments
-        </Segment>
-        <Segment floated="right">
-          <Icon name="share square"/>
-          Share
         </Segment>
       </Segment.Group>
     );
@@ -136,7 +123,6 @@ class PostEvent extends React.Component {
               {this.album(this.props.post.extraImages)}
             </Segment>
           </Segment.Group>
-          {this.segmentFooter()}
         </Segment.Group>
       );
     }
@@ -147,7 +133,6 @@ class PostEvent extends React.Component {
           <Segment.Group>
             {this.album(this.props.post.extraImages)}
           </Segment.Group>
-          {this.segmentFooter()}
         </Segment.Group>
       );
     }
@@ -160,7 +145,6 @@ class PostEvent extends React.Component {
               {this.props.post.extraText}
             </Segment>
           </Segment.Group>
-          {this.segmentFooter()}
         </Segment.Group>
       );
     }
@@ -168,7 +152,6 @@ class PostEvent extends React.Component {
       <div>
         <Segment.Group piled stacked>
           {this.postDigest()}
-          {this.segmentFooter()}
         </Segment.Group>
       </div>
     );
@@ -176,6 +159,7 @@ class PostEvent extends React.Component {
   }
 }
 
+// Declare the types of all properties.
 PostEvent.propTypes = {
   location: PropTypes.object,
   post: PropTypes.object.isRequired,
@@ -184,10 +168,12 @@ PostEvent.propTypes = {
   posts: PropTypes.array,
 };
 
+// withTracker connects Meteor data to React components. https://guide.meteor.com/react.html#using-withTracker
 const PostTracker = withTracker(() => ({
   subscription: Meteor.subscribe(Users.userPublicationName) && Meteor.subscribe(Posts.userPublicationName),
   users: Users.collection.find({}).fetch(),
   posts: Posts.collection.find({}).fetch(),
 }))(PostEvent);
 
+// Enable ReactRouter for this component. https://reacttraining.com/react-router/web/api/withRouter
 export default withRouter(PostTracker);

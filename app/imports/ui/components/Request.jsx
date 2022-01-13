@@ -6,7 +6,7 @@ import { withRouter, Link } from 'react-router-dom';
 import { withTracker } from 'meteor/react-meteor-data';
 import { Users } from '../../api/user/User';
 
-/** Renders a single row in the List Stuff table. See pages/ListStuff.jsx. */
+/** Renders a single request item. See pages/FindRoommate.jsx. */
 class Request extends React.Component {
   render() {
     return (this.props.ready) ? this.renderComponent() : <Loader active>Getting data</Loader>;
@@ -21,12 +21,14 @@ class Request extends React.Component {
           <Item.Header as='a' color='white'>{this.props.request.firstName} {this.props.request.lastName}</Item.Header>
           <Item.Description>
             <p>Gender: {this.props.request.gender}</p>
+            <p>Major: {this.props.request.major}</p>
+            <p>Graduation Year: {this.props.request.gradYear}</p>
             <p>Location: {this.props.request.location}</p>
             <p>{this.props.request.description}</p>
           </Item.Description>
           <Item.Extra>
             <Link to={`/profile/${user._id}`}>Link to the profile</Link>
-            <Link id="findroommate-editrequest" to={`/edit/${this.props.request._id}`}>Edit</Link>
+            <Link id={'findroommate-editrequest'} to={`/edit/${this.props.request._id}`}>Edit</Link>
           </Item.Extra>
         </Item.Content>
       </Item>
@@ -34,13 +36,14 @@ class Request extends React.Component {
   }
 }
 
-// Require a document to be passed to this component.
+// Declare the types of all properties.
 Request.propTypes = {
   request: PropTypes.object.isRequired,
   users: PropTypes.array.isRequired,
   ready: PropTypes.bool.isRequired,
 };
 
+// withTracker connects Meteor data to React components. https://guide.meteor.com/react.html#using-withTracker
 const RequestTracker = withTracker(() => {
   const subscription = Meteor.subscribe(Users.userPublicationName);
   const ready = subscription.ready();

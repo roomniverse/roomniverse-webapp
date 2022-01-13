@@ -40,7 +40,7 @@ class NavBar extends React.Component {
                 Profile</Menu.Item>]
           ) : ''}
           {Roles.userIsInRole(Meteor.userId(), 'admin') ? (
-            <Menu.Item as={NavLink} activeClassName="active" exact to="/admin" key='admin'>Admin</Menu.Item>
+            <Menu.Item as={NavLink} id="navbar-admin" activeClassName="active" exact to="/admin" key='admin'>Admin</Menu.Item>
           ) : ''}
           <Menu.Item>
             {this.props.currentUser === '' ? (
@@ -76,6 +76,7 @@ NavBar.propTypes = {
 // withTracker connects Meteor data to React components. https://guide.meteor.com/react.html#using-withTracker
 const NavBarContainer = withTracker(() => ({
   currentUser: Meteor.user() ? Meteor.user().username : '',
+  subscription: Meteor.subscribe(Users.userPublicationName),
   user: Users.collection.find({}).fetch(),
 }))(NavBar);
 

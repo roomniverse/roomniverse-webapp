@@ -1,6 +1,6 @@
 import React from 'react';
 import { Meteor } from 'meteor/meteor';
-import { Button, Container, Grid, Loader, Tab, Segment } from 'semantic-ui-react';
+import { Button, Container, Grid, Loader, Tab, Segment, Header } from 'semantic-ui-react';
 import { withTracker } from 'meteor/react-meteor-data';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
@@ -10,6 +10,10 @@ import PostEvent from '../components/PostEvent';
 import { Posts } from '../../api/social/Posts';
 import { Requests } from '../../api/social/Requests';
 
+/**
+ * Renders a page for the Users collection, Posts Collection,
+ * and Requests Collection to display for the specific User.
+ */
 class UserProfile extends React.Component {
 
   render() {
@@ -17,6 +21,7 @@ class UserProfile extends React.Component {
   }
 
   renderPage() {
+    const requestTabStyle = { padding: '10px 10px 10px 10px' };
     const posts = this.props.postCollection.filter((post) => post.owner === this.props.doc.owner);
 
     const panes = [
@@ -24,7 +29,7 @@ class UserProfile extends React.Component {
         menuItem: 'Posts',
         render: () => <Tab.Pane>
           <div>
-            <Button id="addpost-button-profile" fluid as={Link} to='/add' referer={`/profile/${this.props.doc._id}`}>
+            <Button id="addpost-button-profile" fluid as={Link} to='/addpost' referer={`/profile/${this.props.doc._id}`}>
               Create a New Post
             </Button>
           </div>
@@ -40,16 +45,22 @@ class UserProfile extends React.Component {
       {
         menuItem: 'Request',
         render: () => {
-          const requests = this.props.userRequest.find((request) => request.owner === this.props.currentUser);
-          return <Tab.Pane>
-            <Segment vertical>
-              <p>Location: {requests?.location}</p></Segment>
-            <Segment vertical>
-              <p>Description: {requests?.description}</p></Segment>
+          const requests = this.props.userRequest.filter((request) => request.owner === this.props.currentUser);
+          return <Tab.Pane> {
+            requests.map((currentRequest, index) => <div style={requestTabStyle} key={index}>
+              <Segment>
+                <Header as='h4'>Request:</Header>
+                <hr/>
+                <p>Location: {currentRequest?.location}</p>
+                <p>Description: {currentRequest?.description}</p>
+              </Segment>
+            </div>)
+          }
           </Tab.Pane>;
         },
       },
     ];
+
     return (
       <div className="white-theme profile">
         <Container id="userprofile-page">
@@ -69,6 +80,7 @@ class UserProfile extends React.Component {
   }
 }
 
+// Declare the types of all properties.
 UserProfile.propTypes = {
   postCollection: PropTypes.array.isRequired,
   ready: PropTypes.bool.isRequired,
@@ -77,6 +89,7 @@ UserProfile.propTypes = {
   currentUser: PropTypes.string.isRequired,
 };
 
+// withTracker connects Meteor data to React components. https://guide.meteor.com/react.html#using-withTracker
 export default withTracker(({ match }) => {
   const documentId = match.params._id;
   const subscription = Meteor.subscribe(Posts.userPublicationName) && Meteor.subscribe(Users.userPublicationName) && Meteor.subscribe(Requests.userPublicationName);

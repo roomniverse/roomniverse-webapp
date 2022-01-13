@@ -8,11 +8,10 @@ import PropTypes from 'prop-types';
 import SimpleSchema2Bridge from 'uniforms-bridge-simple-schema-2';
 import { Redirect } from 'react-router-dom';
 import { Users } from '../../api/user/User';
-import { Posts } from '../../api/social/Posts';
 
 const bridge = new SimpleSchema2Bridge(Users.schema);
 
-/** Renders the Page for editing a single document. */
+/** Renders the Page for editing a single User Profile document. */
 class EditProfile extends React.Component {
   constructor(props) {
     super(props);
@@ -39,7 +38,7 @@ class EditProfile extends React.Component {
 
   // Render the form. Use Uniforms: https://github.com/vazco/uniforms
   renderPage() {
-    const { from } = this.props.location.state || { from: { pathname: `/profile/${Meteor.user()._id}` } };
+    const { from } = this.props.location.state || { from: { pathname: `/profile/${this.props.doc._id}` } };
     // if correct authentication, redirect to page instead of login screen
     if (this.state.redirectToReferer) {
       return <Redirect to={from}/>;
@@ -51,13 +50,13 @@ class EditProfile extends React.Component {
             <Header as="h2" textAlign="center">Edit Profile</Header>
             <AutoForm schema={bridge} onSubmit={data => this.submit(data)} model={this.props.doc}>
               <Segment>
-                <TextField name='firstName'/>
-                <TextField name='lastName'/>
+                <TextField id='editprofile-first-name' name='firstName'/>
+                <TextField id='editprofile-last-name' name='lastName'/>
                 <SelectField name='gender'/>
                 <SelectField name='major'/>
-                <TextField name='gradYear'/>
-                <TextField name='avatar'/>
-                <SubmitField value='Submit'/>
+                <TextField id='editprofile-grad-year' name='gradYear'/>
+                <TextField id='editprofile-avatar' name='avatar'/>
+                <SubmitField id='editprofile-submit' value='Submit'/>
                 <ErrorsField/>
                 <HiddenField name='owner'/>
               </Segment>
@@ -69,21 +68,26 @@ class EditProfile extends React.Component {
   }
 }
 
-// Require the presence of a Stuff document in the props object. Uniforms adds 'model' to the props, which we use.
+// Declare the types of all properties.
 EditProfile.propTypes = {
   location: PropTypes.object,
+  doc: PropTypes.object,
   model: PropTypes.object,
   ready: PropTypes.bool.isRequired,
-  post: PropTypes.object.isRequired,
-  user: PropTypes.object.isRequired,
 };
 
 // withTracker connects Meteor data to React components. https://guide.meteor.com/react.html#using-withTracker
-export default withTracker(() => {
-  const subscription = Meteor.subscribe(Users.userPublicationName) && Meteor.subscribe(Posts.userPublicationName);
+export default withTracker(({ match }) => {
+  // Get the documentID from the URL field. See imports/ui/layouts/App.jsx for the route containing :_id.
+  const documentId = match.params._id;
+  // Get access to Users documents.
+  const subscription = Meteor.subscribe(Users.userPublicationName);
   // Determine if the subscription is ready
   const ready = subscription.ready();
+  // Get the document
+  const doc = Users.collection.findOne(documentId);
   return {
+    doc,
     ready,
   };
 })(EditProfile);

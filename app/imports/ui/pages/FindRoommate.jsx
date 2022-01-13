@@ -8,8 +8,6 @@ import { Requests } from '../../api/social/Requests';
 import Request from '../components/Request';
 import { Users } from '../../api/user/User';
 
-// import { Link } from 'react-router-dom';
-
 const majorOptions = [
   {
     key: 'ICS/CENG',
@@ -80,14 +78,14 @@ const yearOptions = [
 ];
 
 const linkStyle = {
-  color: 'white',
+  color: '#00000099',
 };
 
 const marginTop = {
   marginTop: '1rem',
 };
 
-/** Renders a table containing all of the Stuff documents. Use <StuffItem> to render each row. */
+/** Renders a page containing all of the Request documents. */
 class FindRoommate extends React.Component {
   state = { genderValue: null, yearValue: null, majorValue: null }
 
@@ -167,7 +165,7 @@ class FindRoommate extends React.Component {
               />
             </Grid.Column>
           </Grid>
-          <Button primary floated='right' style={marginTop}>
+          <Button floated='right' style={marginTop}>
             <Link
               id="findroommate-addrequest"
               style={linkStyle}
@@ -185,7 +183,7 @@ class FindRoommate extends React.Component {
   }
 }
 
-// Require an array of Stuff documents in the props.
+// Declare the types of all properties.
 FindRoommate.propTypes = {
   requests: PropTypes.array.isRequired,
   ready: PropTypes.bool.isRequired,
@@ -193,12 +191,12 @@ FindRoommate.propTypes = {
 
 // withTracker connects Meteor data to React components. https://guide.meteor.com/react.html#using-withTracker
 export default withTracker(() => {
-  // Get access to Stuff documents.
+  // Get access to Requests and Users documents.
   const subscription = Meteor.subscribe(Requests.userPublicationName) && Meteor.subscribe(Users.userPublicationName);
   // Determine if the subscription is ready
   const ready = subscription.ready();
-  // Get the Stuff documents
-  const requests = Requests.collection.find({}).fetch();
+  // Get the Request documents
+  const requests = Requests.collection.find({}).fetch().reverse();
   return {
     requests,
     ready,
